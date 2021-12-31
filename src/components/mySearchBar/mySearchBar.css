@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.searchBox {
+    /* height: 50px; */
+    /* height:max-content;
+    width: max-content; */
+    float: left;
+    background-color:rgb(255, 255, 255);
+    border-style: none;
+    border-radius: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.searchInput {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    border-style: none;
+    background: none;
+    /* height: 50px; */
+    outline: none;
+    font-size: 30px;
+    /* font-weight: bold; */
+    padding-left: 18px;
+    color: rgb(0, 0, 0);
+    float: left;
+}
+
+.searchInput::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+.searchInput::-webkit-search-cancel-button {
+    display: none;
+    width: 0;
+    height: 0;
+}
+.searchButton {
+    /* height: 50px; */
+    /* width: 50px; */
+    background: none;
+    margin: 0;
+    border-style: none;
+    padding: 0;
+    padding-right: 10px;
+    margin-top: 5px;
+    float:right;
+    border-color: rgb(73, 64, 64);
+    /* color: rgb(0, 0, 0); */
+    text-align: center;
+    cursor: pointer;
+}
+/* .searchButton:hover {
+    background-color: rgba(0, 0, 0, 0.226);
+} */
+.material-icons {
+    color: black;
+    font-size: 40px;
+    transform: rotate(90deg);
+    border-style: none;
+    margin: 0;
+    padding: 0;
+}
