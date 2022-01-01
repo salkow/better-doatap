@@ -1,16 +1,46 @@
-import MyButton from "./components/MyButton/MyButton";
-import MyBreadcrumb from "./components/MyBreadcrumb/MyBreadcrumb";
-import MySearchBar from "./components/mySearchBar/mySearchBar";
+import MyButton from "./components/generalComponents/MyButton/MyButton";
+import MyBreadcrumb from "./components/generalComponents/MyBreadcrumb/MyBreadcrumb";
+import MySearchBar from "./components/generalComponents/mySearchBar/mySearchBar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 function App() {
        return (
-		   <div>
-			   <MyButton btn_color="brown"/>
-			   <MyBreadcrumb/>
-			   <MySearchBar />
-		   </div>
+		   <Router>
+			   <div>
+				   {/* add navigation bar here */}
+				   <ul>
+					   <li>
+						   <Link to="/">1</Link>
+					   </li>
+					   <li>
+						   <Link to="/about">2</Link>
+					   </li>
+				   </ul>
+				   {/* add all possible link/routes here */}
+				   <Routes>
+						<Route exact path="/" element={<MyBreadcrumb />}/>
+						<Route exact path="/about" element={<MySearchBar />}/>
+				   </Routes>
+				   {/* add footer stuff here */}
+				   <ul>
+					   <li>
+						   <Link to="/">1</Link>
+					   </li>
+					   <li>
+						   <Link to="/about">2</Link>
+					   </li>
+				   </ul>
+			   </div>
+		   </Router>
 	   );
 }
 
