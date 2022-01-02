@@ -17,7 +17,8 @@ const MyLoginPage = () =>
         <div class="middle">
             <span>Λογαριασμός Σελίδας</span>
             <div class="txtboxes">
-              <MyTextBox />
+              <MyTextBox txt="Email" type="text"/>
+              <MyTextBox txt="Password" type="password"/>
             </div>
         </div>
       </div>

@@ -8,9 +8,9 @@ const MyTextBox = ({txt, type}) =>
 		<div class="txt-external">
             <div class="txt-internal">
                 <div class="txt-top">
-                    <span>*{txt}</span>
+                    <span><span id="star">*</span>{txt}</span>
                 </div>
-                <input type="text" />            
+                <input type={type} />            
             </div>
         </div>
 	);

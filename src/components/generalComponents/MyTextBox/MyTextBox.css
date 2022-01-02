@@ -10,7 +10,7 @@
 .txt-top > span {
     font-size: 12px;
 }
-.txt-top > span::first-letter {
+#star {
     color: red;
 }
 .txt-internal > input {
