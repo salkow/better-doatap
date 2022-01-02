@@ -15,7 +15,6 @@ const Nav = () => {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           <img
-            // src="https://localhost:8043/images/LionLogo.png"
 	  		src={logo}
             alt="Logo"
             width="35"
@@ -58,7 +57,7 @@ const Nav = () => {
             </li>
 
             <li className="nav-item">
-              <Dropdown>
+              <Dropdown style={{marginTop: "2%"}}>
                 <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{color: "darkgray", boxShadow: "none", border: "none", backgroundColor: "#212529"}}>
                   Πληροφορίες
                 </Dropdown.Toggle>
