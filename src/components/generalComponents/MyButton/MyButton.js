@@ -1,18 +1,25 @@
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 
 import { useState, useEffect } from "react";
 
-const MyButton = ({btn_color}) => 
+import "./MyButton.css";
+
+const MyButton = ({btn_color, txt_color, curr_msg}) => 
 {
 	const [msg, setMsg] = useState([]);
 
-	useEffect(() => {
-		setMsg("123")
-		console.log(msg);
-	}, [msg]);
+	// useEffect(() => {
+	// 	setMsg("123")
+	// 	console.log(msg);
+	// }, [msg]);
 
+	// <Button variant="primary" style={{ "backgroundColor": btn_color}}>{msg}</Button>
     return (
-		<Button variant="primary" style={{ "backgroundColor": btn_color}}>{msg}</Button>
+		<div>
+			<button class="btn" type="submit" style={{ "backgroundColor": btn_color, "color": txt_color }}>
+				{curr_msg}
+			</button>
+		</div>
 	);
 };
 

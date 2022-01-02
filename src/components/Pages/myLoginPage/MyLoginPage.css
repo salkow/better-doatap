@@ -27,7 +27,7 @@
     flex-direction: column;
     align-items: center;
 }
-.middle > span {
+.head {
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     line-height: 28px;
@@ -38,6 +38,23 @@
     border-color: rgba(0, 0, 0, 0.47);
     border-width: 1px;
 }
-.middle .txtboxes > * {
+.middle > .txtboxes > * {
     margin: 40px;
+}
+
+.middle > .tail{ 
+    font-size: 18px;
+    line-height: 21px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    margin-top: 30px;
+}
+.middle > .tail > .tail-colored {
+    color: rgb(0, 163, 255);
+}
+
+.middle > .tail > .tail-colored:hover {
+    color: rgb(0, 163, 255);
+    text-decoration: underline;
+    cursor: pointer;
 }
