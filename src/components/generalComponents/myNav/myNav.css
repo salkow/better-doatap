@@ -1,0 +1,15 @@
+#user-icon
+{
+	float: right;
+	background-color: aliceblue;
+}
+
+div.dropdown-menu
+{
+    background-color: #212529;
+}
+
+a.dropdown-item:hover
+{
+    background-color: #212529;
+}
