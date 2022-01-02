@@ -15,8 +15,8 @@ const MyButton = ({btn_color, txt_color, curr_msg}) =>
 
 	// <Button variant="primary" style={{ "backgroundColor": btn_color}}>{msg}</Button>
     return (
-		<div>
-			<button class="btn" type="submit" style={{ "backgroundColor": btn_color, "color": txt_color }}>
+		<div class="btn">
+			<button type="submit" style={{ "backgroundColor": btn_color, "color": txt_color }}>
 				{curr_msg}
 			</button>
 		</div>
