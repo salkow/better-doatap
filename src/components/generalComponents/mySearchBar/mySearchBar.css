@@ -3,9 +3,10 @@
 
 .searchBox {
     /* height: 50px; */
-    /* height:max-content;
-    width: max-content; */
-    float: left;
+    height:max-content;
+    width: max-content;
+    display: flex;
+    
     background-color:rgb(255, 255, 255);
     border-style: none;
     border-radius: 30px;
@@ -14,18 +15,16 @@
 }
 
 .searchInput {
-    padding: 0;
+    flex-grow: 1;
+    padding: 0 0 0 18px;
     margin: 0;
     font-family: 'Roboto', sans-serif;
     border-style: none;
     background: none;
     /* height: 50px; */
     outline: none;
-    font-size: 30px;
-    /* font-weight: bold; */
-    padding-left: 18px;
+    font-size: 22px; /*change this to make smaller */
     color: rgb(0, 0, 0);
-    float: left;
 }
 
 .searchInput::placeholder {
@@ -38,28 +37,21 @@
     height: 0;
 }
 .searchButton {
-    /* height: 50px; */
-    /* width: 50px; */
-    background: none;
     margin: 0;
+    padding: 5px 10px 0 0;
+    background: none;
     border-style: none;
-    padding: 0;
-    padding-right: 10px;
-    margin-top: 5px;
-    float:right;
     border-color: rgb(73, 64, 64);
-    /* color: rgb(0, 0, 0); */
-    text-align: center;
     cursor: pointer;
 }
 /* .searchButton:hover {
     background-color: rgba(0, 0, 0, 0.226);
 } */
 .material-icons {
-    color: black;
-    font-size: 40px;
-    transform: rotate(90deg);
-    border-style: none;
     margin: 0;
     padding: 0;
+    color: black;
+    font-size: 30px; /*change this to make smaller */
+    transform: rotate(90deg);
+    border-style: none;
 }
