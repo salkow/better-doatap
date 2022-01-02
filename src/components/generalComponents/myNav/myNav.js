@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 
 import { Dropdown } from "react-bootstrap";
 
+import "./myNav.css"
+
 const Nav = () => {
   return (
     <nav
@@ -54,7 +56,7 @@ const Nav = () => {
 
             <li className="nav-item">
               <Dropdown>
-                <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{color: "darkgray"}}>
+                <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{color: "darkgray", boxShadow: "none", border: "none", backgroundColor: "#212529"}}>
                   Πληροφορίες
                 </Dropdown.Toggle>
 
