@@ -1,6 +1,7 @@
 import MyButton from "./components/generalComponents/MyButton/MyButton";
 import MyBreadcrumb from "./components/generalComponents/MyBreadcrumb/MyBreadcrumb";
 import MySearchBar from "./components/generalComponents/mySearchBar/mySearchBar";
+import MyLoginPage from "./components/Pages/myLoginPage/MyLoginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -17,28 +18,28 @@ function App() {
 		   <Router>
 			   <div>
 				   {/* add navigation bar here */}
-				   <ul>
+				   {/* <ul>
 					   <li>
 						   <Link to="/">1</Link>
 					   </li>
 					   <li>
 						   <Link to="/about">2</Link>
 					   </li>
-				   </ul>
+				   </ul> */}
 				   {/* add all possible link/routes here */}
 				   <Routes>
 						<Route exact path="/" element={<MyBreadcrumb />}/>
-						<Route exact path="/about" element={<MySearchBar />}/>
+						<Route exact path="/loginPage" element={<MyLoginPage />}/>
 				   </Routes>
 				   {/* add footer stuff here */}
-				   <ul>
+				   {/* <ul>
 					   <li>
 						   <Link to="/">1</Link>
 					   </li>
 					   <li>
 						   <Link to="/about">2</Link>
 					   </li>
-				   </ul>
+				   </ul> */}
 			   </div>
 		   </Router>
 	   );

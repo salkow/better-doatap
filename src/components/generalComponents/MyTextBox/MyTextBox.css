@@ -1,0 +1,22 @@
+.txt-external {
+
+}
+.txt-internal {
+    
+}
+.txt-top {
+
+}
+.txt-top > span {
+    font-size: 12px;
+}
+.txt-top > span::first-letter {
+    color: red;
+}
+.txt-internal > input {
+    border-radius: 42px;
+    margin: 0px;
+    padding: 10px;
+    font-size: 18px;
+    border-width: 1px;
+}

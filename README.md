@@ -17,3 +17,4 @@ admin
 
 ## Other
 πως κανω αιτηση
+check if we can include every package we want, problem with css scope(child enherits parrent's css)
