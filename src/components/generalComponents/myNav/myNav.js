@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 
 import { Dropdown } from "react-bootstrap";
 
+import logo from "../../../doatap-logo.png"
+
 import "./myNav.css"
 
 const Nav = () => {
@@ -14,8 +16,9 @@ const Nav = () => {
         <NavLink className="navbar-brand" to="/">
           <img
             // src="https://localhost:8043/images/LionLogo.png"
+	  		src={logo}
             alt="Logo"
-            width="24"
+            width="35"
             height="35"
           />
         </NavLink>
