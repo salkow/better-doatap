@@ -13,10 +13,17 @@
 #star {
     color: red;
 }
-.txt-internal > input {
+.txt-internal input {
     border-radius: 42px;
     margin: 0px;
     padding: 10px;
     font-size: 18px;
-    border-width: 1px;
+    border: 2px solid rgba(0, 0, 0, 0.30);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    line-height: 1px;
+    outline: none;
+}
+.txt-internal input:focus {
+    border-color: rgba(0, 0, 0, 0.70);
 }
