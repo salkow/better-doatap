@@ -1,20 +1,21 @@
 ## Xristos
-home page\n
-status bar\n
-footer\n
-backend\n
-qna\n
-επικοινωνια\n
+* home page
+* status bar
+* footer
+* backend
+* qna
+* επικοινωνια
 
 ## Antonis
-search bar\n
-login page\n
-profile register\n
-κανε αιτηση\n
-admin \n
+* search bar
+* login page
+* profile register
+* κανε αιτηση
+* admin 
 
 
 
 ## Other
-πως κανω αιτηση\n
+πως κανω αιτηση
+
 check if we can include every package we want, problem with css scope(child enherits parrent's css)
