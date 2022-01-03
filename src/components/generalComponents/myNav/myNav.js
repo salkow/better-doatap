@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
-import logo from "../../../doatap-logo.png";
-import user_icon from "../../../user-icon.png";
+import logo from "../../../assets/doatap-logo.png";
+import user_icon from "../../../assets/user-icon.png";
 import MySearchBar from "../../generalComponents/mySearchBar/mySearchBar";
 
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
