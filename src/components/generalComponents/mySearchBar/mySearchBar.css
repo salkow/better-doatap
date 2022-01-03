@@ -51,7 +51,7 @@
     margin: 0;
     padding: 0;
     color: black;
-    font-size: 30px; /*change this to make smaller */
+    font-size: 18px; /*change this to make smaller */
     transform: rotate(90deg);
     border-style: none;
 }
