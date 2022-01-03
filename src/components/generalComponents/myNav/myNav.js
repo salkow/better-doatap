@@ -14,7 +14,7 @@ const TheNav = () => {
 			bg="dark"
 			variant="dark"
 			expand="lg"
-			style={{ fontSize: "18px" }}
+			style={{ fontSize: "22px" }}
 		>
 			<Container>
 				<Navbar.Brand>
@@ -22,8 +22,8 @@ const TheNav = () => {
 						<img
 							src={logo}
 							alt="doatap logo"
-							width="35"
-							height="35"
+							width="55"
+							height="55"
 						/>
 					</NavLink>
 				</Navbar.Brand>
@@ -83,8 +83,8 @@ const TheNav = () => {
 							<img
 								src={user_icon}
 								alt="doatap logo"
-								width="35"
-								height="35"
+								width="45"
+								height="45"
 							/>
 						</NavLink>
 					</Nav>
