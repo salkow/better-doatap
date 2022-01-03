@@ -22,13 +22,6 @@ const MyBreadcrumb = ({ array }) =>
     });
     return (
 		<Breadcrumb>
-            {/* <Breadcrumb.Item className="bread" href="#">
-            <span>Home</span>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item className="bread" href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-            <span>Library</span>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active><span>Data</span></Breadcrumb.Item> */}
             {fin}
         </Breadcrumb>
 	);

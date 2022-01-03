@@ -1,12 +1,8 @@
-// import { Button } from "react-bootstrap";
-
 import './MyLoginPage.css';
 
 import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
 import MyButton from "../../generalComponents/MyButton/MyButton";
 import MyBreadcrumb from '../../generalComponents/MyBreadcrumb/MyBreadcrumb';
-
-// import { useState, useEffect } from "react";
 
 const MyLoginPage = () => 
 {
