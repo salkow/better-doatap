@@ -71,14 +71,14 @@ const TheNav = () => {
 					<Nav>
 						<NavLink
 							className="nav-link selected"
-							to="/new_application"
+							to="/loginPage"
 						>
 							Είσοδος
 						</NavLink>
 
 						<NavLink
 							className="nav-brand mt-1 selected"
-							to="/new_application"
+							to="/profile"
 						>
 							<img
 								src={user_icon}

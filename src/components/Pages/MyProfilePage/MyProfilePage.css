@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.external {
+    display: flex;
+    justify-content: center;
+}
+.internal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.internal > div:first-child{
+    margin-bottom: 70px;
+}
+.top > span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: bold;
+    opacity: 85%;
+    padding: 0 25px 10px 25px;
+    border-style: none none solid none;
+    border-color: rgba(0, 0, 0, 0.47);
+    border-width: 1px;
+}
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.head {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: normal;
+    opacity: 85%;
+    padding: 0 25px 5px 25px;
+    border-style: none none solid none;
+    border-color: rgba(0, 0, 0, 0.47);
+    border-width: 1px;
+}
+.middle > .txtboxes > * {
+    margin: 40px;
+}
+
+.middle > .tail{ 
+    font-size: 18px;
+    line-height: 21px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    margin-top: 30px;
+}
+.middle > .tail > .tail-colored {
+    color: rgb(0, 163, 255);
+}
+
+.middle > .tail > .tail-colored:hover {
+    color: rgb(0, 163, 255);
+    text-decoration: underline;
+    cursor: pointer;
+}
