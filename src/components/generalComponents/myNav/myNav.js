@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import logo from "../../../assets/doatap-logo.png";
 import user_icon from "../../../assets/user-icon.png";
@@ -18,14 +18,14 @@ const TheNav = () => {
 		>
 			<Container>
 				<Navbar.Brand>
-					<NavLink className="navbar-brand" to="/">
+					<Link className="navbar-brand" to="/">
 						<img
 							src={logo}
 							alt="doatap logo"
 							width="55"
 							height="55"
 						/>
-					</NavLink>
+					</Link>
 				</Navbar.Brand>
 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />

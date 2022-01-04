@@ -1,3 +1,14 @@
 .the-footer {
 	flex-shrink: 0;
 }
+
+.the-logo {
+	width: 244px;
+	height: 75px;
+}
+
+.call
+{
+	width: 15px;
+	height: 15px;
+}
