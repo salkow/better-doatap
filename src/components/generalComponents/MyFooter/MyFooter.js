@@ -9,7 +9,7 @@ import call from "../../../call.png";
 
 const Footer = () => {
 	return (
-		<div style={{ position: "relative", backgroundColor: "#D0CECE" }}>
+		<div style={{ position: "relative", backgroundColor: "#D0CECE" }} className="mt-3">
 			<footer className="the-footer text-center footer mt-auto py-3">
 				<Container className="p-4">
 					<Row>
@@ -47,18 +47,6 @@ const Footer = () => {
 							<h5>Πληροφορίες</h5>
 
 							<ul className="list-unstyled mb-0 mt-3">
-								<li>
-									<NavLink
-										className={({ isActive }) =>
-											isActive
-												? "link-secondary"
-												: "link-dark"
-										}
-										to="/qna"
-									>
-										Συχνές ερωτήσεις
-									</NavLink>
-								</li>
 								<li className="mt-2">
 									<NavLink
 										className={({ isActive }) =>
@@ -69,6 +57,18 @@ const Footer = () => {
 										to="/communication"
 									>
 										Επικοινωνία
+									</NavLink>
+								</li>
+								<li>
+									<NavLink
+										className={({ isActive }) =>
+											isActive
+												? "link-secondary"
+												: "link-dark"
+										}
+										to="/qna"
+									>
+										Συχνές ερωτήσεις
 									</NavLink>
 								</li>
 							</ul>

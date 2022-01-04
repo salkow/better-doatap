@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.external {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+.internal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.other-internal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+.top {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+.internal > div:first-child{
+    margin-bottom: 70px;
+}
+
+.other-internal > div:first-child{
+    margin-bottom: 30px;
+}
+.top > span{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: bold;
+    opacity: 85%;
+    padding: 0 25px 10px 25px;
+    border-style: none none solid none;
+    border-color: rgba(0, 0, 0, 0.47);
+    border-width: 1px;
+}
+
+.other-top > span{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    line-height: 56px;
+    font-weight: bold;
+    opacity: 85%;
+    padding: 0 25px 10px 25px;
+    border-style: none none solid none;
+    border-color: rgba(0, 0, 0, 0.47);
+    border-width: 1px;
+}
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.middle > .txtboxes-p > div > * {
+    /* margin-bottom: 40px; */
+}
+.myTextboxes {
+    margin-bottom: 30px;
+}
+
+.middle > .txtboxes-p > div > *:last-child {
+    margin-bottom: 15px;
+}
+
+/* .horizontal > *:first-child {
+    margin-right: 40px;
+} */
+.txtboxes-p {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.txtboxes-p > * {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+    padding: 0 25px 5px 25px;
+    border-style: none none solid none;
+    border-color: rgba(0, 0, 0, 0.47);
+    border-width: 1px;
+}
+
+.txtboxes-p > .first-group > .first-other,
+.txtboxes-p > .second-group > .second-other, 
+.txtboxes-p > .third-group > .third-other {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
