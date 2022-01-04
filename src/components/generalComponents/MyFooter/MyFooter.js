@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 
 import { Container, Row, Col } from "react-bootstrap";
 
+import full_logo from "../../../doatap-logo-full.png";
+import call from "../../../call.png";
+
 const Footer = () => {
 	return (
 		<div style={{ position: "relative" }}>
@@ -43,7 +46,7 @@ const Footer = () => {
 						<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
 							<h5>Πληροφορίες</h5>
 
-							<ul className="list-unstyled mb-0">
+							<ul className="list-unstyled mb-0 mt-3">
 								<li>
 									<NavLink
 										className={({ isActive }) =>
@@ -56,7 +59,7 @@ const Footer = () => {
 										Συχνές ερωτήσεις
 									</NavLink>
 								</li>
-								<li>
+								<li className="mt-2">
 									<NavLink
 										className={({ isActive }) =>
 											isActive
@@ -70,6 +73,42 @@ const Footer = () => {
 								</li>
 							</ul>
 						</Col>
+					</Row>
+
+					<Row className="mt-5" md={2}>
+						<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
+							<NavLink className="navbar-brand" to="/">
+								<img
+									src={full_logo}
+									alt="doatap full logo"
+									className="the-logo"
+								/>
+							</NavLink>
+						</Col>
+
+						<Row md={1}>
+							<Col className="mb-4 mb-md-0 mx-auto">
+								<span>
+									<img
+										src={call}
+										alt="doatap full logo"
+										className="call p-0 m-0"
+									/>
+									<span> Αθήνα - 210-5281000</span>
+								</span>
+							</Col>
+		
+							<Col className="mb-4 mb-md-0 mx-auto">
+								<span>
+									<img
+										src={call}
+										alt="doatap full logo"
+										className="call p-0 m-0"
+									/>
+									<span> Θεσσαλονίκη - 2313-501372</span>
+								</span>
+							</Col>
+						</Row>
 					</Row>
 				</Container>
 			</footer>
