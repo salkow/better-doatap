@@ -1,0 +1,35 @@
+.date-top > span {
+    font-size: 12px;
+}
+#star {
+    color: red;
+}
+.date-external {
+    width: 100%;
+}
+.date-internal {
+    width: 330px;
+}
+.date-internal input {
+    border-radius: 42px;
+    margin: 0px;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid rgba(0, 0, 0, 0.30);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    /* line-height: 1px; */
+    outline: none;
+    width: 100%;
+    height: max-content;
+}
+.date-internal input::-webkit-inner-spin-button{
+
+}
+.date-internal input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+.date-internal input:focus {
+    border-color: rgba(0, 0, 0, 0.70);
+}
