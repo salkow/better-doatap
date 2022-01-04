@@ -1,14 +1,28 @@
 import { Breadcrumb } from "react-bootstrap";
 
-const MyBreadcrumb = () => 
+import './MyBreadcrumb.css'
+
+const MyBreadcrumb = ({ array }) => 
 {
+    const fin = []
+    array.map((e, i, array) => {
+        if(i+1 === array.length){
+            fin.push(
+            <Breadcrumb.Item className={"bread"} active>
+                <span>{e.second}</span>
+            </Breadcrumb.Item>
+            );    
+        }else{
+            fin.push(
+            <Breadcrumb.Item className={"bread"} href={e.first}>
+                <span>{e.second}</span>
+            </Breadcrumb.Item>
+            );            
+        }
+    });
     return (
 		<Breadcrumb>
-            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-                Library
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>Data</Breadcrumb.Item>
+            {fin}
         </Breadcrumb>
 	);
 };

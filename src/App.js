@@ -2,6 +2,8 @@ import HomePage from "./components/Pages/myHomePage/myHomePage";
 import Communication from "./components/Pages/myCommunication/myCommunication";
 import QNA from "./components/Pages/myQNA/myQNA";
 import MyLoginPage from "./components/Pages/myLoginPage/MyLoginPage";
+import MyProfilePage from "./components/Pages/MyProfilePage/MyProfilePage";
+import MyRegisterPage from "./components/Pages/MyRegisterPage/MyRegisterPage";
 
 import TheNav from "./components/generalComponents/myNav/myNav";
 import Footer from "./components/generalComponents/MyFooter/MyFooter";
@@ -24,6 +26,8 @@ function App() {
 				<Route path="/qna" element={<QNA />} />
 				<Route path="/communication" element={<Communication />} />
 				<Route path="/loginPage" element={<MyLoginPage />} />
+				<Route path="/profile" element={<MyProfilePage />} />
+				<Route path="/register" element={<MyRegisterPage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>

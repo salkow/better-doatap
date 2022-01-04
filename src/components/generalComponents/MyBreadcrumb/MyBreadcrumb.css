@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.breadcrumb-item+.breadcrumb-item::before{
+    content:var(--bs-breadcrumb-divider,url("../../../assets/breadcrumbIcon.png")) !important ;
+    margin: 0;
+    padding: 2px 0 0 0;
+}
+.active span {
+    padding-top: 2px;
+}
+.breadcrumb-item {
+    display: flex;
+}
+
+.bread > a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.bread > a:visited {
+    color: black;
+}
+
+.bread > a:hover {
+    color: black;
+    text-decoration: underline;
+}
