@@ -4,6 +4,7 @@ import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
 import MyButton from "../../generalComponents/MyButton/MyButton";
 import MyBreadcrumb from '../../generalComponents/MyBreadcrumb/MyBreadcrumb';
 import MyRadioButton from '../../generalComponents/MyRadioButton/MyRadioButton';
+import MyDatePicker from '../../generalComponents/MyDatePicker/MyDatePicker';
 
 
 const MyProfilePage = () => 
@@ -33,7 +34,7 @@ const MyProfilePage = () =>
                     </div>
                     <div class="second-other horizontal">
                       <MyRadioButton txt="Φύλο"/>
-                      <MyTextBox txt="Ημερομηνία γέννησης" type="text"/>
+                      <MyDatePicker txt="Ημερομηνία γέννησης"/>
                     </div>
                     <MyTextBox txt="Τηλέφωνο Επικοινωνίας" type="text"/>
                   </div>

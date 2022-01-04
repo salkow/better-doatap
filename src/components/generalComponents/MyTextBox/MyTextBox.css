@@ -1,9 +1,3 @@
-.txt-external {
-
-}
-.txt-internal {
-    
-}
 .txt-top {
 
 }
@@ -23,6 +17,7 @@
     transition: 0.5s;
     line-height: 1px;
     outline: none;
+    width: 330px;
 }
 .txt-internal input:focus {
     border-color: rgba(0, 0, 0, 0.70);
