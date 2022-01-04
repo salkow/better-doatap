@@ -9,8 +9,10 @@
 ## Antonis
 * search bar
 * login page
-* profile register
+* profile 
+* register
 * κανε αιτηση
+* οι αιτησεις μου
 * admin 
 
 
