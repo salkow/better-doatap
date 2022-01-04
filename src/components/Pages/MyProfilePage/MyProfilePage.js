@@ -3,11 +3,12 @@ import './MyProfilePage.css';
 import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
 import MyButton from "../../generalComponents/MyButton/MyButton";
 import MyBreadcrumb from '../../generalComponents/MyBreadcrumb/MyBreadcrumb';
+import MyRadioButton from '../../generalComponents/MyRadioButton/MyRadioButton';
 
 
 const MyProfilePage = () => 
 {
-    const myBread = [{first: "#", second: "home"}, {first: "#", second: "test"}, {second: "non"}]
+    const myBread = [{first: "/", second: "Αρχική"}, {second: "Προφίλ"}]
     return (
       <div>
         <MyBreadcrumb array={myBread}/>
@@ -31,7 +32,7 @@ const MyProfilePage = () =>
                       <MyTextBox txt="Όνομα" type="text"/>
                     </div>
                     <div class="second-other horizontal">
-                      <MyTextBox txt="Φύλο" type="text"/>
+                      <MyRadioButton txt="Φύλο"/>
                       <MyTextBox txt="Ημερομηνία γέννησης" type="text"/>
                     </div>
                     <MyTextBox txt="Τηλέφωνο Επικοινωνίας" type="text"/>

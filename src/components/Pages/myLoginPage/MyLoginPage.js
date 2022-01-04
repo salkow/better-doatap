@@ -6,7 +6,7 @@ import MyBreadcrumb from '../../generalComponents/MyBreadcrumb/MyBreadcrumb';
 
 const MyLoginPage = () => 
 {
-    const myBread = [{first: "#", second: "home"}, {first: "#", second: "test"}, {second: "non"}]
+    const myBread = [{first: "/", second: "Αρχική"}, {second: "Είσοδος/Εγγραφή"}]
     return (
       <div>
         <MyBreadcrumb array={myBread}/>
