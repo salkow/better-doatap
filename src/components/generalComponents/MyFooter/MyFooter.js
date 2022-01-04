@@ -9,7 +9,7 @@ import call from "../../../call.png";
 
 const Footer = () => {
 	return (
-		<div style={{ position: "relative" }}>
+		<div style={{ position: "relative", backgroundColor: "#D0CECE" }}>
 			<footer className="the-footer text-center footer mt-auto py-3">
 				<Container className="p-4">
 					<Row>
@@ -97,7 +97,7 @@ const Footer = () => {
 									<span> Αθήνα - 210-5281000</span>
 								</span>
 							</Col>
-		
+
 							<Col className="mb-4 mb-md-0 mx-auto">
 								<span>
 									<img
