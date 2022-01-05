@@ -59,7 +59,7 @@
 .edit-icon {
     display: flex;
     align-items: center;
-
+    
 }
 
 .tuneButton {
@@ -74,9 +74,9 @@
     display: flex;
 }
 .tune-item {
+    font-size: 46px !important;
     margin: 0;
     padding: 0;
     color: black;
-    font-size: 46px;
     border-style: none;
 }
