@@ -26,3 +26,7 @@ body,
 .content {
 	flex: 1 0 auto;
 }
+
+.gen-space {
+	margin: 25px;
+}

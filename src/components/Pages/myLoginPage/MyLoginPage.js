@@ -8,7 +8,7 @@ const MyLoginPage = () =>
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Είσοδος/Εγγραφή"}]
     return (
-      <div>
+      <div className="content">
         <MyBreadcrumb array={myBread}/>
         <div class="external">
           <div class="internal">

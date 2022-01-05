@@ -11,7 +11,7 @@ const MyProfilePage = () =>
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Προφίλ"}]
     return (
-      <div>
+      <div className="content">
         <MyBreadcrumb array={myBread}/>
         <div class="external">
           <div class="internal">
