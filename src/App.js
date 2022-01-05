@@ -19,7 +19,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<TheNav />
-			<div className="gen-space">
+			<div className="gen-space content">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/new_application" element={<HomePage />} />
