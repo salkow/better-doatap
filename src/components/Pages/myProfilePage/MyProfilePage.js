@@ -10,6 +10,7 @@ import MyDatePicker from '../../generalComponents/MyDatePicker/MyDatePicker';
 const MyProfilePage = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Προφίλ"}]
+    const myRadio = ["ΓΥΝΑΙΚΑ", "ΑΝΔΡΑΣ", "ΑΛΛΟ"]
     return (
       <div className="content">
         <MyBreadcrumb array={myBread}/>
@@ -33,7 +34,7 @@ const MyProfilePage = () =>
                       <MyTextBox txt="Όνομα" type="text"/>
                     </div>
                     <div class="second-other horizontal">
-                      <MyRadioButton txt="Φύλο"/>
+                      <MyRadioButton txt="Φύλο" items={myRadio}/>
                       <MyDatePicker txt="Ημερομηνία γέννησης"/>
                     </div>
                     <MyTextBox txt="Τηλέφωνο Επικοινωνίας" type="text"/>

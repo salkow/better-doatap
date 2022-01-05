@@ -2,8 +2,19 @@ import './MyRadioButton.css';
 
 import { useState, useEffect } from "react";
 
-const MyRadioButton = ({txt, type}) => 
+const MyRadioButton = ({txt, items}) => 
 {
+    const fin = [];
+    items.map(e =>{
+        fin.push(
+            <li>
+                <label>
+                    <input type="radio" name="gender" />
+                    {e}
+                </label>
+            </li>
+        );
+    });
     return (
 		<div class="external-radio">
             <div class="txt-top-radio">
@@ -11,24 +22,7 @@ const MyRadioButton = ({txt, type}) =>
             </div>
             <div class="internal-radio">
                 <ul>
-                    <li>
-                        <label>
-                            <input type="radio" name="gender" />
-                            ΓΥΝΑΙΚΑ
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio" name="gender" />
-                            ΑΝΔΡΑΣ
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="radio" name="gender" />
-                            ΑΛΛΟ
-                        </label>
-                    </li>
+                    {fin}
                 </ul>
             </div>
         </div>
