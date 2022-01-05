@@ -33,7 +33,7 @@ const TheNav = () => {
 					<Nav className="me-auto">
 						<NavLink
 							className="nav-link selected"
-							to="/new_application"
+							to="/myNewAppF"
 						>
 							Κάνε αίτηση
 						</NavLink>

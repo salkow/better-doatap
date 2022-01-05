@@ -6,6 +6,10 @@ import MyProfilePage from "./components/Pages/myProfilePage/MyProfilePage";
 import MyRegisterPage from "./components/Pages/myRegisterPage/MyRegisterPage";
 import MyMyApplicationPage from "./components/Pages/myMyApplicationPage/MyMyApplicationPage";
 
+import MyNewAppFirst from "./components/Pages/myNewApplicationPage/Pages/firstPage/MyNewAppFirst";
+
+
+
 import TheNav from "./components/generalComponents/myNav/myNav";
 import Footer from "./components/generalComponents/MyFooter/MyFooter";
 
@@ -33,6 +37,8 @@ function App() {
 					<Route path="/profile" element={<MyProfilePage />} />
 					<Route path="/register" element={<MyRegisterPage />} />
 					<Route path="/myApplications" element={<MyMyApplicationPage />} />
+
+					<Route path="/myNewAppF" element={<MyNewAppFirst />} />
 
 				</Routes>
 			</div>
