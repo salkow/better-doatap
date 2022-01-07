@@ -1,0 +1,6 @@
+.external-nab {
+  display: flex;
+}
+.external-nab > *{
+  margin-right: -10px;
+}

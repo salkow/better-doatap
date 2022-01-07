@@ -1,7 +1,5 @@
 import './MyNewAppFirst.css';
 
-import MyTextBox from "../../../../generalComponents/MyTextBox/MyTextBox";
-import MyButton from "../../../../generalComponents/MyButton/MyButton";
 import MyBreadcrumb from '../../../../generalComponents/MyBreadcrumb/MyBreadcrumb';
 import MyNewAppBreadcrumbs from '../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
 
