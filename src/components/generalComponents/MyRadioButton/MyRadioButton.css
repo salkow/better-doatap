@@ -3,6 +3,7 @@
 .external-radio {
     display: flex;
     flex-direction: column;
+    width: max-content;
 }
 
 .txt-top-radio > span {
@@ -17,7 +18,8 @@
     border-radius: 42px;
     margin: 0px;
     border: 2px solid rgba(0, 0, 0, 0.30);
-    width: 330px;
+    min-width: 330px;
+    width: max-content;
     height: max-content;
 }
 
