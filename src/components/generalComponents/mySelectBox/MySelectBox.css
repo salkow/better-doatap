@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .top-txt-select {
-
+    width: 100%;
 }
 .top-txt-select > span {
     font-size: 12px;
@@ -13,10 +13,20 @@
 
 .external-select {
     box-sizing: border-box;
+    width: max-content;
 }
+.external-txt-select {
+    width: max-content;
+}
+
+.internal-txt-select {
+    width: max-content;
+}
+
 .expandBox {
     height:max-content;
     width: max-content;
+    min-width: 330px;
     display: flex;
     
     background-color:rgb(255, 255, 255);
@@ -26,7 +36,6 @@
     transition: 0.5s;
     padding:3px;
     margin: 0;
-    width: 330px;
 }
 .expandBox:focus-within {
     border-color: rgba(0, 0, 0, 0.70);
@@ -70,13 +79,15 @@
     background: #2f3640;
     color: #f5f6fa;
     max-height: 0;
-    width: 100%;
+    width: 330px;
     opacity: 0;
-    transition: all 0.4s;
+    transition: all 0.8s;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    z-index: 1;
 }
 .container-options-select.active {
     max-height: 180px;
@@ -94,10 +105,13 @@ background: #525861;
 border-radius: 0 8px 8px 0;
 }
 
+.option-select-div {
+    width: 100%;
+}
 
 .option-select {
     padding: 12px 24px;
-    width: 100%;
+    width: inherit;
     cursor: pointer;
     box-sizing: border-box;   
     cursor: pointer;
