@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.top-txt-select {
+
+}
+.top-txt-select > span {
+    font-size: 12px;
+}
+#star-select {
+    color: red;
+}
+
+.expandBox {
+    height:max-content;
+    width: max-content;
+    display: flex;
+    
+    background-color:rgb(255, 255, 255);
+    border: 2px solid rgba(0, 0, 0, 0.30);
+    border-radius: 42px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    padding:3px;
+    margin: 0;
+    width: 330px;
+}
+.expandBox:focus-within {
+    border-color: rgba(0, 0, 0, 0.70);
+}
+
+.expandInput {
+    flex-grow: 1;
+    margin: 0px;
+    padding: 7px 10px;
+    font-size: 18px;
+    line-height: 1px;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    border-style: none;
+    background: none;
+    color: rgb(0, 0, 0);
+}
+
+.expandButton {
+    margin: 0;
+    /* padding: 0 10px 0 0; */
+    background: none;
+    border-style: none;
+    border-color: rgb(73, 64, 64);
+    cursor: pointer;
+    height: max-content;
+    width: max-content;
+    display: flex;
+}
+
+.expand-item {
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-size: 33px !important;
+    border-style: none;
+}
