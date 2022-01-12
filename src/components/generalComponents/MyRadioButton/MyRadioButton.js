@@ -14,11 +14,11 @@ const MyRadioButton = ({txt, items}) =>
         );
     });
     return (
-		<div class="external-radio">
-            <div class="txt-top-radio">
+		<div className="external-radio">
+            <div className="txt-top-radio">
                 <span><span id="star">*</span>{txt}</span>
             </div>
-            <div class="internal-radio">
+            <div className="internal-radio">
                 <ul>
                     {fin}
                 </ul>

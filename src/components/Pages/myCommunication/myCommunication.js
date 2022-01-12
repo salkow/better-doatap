@@ -13,9 +13,9 @@ const myCommunication = () => {
 	return (
 		<div>
 			<MyBreadcrumb array={myBread} />
-			<div class="external">
-				<div class="internal">
-					<div class="top">
+			<div className="external">
+				<div className="internal">
+					<div className="top">
 						<span id="underlined">Επικοινωνία</span>
 					</div>
 				</div>
@@ -129,9 +129,9 @@ const myCommunication = () => {
 					</Col>
 				</Row>
 
-				<div class="external mt-5">
-					<div class="other-internal">
-						<div class="other-top">
+				<div className="external mt-5">
+					<div className="other-internal">
+						<div className="other-top">
 							<span id="underlined">
 								Επικοινωνήστε Μαζί μας Ηλεκτρονικά
 							</span>

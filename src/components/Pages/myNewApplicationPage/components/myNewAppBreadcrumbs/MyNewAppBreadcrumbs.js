@@ -7,7 +7,7 @@ import MyBreadThird from './MyBreadThird';
 const MyNewAppBreadcrumbs = () => 
 {
     return (
-    <div class="external-nab">
+    <div className="external-nab">
         <MyBreadFirst txt="Το Πανεπιστήμιο μου" curr={1}/>
         <MyBreadSecond txt="Το Πανεπιστήμιο μου" curr={2}/>
         <MyBreadThird txt="Το Πανεπιστήμιο μου" curr={0}/>

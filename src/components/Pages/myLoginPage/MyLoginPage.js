@@ -10,19 +10,19 @@ const MyLoginPage = () =>
     return (
       <div className="content">
         <MyBreadcrumb array={myBread}/>
-        <div class="external">
-          <div class="internal">
-            <div class="top">
+        <div className="external">
+          <div className="internal">
+            <div className="top">
               <span id="underlined">Είσοδος/Εγγραφή</span>
             </div>
-            <div class="middle">
-                <span class="head">Λογαριασμός Σελίδας</span>
-                <div class="txtboxes">
+            <div className="middle">
+                <span className="head">Λογαριασμός Σελίδας</span>
+                <div className="txtboxes">
                   <MyTextBox txt="Email Address" type="text"/>
                   <MyTextBox txt="Password" type="password"/>
                 </div>
                 <MyButton btn_color="#4285f4" txt_color="white" curr_msg="Σύνδεση"/>
-                <span  class="tail">Δεν έχεις λογαριασμό; <span class="tail-colored">Εγγραφή</span></span>
+                <span  className="tail">Δεν έχεις λογαριασμό; <span className="tail-colored">Εγγραφή</span></span>
             </div>
           </div>
         </div>

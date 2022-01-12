@@ -3,9 +3,9 @@ import './MyDatePicker.css';
 const MyDatePicker = ({txt}) => 
 {
     return (
-		<div class="date-external">
-            <div class="date-internal">
-                <div class="date-top">
+		<div className="date-external">
+            <div className="date-internal">
+                <div className="date-top">
                     <span><span id="star">*</span>{txt}</span>
                 </div>
                 <input type="date" />

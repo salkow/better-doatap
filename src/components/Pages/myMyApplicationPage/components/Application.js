@@ -30,29 +30,29 @@ const Application = ({id, name, isFinalized, status}) =>
             <InfoCard txt="Μη εγγεγκριμένο" txt_clr="white" clr="#D41818"/>
         );
         stat.push(
-            <span class="helpSpan" type="submit">
-                <i class="material-icons help-item"> help_outline </i>
+            <span className="helpSpan" type="submit">
+                <i className="material-icons help-item"> help_outline </i>
             </span>
         );
     }
     return (
-      <div class="external-app">
-          <div class="internal-app">
-              <div class="other">
-                  <div class="id">
+      <div className="external-app">
+          <div className="internal-app">
+              <div className="other">
+                  <div className="id">
                       <span>{id}</span>
                   </div>
-                  <div class="data">
+                  <div className="data">
                     <span>{name}</span>
-                    <div class="info">
+                    <div className="info">
                         {fin}
                         {stat}
                     </div>
                   </div>
               </div>
-              <div class="edit-icon">
-                <button class="tuneButton" type="submit">
-                    <i class="material-icons tune-item"> tune </i>
+              <div className="edit-icon">
+                <button className="tuneButton" type="submit">
+                    <i className="material-icons tune-item"> tune </i>
                 </button>
               </div>
           </div>

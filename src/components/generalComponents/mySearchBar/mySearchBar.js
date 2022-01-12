@@ -3,10 +3,10 @@ import "./mySearchBar.css";
 const MySearchBar = () => 
 {
     return (
-        <div class="searchBox">
-            <input class="searchInput" type="search" name="q" placeholder="Αναζήτηση..."></input>
-            <button class="searchButton" type="submit">
-                <i class="material-icons search-item"> search </i>
+        <div className="searchBox">
+            <input className="searchInput" type="search" name="q" placeholder="Αναζήτηση..."></input>
+            <button className="searchButton" type="submit">
+                <i className="material-icons search-item"> search </i>
             </button>
         </div>
 	);

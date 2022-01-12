@@ -13,33 +13,33 @@ const MyRegisterPage = () =>
     return (
       <div>
         <MyBreadcrumb array={myBread}/>
-        <div class="external">
-          <div class="internal">
-            <div class="top">
+        <div className="external">
+          <div className="internal">
+            <div className="top">
               <span id="underlined">Εγγραφή</span>
             </div>
-            <div class="middle">
-                <div class="txtboxes-p">
-                  <div class="first-group">
+            <div className="middle">
+                <div className="txtboxes-p">
+                  <div className="first-group">
                     <MyTextBox txt="Email Address" type="text"/>
-                    <div class="first-other horizontal">
-                      <MyTextBox class="myTextboxes" txt="Password" type="password"/>
+                    <div className="first-other horizontal">
+                      <MyTextBox className="myTextboxes" txt="Password" type="password"/>
                       <MyTextBox txt="Repeat Password" type="password"/>
                     </div>
                   </div>
-                  <div class="second-group">
-                    <div class="second-other horizontal">
+                  <div className="second-group">
+                    <div className="second-other horizontal">
                       <MyTextBox txt="Επώνυμο" type="text"/>
                       <MyTextBox txt="Όνομα" type="text"/>
                     </div>
-                    <div class="second-other horizontal">
+                    <div className="second-other horizontal">
                       <MyRadioButton txt="Φύλο"/>
                       <MyDatePicker txt="Ημερομηνία γέννησης"/>
                     </div>
                     <MyTextBox txt="Τηλέφωνο Επικοινωνίας" type="text"/>
                   </div>
-                  <div class="third-group">
-                    <div class="third-other horizontal">
+                  <div className="third-group">
+                    <div className="third-other horizontal">
                       <MyTextBox txt="Αριθμός ταυτοτητας ή  Αριθμος διαβατηριου" type="text"/>
                       <MyTextBox txt="ΑΦΜ" type="text"/>
                     </div>

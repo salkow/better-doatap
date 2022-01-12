@@ -9,12 +9,12 @@ const MyMyApplicationPage = () =>
     return (
       <div>
         <MyBreadcrumb array={myBread}/>
-        <div class="external">
-          <div class="internal">
-            <div class="top">
+        <div className="external">
+          <div className="internal">
+            <div className="top">
               <span id="underlined">Οι αιτήσεις μου</span>
             </div>
-            <div class="middle">
+            <div className="middle">
               <Application id="44495" name="Βασικό Πτυχίο" isFinalized={false}/>
               <Application id="44496" name="Μεταπτυχιακό" isFinalized={true} status={1}/>
               <Application id="44497" name="Το δεύτερό μου μεταπτυχιακό" isFinalized={true} status={2}/>
