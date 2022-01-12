@@ -1,7 +1,5 @@
 import './MyTextBox.css';
 
-import { useState, useEffect } from "react";
-
 const MyTextBox = ({txt, type}) => 
 {
     return (

@@ -2,7 +2,6 @@ import './MyNewAppSecond.css';
 
 import MyBreadcrumb from '../../../../generalComponents/MyBreadcrumb/MyBreadcrumb';
 import MyNewAppBreadcrumbs from '../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
-import MyRadioButton from '../../../../generalComponents/MyRadioButton/MyRadioButton';
 import MySelectBox from '../../../../generalComponents/mySelectBox/MySelectBox';
 
 import MyButton from '../../../../generalComponents/MyButton/MyButton';
@@ -11,7 +10,6 @@ import MyButton from '../../../../generalComponents/MyButton/MyButton';
 const MyNewAppSecond = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Κάνε αίτηση"}]
-    const radioFin = ["Βασικό πτυχίο", "Μεταπτυχιακό", "Διδακτορικό"]
     return (
       <div className="content">
         <MyBreadcrumb array={myBread}/>

@@ -1,6 +1,6 @@
 import "./mySearchBar.css";
 
-const MySearchBar = ({}) => 
+const MySearchBar = () => 
 {
     return (
         <div class="searchBox">

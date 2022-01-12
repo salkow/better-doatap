@@ -1,5 +1,3 @@
-import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
-
 const HomePage = () => {
   return (
     <div>

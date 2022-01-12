@@ -1,7 +1,5 @@
 import './MyDatePicker.css';
 
-import { useState, useEffect } from "react";
-
 const MyDatePicker = ({txt}) => 
 {
     return (

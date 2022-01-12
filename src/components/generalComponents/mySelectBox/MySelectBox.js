@@ -1,6 +1,6 @@
 import './MySelectBox.css';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const MySelectBox = ({txt}) => 
 {

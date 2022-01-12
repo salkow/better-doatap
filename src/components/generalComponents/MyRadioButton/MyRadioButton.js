@@ -1,11 +1,9 @@
 import './MyRadioButton.css';
 
-import { useState, useEffect } from "react";
-
 const MyRadioButton = ({txt, items}) => 
 {
     const fin = [];
-    items.map(e =>{
+    items.forEach(e =>{
         fin.push(
             <li>
                 <label>

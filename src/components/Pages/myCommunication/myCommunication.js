@@ -55,6 +55,7 @@ const myCommunication = () => {
 							</Row>
 							<Row>
 								<iframe
+									title="map1"
 									width="350"
 									height="350"
 									frameborder="0"
@@ -107,6 +108,7 @@ const myCommunication = () => {
 							</Row>
 							<Row>
 								<iframe
+									title="map2"
 									width="350"
 									height="350"
 									frameborder="0"

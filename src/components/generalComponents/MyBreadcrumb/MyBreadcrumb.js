@@ -5,7 +5,7 @@ import './MyBreadcrumb.css'
 const MyBreadcrumb = ({ array }) => 
 {
     const fin = []
-    array.map((e, i, array) => {
+    array.forEach((e, i, array) => {
         if(i+1 === array.length){
             fin.push(
             <Breadcrumb.Item className={"bread"} active>
