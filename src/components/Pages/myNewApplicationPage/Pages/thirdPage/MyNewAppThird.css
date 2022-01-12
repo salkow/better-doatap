@@ -34,13 +34,6 @@
     flex-direction: column;
 }
 
-.middle > .middle-items > .grouped {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-}
-
 .lower > .controls{
     display: flex;
     justify-content: center;
@@ -59,9 +52,6 @@
     width: max-content;
     display: flex;
 }
-/* .searchButton:hover {
-    background-color: rgba(0, 0, 0, 0.226);
-} */
 
 .chevron-item {
     margin: 0;

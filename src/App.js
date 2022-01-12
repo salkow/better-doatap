@@ -7,6 +7,8 @@ import MyRegisterPage from "./components/Pages/myRegisterPage/MyRegisterPage";
 import MyMyApplicationPage from "./components/Pages/myMyApplicationPage/MyMyApplicationPage";
 
 import MyNewAppFirst from "./components/Pages/myNewApplicationPage/Pages/firstPage/MyNewAppFirst";
+import MyNewAppSecond from "./components/Pages/myNewApplicationPage/Pages/secondPage/MyNewAppSecond";
+import MyNewAppThird from "./components/Pages/myNewApplicationPage/Pages/thirdPage/MyNewAppThird";
 
 
 
@@ -39,6 +41,8 @@ function App() {
 					<Route path="/myApplications" element={<MyMyApplicationPage />} />
 
 					<Route path="/myNewAppF" element={<MyNewAppFirst />} />
+					<Route path="/myNewAppS" element={<MyNewAppSecond />} />
+					<Route path="/myNewAppT" element={<MyNewAppThird />} />
 
 				</Routes>
 			</div>

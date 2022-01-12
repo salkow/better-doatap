@@ -1,14 +1,16 @@
-import './MyNewAppFirst.css';
+import './MyNewAppThird.css';
 
 import MyBreadcrumb from '../../../../generalComponents/MyBreadcrumb/MyBreadcrumb';
 import MyNewAppBreadcrumbs from '../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
 import MyRadioButton from '../../../../generalComponents/MyRadioButton/MyRadioButton';
 import MySelectBox from '../../../../generalComponents/mySelectBox/MySelectBox';
+import MyFileCard from '../../components/myNewAppBreadcrumbs/myFileCard/MyFileCard';
+
 
 import MyButton from '../../../../generalComponents/MyButton/MyButton';
 
 
-const MyNewAppFirst = () => 
+const MyNewAppThird = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Κάνε αίτηση"}]
     const radioFin = ["Βασικό πτυχίο", "Μεταπτυχιακό", "Διδακτορικό"]
@@ -23,20 +25,15 @@ const MyNewAppFirst = () =>
             <div class="middle">
                 <MyNewAppBreadcrumbs />
                 <div class="middle-items">
-                  <MyRadioButton txt="Επίπεδο Σπουδών" items={radioFin}/>
-                  <MySelectBox txt="Χωρα Σπουδών"/>
-                  <div class="grouped">
-                    <MySelectBox txt="Πανεπιστήμιο"/>
-                    <MySelectBox txt="Τμήμα"/>
-                  </div>
+                  <MyFileCard name="Πτυχίο φοίτησης" desc="Αφορά το πτυχίου που παραλάβατε αφού ολοκληρώσατε την φοίτησή σας."/>
                 </div>
             </div>
             <div class="lower">
               <div class="controls">
-                <button class="chevronButton" type="submit" disabled>
+                <button class="chevronButton" type="submit">
                   <i class="material-icons chevron-item"> chevron_left </i>
                 </button>
-                <button class="chevronButton" type="submit">
+                <button class="chevronButton" type="submit" disabled>
                   <i class="material-icons chevron-item"> chevron_right </i>
                 </button>
               </div>
@@ -57,4 +54,4 @@ const MyNewAppFirst = () =>
 	);
 };
 
-export default MyNewAppFirst;
+export default MyNewAppThird;

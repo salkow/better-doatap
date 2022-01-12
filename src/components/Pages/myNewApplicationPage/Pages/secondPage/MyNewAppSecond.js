@@ -1,4 +1,4 @@
-import './MyNewAppFirst.css';
+import './MyNewAppSecond.css';
 
 import MyBreadcrumb from '../../../../generalComponents/MyBreadcrumb/MyBreadcrumb';
 import MyNewAppBreadcrumbs from '../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
@@ -8,7 +8,7 @@ import MySelectBox from '../../../../generalComponents/mySelectBox/MySelectBox';
 import MyButton from '../../../../generalComponents/MyButton/MyButton';
 
 
-const MyNewAppFirst = () => 
+const MyNewAppSecond = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Κάνε αίτηση"}]
     const radioFin = ["Βασικό πτυχίο", "Μεταπτυχιακό", "Διδακτορικό"]
@@ -23,8 +23,6 @@ const MyNewAppFirst = () =>
             <div class="middle">
                 <MyNewAppBreadcrumbs />
                 <div class="middle-items">
-                  <MyRadioButton txt="Επίπεδο Σπουδών" items={radioFin}/>
-                  <MySelectBox txt="Χωρα Σπουδών"/>
                   <div class="grouped">
                     <MySelectBox txt="Πανεπιστήμιο"/>
                     <MySelectBox txt="Τμήμα"/>
@@ -33,7 +31,7 @@ const MyNewAppFirst = () =>
             </div>
             <div class="lower">
               <div class="controls">
-                <button class="chevronButton" type="submit" disabled>
+                <button class="chevronButton" type="submit">
                   <i class="material-icons chevron-item"> chevron_left </i>
                 </button>
                 <button class="chevronButton" type="submit">
@@ -57,4 +55,4 @@ const MyNewAppFirst = () =>
 	);
 };
 
-export default MyNewAppFirst;
+export default MyNewAppSecond;
