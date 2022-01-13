@@ -4,10 +4,6 @@ import MyBreadcrumb from '../../../../../generalComponents/MyBreadcrumb/MyBreadc
 import MyNewAppBreadcrumbs from '../../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
 import MyFileCard from '../../../components/myFileCard/MyFileCard';
 
-
-import MyButton from '../../../../../generalComponents/MyButton/MyButton';
-
-
 const MyAdminAppThird = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Κάνε αίτηση"}]
@@ -23,6 +19,7 @@ const MyAdminAppThird = () =>
                 <MyNewAppBreadcrumbs />
                 <div className="middle-items">
                   <MyFileCard name="Πτυχίο φοίτησης" desc="Αφορά το πτυχίου που παραλάβατε αφού ολοκληρώσατε την φοίτησή σας."/>
+                  
                 </div>
             </div>
             <div className="lower">
@@ -33,16 +30,6 @@ const MyAdminAppThird = () =>
                 <button className="chevronButton" type="submit" disabled>
                   <i className="material-icons chevron-item"> chevron_right </i>
                 </button>
-              </div>
-              <div className="login-promt">
-                <span className="login-promt-txt">
-                <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
-                </span>                
-                <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση"/>
-              </div>
-              <div className="buttons">
-                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={true}/>
-                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={true}/>
               </div>
             </div>
           </div>
