@@ -1,11 +1,10 @@
 import './MyNewAppThird.css';
 
-import MyBreadcrumb from '../../../../generalComponents/MyBreadcrumb/MyBreadcrumb';
-import MyNewAppBreadcrumbs from '../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
-import MyFileCard from '../../components/myNewAppBreadcrumbs/myFileCard/MyFileCard';
+import MyBreadcrumb from '../../../../../generalComponents/MyBreadcrumb/MyBreadcrumb';
+import MyNewAppBreadcrumbs from '../../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs';
+import MyFileCard from '../../../components/myFileCard/MyFileCard';
 
-
-import MyButton from '../../../../generalComponents/MyButton/MyButton';
+import MyButton from '../../../../../generalComponents/MyButton/MyButton';
 
 
 const MyNewAppThird = () => 

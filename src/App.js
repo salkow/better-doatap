@@ -4,12 +4,17 @@ import QNA from "./components/Pages/myQNA/myQNA";
 import MyLoginPage from "./components/Pages/myLoginPage/MyLoginPage";
 import MyProfilePage from "./components/Pages/myProfilePage/MyProfilePage";
 import MyRegisterPage from "./components/Pages/myRegisterPage/MyRegisterPage";
+
 import MyMyApplicationPage from "./components/Pages/myMyApplicationPage/MyMyApplicationPage";
 
-import MyNewAppFirst from "./components/Pages/myNewApplicationPage/Pages/firstPage/MyNewAppFirst";
-import MyNewAppSecond from "./components/Pages/myNewApplicationPage/Pages/secondPage/MyNewAppSecond";
-import MyNewAppThird from "./components/Pages/myNewApplicationPage/Pages/thirdPage/MyNewAppThird";
+import MyNewAppFirst from "./components/Pages/myNewApplicationPage/Pages/user/firstPage/MyNewAppFirst";
+import MyNewAppSecond from "./components/Pages/myNewApplicationPage/Pages/user/secondPage/MyNewAppSecond";
+import MyNewAppThird from "./components/Pages/myNewApplicationPage/Pages/user/thirdPage/MyNewAppThird";
 
+// import MyAdminAppFirst from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminAppFirst";
+import MyAdminAppFirst from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminAppFirst";
+import MyAdminAppSecond from "./components/Pages/myNewApplicationPage/Pages/admin/secondPage/MyAdminAppSecond";
+import MyAdminAppThird from "./components/Pages/myNewApplicationPage/Pages/admin/thirdPage/MyAdminAppThird";
 
 
 import TheNav from "./components/generalComponents/myNav/myNav";
@@ -43,6 +48,13 @@ function App() {
 					<Route path="/myNewAppF" element={<MyNewAppFirst />} />
 					<Route path="/myNewAppS" element={<MyNewAppSecond />} />
 					<Route path="/myNewAppT" element={<MyNewAppThird />} />
+
+					{/* <Route path="/myApplications" element={<MyMyApplicationPage />} /> */}
+
+					<Route path="/myAdminAppF" element={<MyAdminAppFirst />} />
+					<Route path="/myAdminAppS" element={<MyAdminAppSecond />} />
+					<Route path="/myAdminAppT" element={<MyAdminAppThird />} />
+
 
 				</Routes>
 			</div>
