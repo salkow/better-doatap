@@ -1,13 +1,13 @@
 import './MyRadioButton.css';
 
-const MyRadioButton = ({txt, items}) => 
+const MyRadioButton = ({txt, items, selected}) => 
 {
     const fin = [];
-    items.forEach(e =>{
+    items.forEach((e, index) =>{
         fin.push(
             <li>
                 <label>
-                    <input type="radio" name="gender" />
+                    <input type="radio" name="gender" checked={index===selected}/>
                     {e}
                 </label>
             </li>
