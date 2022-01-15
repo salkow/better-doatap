@@ -9,7 +9,10 @@ import call from "../../../call.png";
 
 const Footer = () => {
 	return (
-		<div style={{ position: "relative", backgroundColor: "#D0CECE" }} className="mt-3">
+		<div
+			style={{ position: "relative", backgroundColor: "#D0CECE" }}
+			className="mt-3"
+		>
 			<footer className="the-footer text-center footer mt-auto py-3">
 				<Container className="p-4">
 					<Row>
