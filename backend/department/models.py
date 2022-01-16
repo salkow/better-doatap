@@ -5,7 +5,7 @@ from university.models import University
 
 class Department(models.Model):
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, primary_key=True)
 
     university = models.ForeignKey(University, on_delete=models.CASCADE, related_name='departments')
 
