@@ -7,7 +7,7 @@ const MyRadioButton = ({txt, items, selected, disabled, vaar, error, setError}) 
         fin.push(
             <li>
                 <label className={'label-radio'}>
-                    <input type="radio" name="gender" value={e.value} onChange={(e)=>{vaar(e.currentTarget.value);setError("")}} defaultChecked={index===selected} disabled={disabled}/>
+                    <input type="radio" name="gender" value={e.value} onChange={(e)=>{vaar(e.currentTarget.value);setError("")}} defaultChecked={e.value===selected} disabled={disabled}/>
                     <span>{e.item}</span>
                 </label>
             </li>
