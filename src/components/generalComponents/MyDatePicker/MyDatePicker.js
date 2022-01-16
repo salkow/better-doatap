@@ -1,6 +1,6 @@
 import './MyDatePicker.css';
 
-const MyDatePicker = ({txt, vaar, error, setError}) => 
+const MyDatePicker = ({txt, vaar, error, setError, filled}) => 
 {
     //TODO: date fix format
     return (
@@ -9,7 +9,7 @@ const MyDatePicker = ({txt, vaar, error, setError}) =>
                 <div className="date-top">
                      <span><span id="star">*</span>{txt}</span>
                 </div>
-                <input type="date" onChange={(e)=>{vaar(e.target.value);setError("");}} placeholder="DD/MM/YYYY"/>
+                <input type="date" onChange={(e)=>{vaar(e.target.value);setError("");}} placeholder="DD/MM/YYYY" defaultValue={filled}/>
                 <span className={'error_span_txt'+(error ? ' error_msg_txt' : '')}>*{error}</span>
              </div>
         </div>
