@@ -9,6 +9,9 @@
 }
 .date-internal {
     width: 330px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 21px 0px;
 }
 .date-internal input {
     border-radius: 42px;
@@ -32,4 +35,18 @@
 
 .date-internal input:focus {
     border-color: rgba(0, 0, 0, 0.70);
+}
+
+.error_internal_txt{
+    margin: 0;
+}
+
+.error_span_txt {
+    font-size: 14px;
+    display: none;
+    color: red;
+    padding-left: 18px;
+}
+.error_msg_txt {
+    display: block;
 }

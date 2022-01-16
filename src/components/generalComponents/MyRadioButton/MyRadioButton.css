@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     width: max-content;
+    margin: 0px 0px 21px 0px;
 }
 
 .txt-top-radio > span {
@@ -80,4 +81,18 @@ div.disabled-radio {
     background-color: rgb(236, 236, 236);
     border-color: rgb(175, 175, 175);
     opacity: 80%;
+}
+
+.error_internal_txt{
+    margin: 0;
+}
+
+.error_span_txt {
+    font-size: 14px;
+    display: none;
+    color: red;
+    padding-left: 18px;
+}
+.error_msg_txt {
+    display: block;
 }
