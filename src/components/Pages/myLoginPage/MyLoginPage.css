@@ -38,8 +38,11 @@
     border-color: rgba(0, 0, 0, 0.47);
     border-width: 1px;
 }
-.middle > .txtboxes > * {
-    margin: 40px;
+.middle > .txtboxes {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    gap: 15px;
 }
 
 .middle > .tail{ 

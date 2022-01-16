@@ -7,6 +7,13 @@
 #star {
     color: red;
 }
+
+.txt-internal {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 21px 0px;
+}
+
 .txt-internal input {
     margin: 0px;
     padding: 10px;
@@ -21,4 +28,18 @@
 }
 .txt-internal input:focus {
     border-color: rgba(0, 0, 0, 0.70);
+}
+
+.error_internal_txt{
+    margin: 0;
+}
+
+.error_span_txt {
+    font-size: 14px;
+    display: none;
+    color: red;
+    padding-left: 18px;
+}
+.error_msg_txt {
+    display: block;
 }
