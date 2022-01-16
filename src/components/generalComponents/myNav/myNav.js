@@ -60,7 +60,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 						</NavLink>
 
 						<NavDropdown title="Πληροφορίες">
-							<NavDropdown.Item>
+							<NavDropdown.Item as="div">
 								<NavLink
 									className="nav-link selected"
 									to="/communication"
@@ -69,7 +69,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 								</NavLink>
 							</NavDropdown.Item>
 
-							<NavDropdown.Item>
+							<NavDropdown.Item as="div">
 								<NavLink
 									className="nav-link selected"
 									to="/qna"
@@ -108,7 +108,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 								</Dropdown.Toggle>
 
 								<Dropdown.Menu>
-									<Dropdown.Item>
+									<Dropdown.Item as="div">
 										<NavLink
 											style={{ paddingLeft: "15px" }}
 											className="nav-link selected"
@@ -118,7 +118,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 										</NavLink>
 									</Dropdown.Item>
 									{!isAdmin && (
-										<Dropdown.Item>
+										<Dropdown.Item as="div">
 											<NavLink
 												style={{ paddingLeft: "15px" }}
 												className="nav-link selected"
@@ -129,7 +129,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 										</Dropdown.Item>
 									)}
 
-									<Dropdown.Item>
+									<Dropdown.Item as="div">
 										<div
 											className="nav-link selected"
 											onClick={logout}
