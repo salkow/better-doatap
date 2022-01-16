@@ -11,7 +11,7 @@ import axiosInstance from "../../../axios";
 const MyRegisterPage = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {first: "/loginPage", second: "Είσοδος/Εγγραφή"}, {second: "Εγγραφή"}]
-    const myRadio = [{item:"ΓΥΝΑΙΚΑ", value:"Γ"}, {item:"ΑΝΔΡΑΣ", value:"Α"}, {item:"ΑΛΛΟ", value:"Ο"}]
+    const myRadio = [{item:"ΓΥΝΑΙΚΑ", value:"F"}, {item:"ΑΝΔΡΑΣ", value:"M"}, {item:"ΑΛΛΟ", value:"O"}]
   
     const [email, setEmail] = useState("");
     const [password, setPass] = useState("");
@@ -25,25 +25,23 @@ const MyRegisterPage = () =>
     const [id, setID] = useState("");
   
     const submit = async () =>{
-      // axiosInstance
-      //       .post(`user/create/`, {
-      //         email: email,
-      //         first_name: firstName,
-      //         last_name: lastName,
-      //         password: password,
-      //         phone: phone,
-      //         id_num: id,
-      //         afm: afm,
-      //         birthday: dob,
-      //         gender: gender
-      //       })
-      //       .then((res) => {
-      //         // history.push('/login');
-      //         console.log(res);
-      //         console.log(res.data);
-      //       });
-
-      console.log(dob);
+      axiosInstance
+            .post(`user/create/`, {
+              email: email,
+              first_name: firstName,
+              last_name: lastName,
+              password: password,
+              phone: phone,
+              id_num: id,
+              afm: afm,
+              birthday: "2021-12-30",
+              gender: gender
+            })
+            .then((res) => {
+              // history.push('/login');
+              console.log(res);
+              console.log(res.data);
+            });
     }
 
     return (

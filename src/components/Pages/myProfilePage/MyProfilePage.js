@@ -10,7 +10,7 @@ import MyDatePicker from '../../generalComponents/MyDatePicker/MyDatePicker';
 const MyProfilePage = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Προφίλ"}]
-    const myRadio = ["ΓΥΝΑΙΚΑ", "ΑΝΔΡΑΣ", "ΑΛΛΟ"]
+    const myRadio = [{item:"ΓΥΝΑΙΚΑ", value:"F"}, {item:"ΑΝΔΡΑΣ", value:"M"}, {item:"ΑΛΛΟ", value:"O"}]
     return (
       <div className="content">
         <MyBreadcrumb array={myBread}/>

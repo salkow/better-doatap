@@ -11,7 +11,7 @@ import MyButton from '../../../../../generalComponents/MyButton/MyButton';
 const MyNewAppFirst = () => 
 {
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Κάνε αίτηση"}]
-    const radioFin = ["Βασικό πτυχίο", "Μεταπτυχιακό", "Διδακτορικό"]
+    const radioFin = [{item:"Βασικό πτυχίο", value:"B"}, {item:"Μεταπτυχιακό", value:"P"}, {item:"Διδακτορικό", value:"D"}]
     return (
       <div className="content">
         <MyBreadcrumb array={myBread}/>
