@@ -29,9 +29,9 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    height: 100%;
 }
 .internal-radio ul li {
-    padding: 12px 18px;
 }
 .internal-radio ul li label input {
     -webkit-appearance: none;
@@ -53,7 +53,7 @@
 } */
 
 .internal-radio ul *:hover, .internal-radio ul li *:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
 
 }
 
@@ -65,4 +65,19 @@
     line-height: 15px;
     font-weight:normal;
     font-family: 'Inter', sans-serif;
+    padding: 12px 18px;
+}
+
+.label-radio {
+    height: 100%;
+}
+
+div.disabled-radio > ul > li > label, div.disabled-radio > ul > li > label > * {
+    cursor: not-allowed;
+}
+
+div.disabled-radio {
+    background-color: rgb(236, 236, 236);
+    border-color: rgb(175, 175, 175);
+    opacity: 80%;
 }

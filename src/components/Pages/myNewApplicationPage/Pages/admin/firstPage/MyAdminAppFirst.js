@@ -22,7 +22,7 @@ const MyAdminAppFirst = () =>
             <div className="middle">
                 <MyNewAppBreadcrumbs />
                 <div className="middle-items">
-                  <MyRadioButton txt="Επίπεδο Σπουδών" items={radioFin}/>
+                  <MyRadioButton txt="Επίπεδο Σπουδών" items={radioFin} selected={0} disabled={true}/>
                   <MySelectBox txt="Χωρα Σπουδών"/>
                   <div className="grouped">
                     <MySelectBox txt="Πανεπιστήμιο"/>
