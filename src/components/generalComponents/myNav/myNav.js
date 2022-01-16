@@ -10,7 +10,7 @@ import axiosInstance from "../../../axios";
 
 import "./myNav.css";
 
-const TheNav = ({ loggedIn, setLoggedIn }) => {
+const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 	const history = useNavigate();
 
 	const logout = async () => {
@@ -117,15 +117,18 @@ const TheNav = ({ loggedIn, setLoggedIn }) => {
 											Προφίλ
 										</NavLink>
 									</Dropdown.Item>
-									<Dropdown.Item>
-										<NavLink
-											style={{ paddingLeft: "15px" }}
-											className="nav-link selected"
-											to="/myApplications"
-										>
-											Οι αιτήσεις μου
-										</NavLink>
-									</Dropdown.Item>
+									{!isAdmin && (
+										<Dropdown.Item>
+											<NavLink
+												style={{ paddingLeft: "15px" }}
+												className="nav-link selected"
+												to="/myApplications"
+											>
+												Οι αιτήσεις μου
+											</NavLink>
+										</Dropdown.Item>
+									)}
+
 									<Dropdown.Item>
 										<div
 											className="nav-link selected"

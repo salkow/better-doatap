@@ -30,9 +30,15 @@ function App() {
 		localStorage.getItem("access_token") != null
 	);
 
+	const [isAdmin, setIsAdmin] = useState(false);
+
 	return (
 		<BrowserRouter>
-			<TheNav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+			<TheNav
+				loggedIn={loggedIn}
+				setLoggedIn={setLoggedIn}
+				isAdmin={isAdmin}
+			/>
 			<div className="gen-space content">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
@@ -45,7 +51,13 @@ function App() {
 					<Route path="/communication" element={<Communication />} />
 					<Route
 						path="/loginPage"
-						element={<MyLoginPage setLoggedIn={setLoggedIn} />}
+						element={
+							<MyLoginPage
+								setLoggedIn={setLoggedIn}
+								isAdmin={isAdmin}
+								setIsAdmin={setIsAdmin}
+							/>
+						}
 					/>
 					<Route path="/profile" element={<MyProfilePage />} />
 					<Route path="/register" element={<MyRegisterPage />} />

@@ -7,7 +7,7 @@ import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 import { useState } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 
-const MyLoginPage = ({ setLoggedIn }) => {
+const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Είσοδος/Εγγραφή" },
@@ -19,8 +19,6 @@ const MyLoginPage = ({ setLoggedIn }) => {
 	const [Errorpassword, setErrorPass] = useState("");
 
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-	const [isAdmin, setIsAdmin] = useState(false);
 
 	const { state } = useLocation();
 
