@@ -9,6 +9,11 @@ from department.models import Department
 from rest_framework import serializers
 
 
+def user_directory_path(instance, filename):
+    print(instance)
+    return 'media/user_{0}/{1}'.format(instance.user.id, filename)
+
+
 class Application(models.Model):
 
     PROGRESS_OPTIONS = (
@@ -40,7 +45,7 @@ class Application(models.Model):
 
     type_of_diploma = models.CharField(max_length=1, choices=DIPLOMA_OPTIONS, default='B')
 
-    # TODO: Add file.
+    diploma = models.FileField(default="", upload_to=user_directory_path)
 
     reasons_for_declination = models.TextField(null=True, blank=True)
     extra_subject = models.TextField(null=True, blank=True)
