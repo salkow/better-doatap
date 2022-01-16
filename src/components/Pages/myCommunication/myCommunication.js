@@ -2,6 +2,7 @@ import "./myCommunication.css";
 
 import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
+import MyButton from "../../generalComponents/MyButton/MyButton";
 
 import { Row, Col, Container } from "react-bootstrap";
 
@@ -141,14 +142,21 @@ const myCommunication = () => {
 
 				<Container>
 					<Row>
-						<Col md={{ span: 5, offset: 4}}>
+						<Col md={{ span: 5, offset: 4 }}>
 							<MyTextBox txt="Ονοματεπώνυμο" type="text" />
 						</Col>
 					</Row>
 					<Row>
-						<Col md={{ span: 5, offset: 4}}>
+						<Col md={{ span: 5, offset: 4 }}>
 							<MyTextBox txt="Email Address" type="text" />
 						</Col>
+					</Row>
+					<Row>
+						<MyButton
+							btn_color="#73B6E6"
+							txt_color="white"
+							curr_msg="Υποβολή"
+						/>
 					</Row>
 				</Container>
 			</Container>
