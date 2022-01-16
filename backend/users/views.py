@@ -10,6 +10,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.permissions import IsAuthenticated
 from users.models import NewUser
 from .serializers import ChangePasswordSerializer
+from .serializers import AdminSerializer
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
@@ -72,3 +73,12 @@ class UpdatePassword(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AdminDisplay(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = NewUser.objects.all()
+    serializer_class = AdminSerializer
+
+    def get_object(self):
+        return self.request.user

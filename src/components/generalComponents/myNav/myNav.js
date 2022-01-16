@@ -4,11 +4,25 @@ import logo from "../../../assets/doatap-logo.png";
 import user_icon from "../../../assets/user-icon.png";
 import MySearchBar from "../../generalComponents/mySearchBar/mySearchBar";
 
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown, Dropdown } from "react-bootstrap";
+
+import axiosInstance from "../../../axios";
 
 import "./myNav.css";
 
-const TheNav = () => {
+const TheNav = ({ loggedIn, setLoggedIn }) => {
+	const logout = async () => {
+		console.log("hey");
+		axiosInstance.post("user/logout/blacklist/", {
+			refresh_token: localStorage.getItem("refresh_token"),
+		});
+
+		localStorage.removeItem("access_token");
+		localStorage.removeItem("refresh_token");
+		axiosInstance.defaults.headers["Authorization"] = null;
+		setLoggedIn(false);
+	};
+
 	return (
 		<Navbar
 			bg="dark"
@@ -31,10 +45,7 @@ const TheNav = () => {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						<NavLink
-							className="nav-link selected"
-							to="/myNewAppF"
-						>
+						<NavLink className="nav-link selected" to="/myNewAppF">
 							Κάνε αίτηση
 						</NavLink>
 
@@ -69,24 +80,61 @@ const TheNav = () => {
 					<MySearchBar />
 
 					<Nav>
-						<NavLink
-							className="nav-link selected"
-							to="/loginPage"
-						>
-							Είσοδος
-						</NavLink>
+						{!loggedIn && (
+							<NavLink
+								style={{ paddingLeft: "15px" }}
+								className="nav-link selected"
+								to="/loginPage"
+							>
+								Είσοδος
+							</NavLink>
+						)}
 
-						<NavLink
-							className="nav-brand mt-1 selected"
-							to="/profile"
-						>
-							<img
-								src={user_icon}
-								alt="doatap logo"
-								width="45"
-								height="45"
-							/>
-						</NavLink>
+						{loggedIn && (
+							<Dropdown>
+								<Dropdown.Toggle
+									id="dropdown-basic"
+									className="dropdown-header"
+								>
+									<img
+										src={user_icon}
+										alt="doatap logo"
+										width="45"
+										height="45"
+									/>
+								</Dropdown.Toggle>
+
+								<Dropdown.Menu>
+									<Dropdown.Item>
+										<NavLink
+											style={{ paddingLeft: "15px" }}
+											className="nav-link selected"
+											to="/profile"
+										>
+											Προφίλ
+										</NavLink>
+									</Dropdown.Item>
+									<Dropdown.Item>
+										<NavLink
+											style={{ paddingLeft: "15px" }}
+											className="nav-link selected"
+											to="/myApplications"
+										>
+											Οι αιτήσεις μου
+										</NavLink>
+									</Dropdown.Item>
+									<Dropdown.Item>
+										<div
+											className="nav-link selected"
+											onClick={logout}
+											style={{ paddingLeft: "15px" }}
+										>
+											Έξοδος
+										</div>
+									</Dropdown.Item>
+								</Dropdown.Menu>
+							</Dropdown>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

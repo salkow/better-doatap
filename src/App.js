@@ -16,20 +16,23 @@ import MyAdminAppFirst from "./components/Pages/myNewApplicationPage/Pages/admin
 import MyAdminAppSecond from "./components/Pages/myNewApplicationPage/Pages/admin/secondPage/MyAdminAppSecond";
 import MyAdminAppThird from "./components/Pages/myNewApplicationPage/Pages/admin/thirdPage/MyAdminAppThird";
 
-
 import TheNav from "./components/generalComponents/myNav/myNav";
 import Footer from "./components/generalComponents/MyFooter/MyFooter";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
+import { useState } from "react";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
+	const [loggedIn, setLoggedIn] = useState(
+		localStorage.getItem("access_token") != null
+	);
+
 	return (
 		<BrowserRouter>
-			<TheNav />
+			<TheNav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 			<div className="gen-space content">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
@@ -40,10 +43,16 @@ function App() {
 					/>
 					<Route path="/qna" element={<QNA />} />
 					<Route path="/communication" element={<Communication />} />
-					<Route path="/loginPage" element={<MyLoginPage />} />
+					<Route
+						path="/loginPage"
+						element={<MyLoginPage setLoggedIn={setLoggedIn} />}
+					/>
 					<Route path="/profile" element={<MyProfilePage />} />
 					<Route path="/register" element={<MyRegisterPage />} />
-					<Route path="/myApplications" element={<MyMyApplicationPage />} />
+					<Route
+						path="/myApplications"
+						element={<MyMyApplicationPage />}
+					/>
 
 					<Route path="/myNewAppF" element={<MyNewAppFirst />} />
 					<Route path="/myNewAppS" element={<MyNewAppSecond />} />
@@ -54,8 +63,6 @@ function App() {
 					<Route path="/myAdminAppF" element={<MyAdminAppFirst />} />
 					<Route path="/myAdminAppS" element={<MyAdminAppSecond />} />
 					<Route path="/myAdminAppT" element={<MyAdminAppThird />} />
-
-
 				</Routes>
 			</div>
 			<Footer />

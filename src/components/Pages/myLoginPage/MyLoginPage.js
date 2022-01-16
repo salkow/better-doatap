@@ -5,33 +5,61 @@ import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
 import MyButton from "../../generalComponents/MyButton/MyButton";
 import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 import { useState } from "react";
-import {Link} from "react-router-dom"
+import { Link, Navigate, useLocation } from "react-router-dom";
 
-const MyLoginPage = () => {
+const MyLoginPage = ({ setLoggedIn }) => {
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Είσοδος/Εγγραφή" },
 	];
-	
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const submit = async () =>{
-		console.log(email)
-		console.log(password)
+	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
+	const [isAdmin, setIsAdmin] = useState(false);
+
+	const { state } = useLocation();
+
+	const submit = async () => {
+		console.log(email);
+		console.log(password);
 		axiosInstance
 			.post(`token/`, {
 				email: email,
-				password: password
+				password: password,
 			})
 			.then((res) => {
-				localStorage.setItem('access_token', res.data.access);
-				localStorage.setItem('refresh_token', res.data.refresh);
-				axiosInstance.defaults.headers['Authorization'] =
-					'JWT ' + localStorage.getItem('access_token');
-				// history.push('/');
+				localStorage.setItem("access_token", res.data.access);
+				localStorage.setItem("refresh_token", res.data.refresh);
+				axiosInstance.defaults.headers["Authorization"] =
+					"JWT " + localStorage.getItem("access_token");
+			})
+			.then(() => {
+				axiosInstance.get("user/is_superuser").then((res) => {
+					console.log(res.data.is_superuser);
+					setIsAdmin(res.data.is_superuser);
+
+					setLoggedIn(true);
+					setRedirectToReferrer(true);
+				});
 			});
-  }
+	};
+
+	if (redirectToReferrer === true) {
+		if (!isAdmin) {
+			let path = state?.from.pathname;
+
+			if (path === "/myAdminAppF") {
+				path = "/";
+			}
+
+			return <Navigate to={path || "/"} />;
+		} else {
+			return <Navigate to="/myAdminAppF" />;
+		}
+	}
 
 	return (
 		<div className="content">
@@ -44,8 +72,16 @@ const MyLoginPage = () => {
 					<div className="middle">
 						<span className="head">Λογαριασμός Σελίδας</span>
 						<div className="txtboxes">
-							<MyTextBox txt="Email Address" type="text" vaar={setEmail}/>
-							<MyTextBox txt="Password" type="password" vaar={setPassword}/>
+							<MyTextBox
+								txt="Email Address"
+								type="text"
+								vaar={setEmail}
+							/>
+							<MyTextBox
+								txt="Password"
+								type="password"
+								vaar={setPassword}
+							/>
 						</div>
 						<MyButton
 							btn_color="#4285f4"
@@ -55,7 +91,9 @@ const MyLoginPage = () => {
 						/>
 						<span className="tail">
 							Δεν έχεις λογαριασμό;{" "}
-							<span className="tail-colored"><Link to="/register">Εγγραφή</Link></span>
+							<span className="tail-colored">
+								<Link to="/register">Εγγραφή</Link>
+							</span>
 						</span>
 					</div>
 				</div>

@@ -34,3 +34,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class AdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewUser
+        fields = ('is_superuser',)

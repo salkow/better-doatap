@@ -1,15 +1,34 @@
-#user-icon
-{
+#user-icon {
 	float: right;
 	background-color: aliceblue;
 }
 
-div.dropdown-menu
-{
-    background-color: #212529;
+div.dropdown-menu {
+	background-color: #212529;
 }
 
-a.dropdown-item:hover
-{
-    background-color: #212529;
+a.dropdown-item:hover {
+	background-color: #212529;
+}
+
+.dropdown-header {
+	background-color: #212429 !important;
+	border-color: #212429 !important;
+}
+
+btn-check:active + .btn-primary:focus,
+.btn-check:checked + .btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
 }
