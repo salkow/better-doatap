@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/doatap-logo.png";
 import user_icon from "../../../assets/user-icon.png";
@@ -11,6 +11,8 @@ import axiosInstance from "../../../axios";
 import "./myNav.css";
 
 const TheNav = ({ loggedIn, setLoggedIn }) => {
+	const history = useNavigate();
+
 	const logout = async () => {
 		console.log("hey");
 		axiosInstance.post("user/logout/blacklist/", {
@@ -21,6 +23,7 @@ const TheNav = ({ loggedIn, setLoggedIn }) => {
 		localStorage.removeItem("refresh_token");
 		axiosInstance.defaults.headers["Authorization"] = null;
 		setLoggedIn(false);
+		history("/");
 	};
 
 	return (
