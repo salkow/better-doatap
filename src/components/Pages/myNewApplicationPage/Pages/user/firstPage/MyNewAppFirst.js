@@ -79,7 +79,6 @@ const MyNewAppFirst = ({loggedIn}) =>
           setOtherUni(res.data.destination_university);
           setOtherDep(res.data.destination_department);
 
-          //diploma
           setDiploma(res.data.diploma);
 
           if(res.data.type_of_diploma && res.data.origin_country && res.data.origin_university && res.data.origin_department){
@@ -102,7 +101,6 @@ const MyNewAppFirst = ({loggedIn}) =>
         });
     }else{
       settypeOfDiploma(localStorage.getItem("typeOfDiploma")??"");
-      // console.log(typeOfDiploma);
       setCountry(localStorage.getItem("country")??"");
       setMyUni(localStorage.getItem("myUni")??"");
       setMyDep(localStorage.getItem("myDep")??"");
@@ -111,22 +109,22 @@ const MyNewAppFirst = ({loggedIn}) =>
       setDiploma(localStorage.getItem("diploma")??"");
       setUpdated(localStorage.getItem("updatedFile")??"");
 
-      // if(localStorage.getItem("typeOfDiploma") && localStorage.getItem("country") && localStorage.getItem("myUni") && localStorage.getItem("myDep")){
-      //   setfirstPage(2);
-      // }else{
-      //   setfirstPage(1);
-      // }
+      if(localStorage.getItem("typeOfDiploma") && localStorage.getItem("country") && localStorage.getItem("myUni") && localStorage.getItem("myDep")){
+        setfirstPage(2);
+      }else{
+        setfirstPage(1);
+      }
   
-      // if(localStorage.getItem("otherUni") && localStorage.getItem("otherDep")){
-      //   setsecondPage(2);
-      // }else{
-      //   setsecondPage(1);
-      // }
-      // if(localStorage.getItem("diploma") || localStorage.getItem("updatedFile")){
-      //   setthirdPage(2);
-      // }else{
-      //   setthirdPage(1);
-      // }
+      if(localStorage.getItem("otherUni") && localStorage.getItem("otherDep")){
+        setsecondPage(2);
+      }else{
+        setsecondPage(1);
+      }
+      if(localStorage.getItem("diploma") || localStorage.getItem("updatedFile")){
+        setthirdPage(2);
+      }else{
+        setthirdPage(1);
+      }
 
       localStorage.removeItem("typeOfDiploma");
       localStorage.removeItem("country");
@@ -137,12 +135,7 @@ const MyNewAppFirst = ({loggedIn}) =>
       localStorage.removeItem("diploma");
       localStorage.removeItem("updatedFile");
     }
-    // validate();
   }, []);
-  
-  useEffect(() => {
-    validate();
-  }, [currPage])
   
   const login = () =>{
     save_on_local_storage();
@@ -166,7 +159,7 @@ const MyNewAppFirst = ({loggedIn}) =>
               <span id="underlined">Κάνε Αίτηση</span>
             </div>
             <div className="middle">
-                <MyNewAppBreadcrumbs setCurr={setCurrPage} curr={currPage} first={firstPage} second={secondPage} third={thirdPage}/>
+                <MyNewAppBreadcrumbs setCurr={setCurrPage} val={validate} curr={currPage} first={firstPage} second={secondPage} third={thirdPage}/>
                 <div className="middle-items">
                   <MyRadioButton txt="Επίπεδο Σπουδών" items={radioFin} vaar={settypeOfDiploma} selected={typeOfDiploma} />
                   <MySelectBox txt="Χωρα Σπουδών" vaar={setCountry} filled={country}/>
@@ -181,7 +174,7 @@ const MyNewAppFirst = ({loggedIn}) =>
                 <button className="chevronButton" type="submit" disabled>
                   <i className="material-icons chevron-item"> chevron_left </i>
                 </button>
-                <button onClick={()=>{setCurrPage(2)}} className="chevronButton" type="submit">
+                <button onClick={()=>{setCurrPage(2);validate();}} className="chevronButton" type="submit">
                   <i className="material-icons chevron-item"> chevron_right </i>
                 </button>
               </div>
@@ -218,7 +211,7 @@ const MyNewAppFirst = ({loggedIn}) =>
               <span id="underlined">Κάνε Αίτηση</span>
             </div>
             <div className="middle">
-            <MyNewAppBreadcrumbs setCurr={setCurrPage} curr={currPage} first={firstPage} second={secondPage} third={thirdPage}/>
+            <MyNewAppBreadcrumbs setCurr={setCurrPage} val={validate} curr={currPage} first={firstPage} second={secondPage} third={thirdPage}/>
                 <div className="middle-items">
                   <div className="grouped">
                     <MySelectBox txt="Πανεπιστήμιο" vaar={setOtherUni} filled={otherUni}/>
@@ -228,10 +221,10 @@ const MyNewAppFirst = ({loggedIn}) =>
             </div>
             <div className="lower">
               <div className="controls">
-                <button onClick={()=>{setCurrPage(1)}} className="chevronButton" type="submit">
+                <button onClick={()=>{setCurrPage(1);validate();}} className="chevronButton" type="submit">
                   <i className="material-icons chevron-item"> chevron_left </i>
                 </button>
-                <button onClick={()=>{setCurrPage(3)}} className="chevronButton" type="submit">
+                <button onClick={()=>{setCurrPage(3);validate();}} className="chevronButton" type="submit">
                   <i className="material-icons chevron-item"> chevron_right </i>
                 </button>
               </div>
@@ -263,14 +256,14 @@ const MyNewAppFirst = ({loggedIn}) =>
               <span id="underlined">Κάνε Αίτηση</span>
             </div>
             <div className="middle">
-            <MyNewAppBreadcrumbs setCurr={setCurrPage} curr={currPage} first={firstPage} second={secondPage} third={thirdPage}/>
+            <MyNewAppBreadcrumbs setCurr={setCurrPage} val={validate} curr={currPage} first={firstPage} second={secondPage} third={thirdPage}/>
                 <div className="middle-items">
                   <MyFileCard name="Πτυχίο φοίτησης" desc="Αφορά το πτυχίου που παραλάβατε αφού ολοκληρώσατε την φοίτησή σας." link={diploma} setLink={setDiploma} setUpdated={setUpdated}/>
                 </div>
             </div>
             <div className="lower">
               <div className="controls">
-                <button onClick={()=>{setCurrPage(2)}} className="chevronButton" type="submit">
+                <button onClick={()=>{setCurrPage(2);validate();}} className="chevronButton" type="submit">
                   <i className="material-icons chevron-item"> chevron_left </i>
                 </button>
                 <button className="chevronButton" type="submit" disabled>
