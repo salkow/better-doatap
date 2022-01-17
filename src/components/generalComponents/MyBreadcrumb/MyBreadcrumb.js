@@ -8,13 +8,13 @@ const MyBreadcrumb = ({ array }) =>
     array.forEach((e, i, array) => {
         if(i+1 === array.length){
             fin.push(
-            <Breadcrumb.Item className={"bread"} active>
+            <Breadcrumb.Item key={i} className={"bread"} active>
                 <span>{e.second}</span>
             </Breadcrumb.Item>
             );    
         }else{
             fin.push(
-            <Breadcrumb.Item className={"bread"} href={e.first}>
+            <Breadcrumb.Item key={i} className={"bread"} href={e.first}>
                 <span>{e.second}</span>
             </Breadcrumb.Item>
             );            
