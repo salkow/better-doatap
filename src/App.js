@@ -4,6 +4,7 @@ import QNA from "./components/Pages/myQNA/myQNA";
 import MyLoginPage from "./components/Pages/myLoginPage/MyLoginPage";
 import MyProfilePage from "./components/Pages/myProfilePage/MyProfilePage";
 import MyRegisterPage from "./components/Pages/myRegisterPage/MyRegisterPage";
+import HowToCreateANewApplication from "./components/Pages/myHowToCreateANewApplication/myHowToCreateANewApplication";
 
 import MyMyApplicationPage from "./components/Pages/myMyApplicationPage/MyMyApplicationPage";
 
@@ -66,9 +67,9 @@ function App() {
 						element={<MyMyApplicationPage />}
 					/>
 
-					<Route path="/myNewAppF" element={<MyNewAppFirst />} />
-					<Route path="/myNewAppS" element={<MyNewAppSecond />} />
-					<Route path="/myNewAppT" element={<MyNewAppThird />} />
+					<Route path="/myNewAppF/:id" element={<MyNewAppFirst loggedIn={loggedIn} />} />
+					{/* <Route path="/myNewAppS" element={<MyNewAppSecond />} />
+					<Route path="/myNewAppT" element={<MyNewAppThird />} /> */}
 
 					{/* <Route path="/myApplications" element={<MyMyApplicationPage />} /> */}
 

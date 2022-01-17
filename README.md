@@ -29,3 +29,20 @@ pip install pipenv
 pipenv install -r requirements.txt
 pipenv shell
 python manage.py runserver
+
+
+TODO:
+πως κανω αιτηση
+
+κανε αιτηση: κουμπια κατω
+
+κανε αιτηση: select items
+
+login: enter
+
+login: go back form no history
+kane aithsh, login, back: colors bug
+
+help icons, ask
+
+admin

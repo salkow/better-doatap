@@ -3,36 +3,49 @@ import './Application.css';
 import './InfoCard'
 import InfoCard from './InfoCard';
 
-const Application = ({id, name, isFinalized, status}) => 
+import {Link} from "react-router-dom"
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+const Application = ({id, name, isFinalized, status, tool_txt}) => 
 {
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          {tool_txt}
+        </Tooltip>
+      );
     const fin = [];
     if(isFinalized){
         fin.push(
-            <InfoCard txt="Οριστικά υποβεβλημένο" txt_clr="white" clr="#DD9F00"/>
+            <InfoCard key={id} txt="Οριστικά υποβεβλημένο" txt_clr="white" clr="#DD9F00"/>
         );
     }else{
         fin.push(
-            <InfoCard txt="Προσωρινά αποθηκευμένο" txt_clr="white" clr="#1FAEFF"/>
+            <InfoCard key={id} txt="Προσωρινά αποθηκευμένο" txt_clr="white" clr="#1FAEFF"/>
         );
     }
     
     const stat = [];
-    if(status === 0){
+    if(status === 'P'){
         stat.push(
-            <InfoCard txt="Σε επεξεργασία..." txt_clr="black" clr="#BFBFBF"/>
+            <InfoCard key={{id} + 'e'} txt="Σε επεξεργασία..." txt_clr="black" clr="#BFBFBF"/>
         );
-    }else if(status === 1){
+    }else if(status === 'A'){
         stat.push(
-            <InfoCard txt="Εγγεγκριμένο" txt_clr="white" clr="#07BE2F"/>
+            <InfoCard key={{id} + 'a'} txt="Εγγεγκριμένο" txt_clr="white" clr="#07BE2F"/>
         );
-    }else if(status === 2){
+    }else if(status === 'D'){
         stat.push(
-            <InfoCard txt="Μη εγγεγκριμένο" txt_clr="white" clr="#D41818"/>
+            <InfoCard key={{id} + 'b'} txt="Μη εγγεγκριμένο" txt_clr="white" clr="#D41818"/>
         );
         stat.push(
-            <span className="helpSpan" type="submit">
-                <i className="material-icons help-item"> help_outline </i>
-            </span>
+            <OverlayTrigger
+                placement="right"
+                delay={{ show: 50, hide: 400 }}
+                overlay={renderTooltip}>
+
+                <span key={{id} + 'bb'} className="helpSpan" type="submit">
+                    <i className="material-icons help-item"> help_outline </i>
+                </span>            
+            </OverlayTrigger>,
         );
     }
     return (
@@ -51,9 +64,9 @@ const Application = ({id, name, isFinalized, status}) =>
                   </div>
               </div>
               <div className="edit-icon">
-                <button className="tuneButton" type="submit">
+                <Link className="tuneButton" type="submit" to={"/myNewAppF/" + id}>
                     <i className="material-icons tune-item"> tune </i>
-                </button>
+                </Link>
               </div>
           </div>
       </div>

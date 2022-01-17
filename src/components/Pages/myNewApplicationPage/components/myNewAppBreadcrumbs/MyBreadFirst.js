@@ -1,23 +1,24 @@
-const MyBreadFirst = ({txt, curr}) => 
+import './MyNewAppBreadcrumbs.css'
+const MyBreadFirst = ({txt, curr, setCurr}) => 
 {
     var txt_clr ="";
     var clr ="";
     var out_clr ="";
-    if(curr=== 0){
+    if(curr=== 0){//blue
         txt_clr= "#3C4257";
         clr= "#F5FBFF";
         out_clr= "#8DB5F8";
-    }else if(curr===1){
+    }else if(curr===1){//red
         txt_clr= "#FFFFFF";
         clr= "#E37171";
         out_clr= "#FF4141";
-    }else if(curr===2){
+    }else if(curr===2){//green
         txt_clr= "#FFFFFF";
         clr= "#9AD64F";
         out_clr= "#6DB416";
     }
     return (
-        <div>
+        <div className="hovers" onClick={()=>{setCurr(1)}}>
             <svg width="230" height="60" viewBox="0 0 230 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g>
                     <mask id="path-1-inside-1_216_519" fill="white">
