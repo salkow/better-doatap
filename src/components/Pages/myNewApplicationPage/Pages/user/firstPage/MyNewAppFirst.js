@@ -45,10 +45,10 @@ const MyNewAppFirst = () =>
     }else{
       setsecondPage(2);
     }
-    if(!diploma || !updatedFile){
-      setthirdPage(1);
-    }else{
+    if(diploma || updatedFile){
       setthirdPage(2);
+    }else{
+      setthirdPage(1);
     }
   }
 

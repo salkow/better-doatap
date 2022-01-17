@@ -81,3 +81,38 @@
     color: black;
     border-style: none;
 }
+
+
+
+
+.help-item{
+    position: relative;
+    display: inline-block;
+}
+
+.help-item .tooltipTxt {
+  visibility: hidden;
+  max-width: 500px;
+  width: max-content;
+  background-color: rgb(110, 110, 110);
+  color: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 110%;
+  font-family: 'Roboto', sans-serif !important;
+  white-space: normal !important;
+  font-size: 16px !important;
+}
+
+
+.help-item:hover .tooltipTxt{
+    visibility: visible;
+}
+
+
+
+
+

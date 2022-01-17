@@ -4,9 +4,14 @@ import './InfoCard'
 import InfoCard from './InfoCard';
 
 import {Link} from "react-router-dom"
-
-const Application = ({id, name, isFinalized, status}) => 
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+const Application = ({id, name, isFinalized, status, tool_txt}) => 
 {
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          {tool_txt}
+        </Tooltip>
+      );
     const fin = [];
     if(isFinalized){
         fin.push(
@@ -32,9 +37,15 @@ const Application = ({id, name, isFinalized, status}) =>
             <InfoCard key={{id} + 'b'} txt="Μη εγγεγκριμένο" txt_clr="white" clr="#D41818"/>
         );
         stat.push(
-            <span key={{id} + 'bb'} className="helpSpan" type="submit">
-                <i className="material-icons help-item"> help_outline </i>
-            </span>
+            <OverlayTrigger
+                placement="right"
+                delay={{ show: 50, hide: 400 }}
+                overlay={renderTooltip}>
+
+                <span key={{id} + 'bb'} className="helpSpan" type="submit">
+                    <i className="material-icons help-item"> help_outline </i>
+                </span>            
+            </OverlayTrigger>,
         );
     }
     return (

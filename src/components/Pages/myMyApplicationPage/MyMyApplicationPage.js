@@ -32,7 +32,7 @@ const MyMyApplicationPage = () =>
             <div className="middle">
       
 				{data.map((item, index) => (
-              <Application key={item.id} id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress}/>
+              <Application key={item.id} id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination}/>
         ))}
             </div>
           </div>
