@@ -2,7 +2,7 @@ import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 
 import { Container } from "react-bootstrap";
 
-const QNA = () => {
+const HowToCreateANewApplication = () => {
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Συχνές Ερωτήσεις" },
@@ -98,4 +98,4 @@ const QNA = () => {
 	);
 };
 
-export default QNA;
+export default HowToCreateANewApplication;

@@ -10,11 +10,11 @@ import MyFileCard from '../../../components/myFileCard/MyFileCard';
 
 import MyButton from '../../../../../generalComponents/MyButton/MyButton';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 
 import axiosInstance from "../../../../../../axios.js";
 
-const MyNewAppFirst = () => 
+const MyNewAppFirst = ({loggedIn}) => 
 {
   const params= useParams();
 
@@ -33,26 +33,38 @@ const MyNewAppFirst = () =>
   
   const [diploma, setDiploma] = useState("");
   const [updatedFile, setUpdated] = useState(null);
+  
+  const [hasToLogIn, setHasToLogIn] = useState(false)
 
   const validate = () =>{
-    if(!typeOfDiploma || !country || !myUni || !myDep){
-      setfirstPage(1);
-    }else{
+    if(typeOfDiploma && country && myUni && myDep){
       setfirstPage(2);
-    }
-    if(!otherUni || !otherDep){
-      setsecondPage(1);
     }else{
+      setfirstPage(1);
+    }
+
+    if(otherUni && otherDep){
       setsecondPage(2);
+    }else{
+      setsecondPage(1);
     }
     if(diploma || updatedFile){
-      setthirdPage(2);
-    }else{
       setthirdPage(1);
+    }else{
+      setthirdPage(2);
     }
   }
-
-  //TODO diploma
+  
+  const save_on_local_storage = () =>{
+    localStorage.setItem("typeOfDiploma", typeOfDiploma);
+    localStorage.setItem("country", country);
+    localStorage.setItem("myUni", myUni);
+    localStorage.setItem("myDep", myDep);
+    localStorage.setItem("otherUni", otherUni);
+    localStorage.setItem("otherDep", otherDep);
+    localStorage.setItem("diploma", diploma);
+    localStorage.setItem("updatedFile", updatedFile);
+  }
 
   useEffect(() => {
     if(params.id !== "-1"){
@@ -71,29 +83,74 @@ const MyNewAppFirst = () =>
           //diploma
           setDiploma(res.data.diploma);
 
-          if(!typeOfDiploma || !country || !myUni || !myDep){
-            setfirstPage(2);
-          }else{
-            setfirstPage(1);
-          }
-          if(!otherUni || !otherDep){
-            setsecondPage(2);
-          }else{
-            setsecondPage(1);
-          }
-          if(!diploma){
-            setthirdPage(2);
-          }else{
-            setthirdPage(1);
-          }
+          // if(!typeOfDiploma || !country || !myUni || !myDep){
+          //   setfirstPage(2);
+          // }else{
+          //   setfirstPage(1);
+          // }
+          // if(!otherUni || !otherDep){
+          //   setsecondPage(2);
+          // }else{
+          //   setsecondPage(1);
+          // }
+          // if(!diploma){
+          //   setthirdPage(2);
+          // }else{
+          //   setthirdPage(1);
+          // }
         });
+    }else{
+      settypeOfDiploma(localStorage.getItem("typeOfDiploma")??"");
+      setCountry(localStorage.getItem("country")??"");
+      setMyUni(localStorage.getItem("myUni")??"");
+      setMyDep(localStorage.getItem("myDep")??"");
+      setOtherUni(localStorage.getItem("otherUni")??"");
+      setOtherDep(localStorage.getItem("otherDep")??"");
+      setDiploma(localStorage.getItem("diploma")??"");
+      setUpdated(localStorage.getItem("updatedFile")??"");
+
+      localStorage.removeItem("typeOfDiploma");
+      localStorage.removeItem("country");
+      localStorage.removeItem("myUni");
+      localStorage.removeItem("myDep");
+      localStorage.removeItem("otherUni");
+      localStorage.removeItem("otherDep");
+      localStorage.removeItem("diploma");
+      localStorage.removeItem("updatedFile");
+
+      // if(!typeOfDiploma || !country || !myUni || !myDep){
+      //   setfirstPage(2);
+      // }else{
+      //   setfirstPage(1);
+      // }
+      // if(!otherUni || !otherDep){
+      //   setsecondPage(2);
+      // }else{
+      //   setsecondPage(1);
+      // }
+      // if(diploma || updatedFile){
+      //   console.log("3 test")
+      //   setthirdPage(1);
+      // }else{
+      //   console.log("3 else")
+      //   setthirdPage(2);
+      // }
     }
   }, []);
   
   useEffect(() => {
     validate();
   }, [currPage])
+  
+  const login = () =>{
+    save_on_local_storage();
+    setHasToLogIn(true);   
+  };
 
+  if (hasToLogIn)
+  {
+    return <Navigate to="/loginPage"/>
+  }
 
   const myBread = [{first: "/", second: "Αρχική"}, {second: "Κάνε αίτηση"}]
   const radioFin = [{item:"Βασικό πτυχίο", value:"B"}, {item:"Μεταπτυχιακό", value:"P"}, {item:"Διδακτορικό", value:"D"}]
@@ -126,16 +183,24 @@ const MyNewAppFirst = () =>
                   <i className="material-icons chevron-item"> chevron_right </i>
                 </button>
               </div>
-              <div className="login-promt">
-                <span className="login-promt-txt">
-                <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
-                </span>                
-                <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση"/>
-              </div>
+
+
+              {!loggedIn && (
+                <div className="login-promt">
+                  <span className="login-promt-txt">
+                  <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
+                  </span>                
+                  <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση" funcc={login}/>
+                </div>
+              )}
+
               <div className="buttons">
-                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={true}/>
-                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={true}/>
+                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={!loggedIn}/>
+                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={!loggedIn}/>
               </div>
+
+
+              
             </div>
           </div>
         </div>
@@ -168,15 +233,18 @@ const MyNewAppFirst = () =>
                   <i className="material-icons chevron-item"> chevron_right </i>
                 </button>
               </div>
-              <div className="login-promt">
-                <span className="login-promt-txt">
-                <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
-                </span>                
-                <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση"/>
-              </div>
+              {!loggedIn && (
+                <div className="login-promt">
+                  <span className="login-promt-txt">
+                  <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
+                  </span>                
+                  <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση" funcc={login}/>
+                </div>
+              )}
+
               <div className="buttons">
-                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={true}/>
-                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={true}/>
+                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={!loggedIn}/>
+                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={!loggedIn}/>
               </div>
             </div>
           </div>
@@ -207,15 +275,18 @@ const MyNewAppFirst = () =>
                   <i className="material-icons chevron-item"> chevron_right </i>
                 </button>
               </div>
-              <div className="login-promt">
-                <span className="login-promt-txt">
-                <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
-                </span>                
-                <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση"/>
-              </div>
+              {!loggedIn && (
+                <div className="login-promt">
+                  <span className="login-promt-txt">
+                  <span id="star">*</span>Απαιτείται σύνδεση για αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία της αίτησης σας
+                  </span>                
+                  <MyButton btn_color="#A8A8A8" txt_color="white" curr_msg="Κάνε σύνδεση" funcc={login}/>
+                </div>
+              )}
+
               <div className="buttons">
-                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={true}/>
-                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={true}/>
+                <MyButton btn_color="#1FAEFF" txt_color="white" curr_msg="Προσωρινή Αποθήκευση" disable={!loggedIn}/>
+                <MyButton btn_color="#DD9F00" txt_color="white" curr_msg="Οριστική Υποβολή" disable={!loggedIn}/>
               </div>
             </div>
           </div>

@@ -40,6 +40,9 @@ TODO:
 
 login: enter
 
+login: go back form no history
+kane aithsh, login, back: colors bug
+
 help icons, ask
 
 admin

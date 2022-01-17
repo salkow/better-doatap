@@ -5,7 +5,7 @@ import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
 import MyButton from "../../generalComponents/MyButton/MyButton";
 import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 import { useState } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	const myBread = [
@@ -21,6 +21,11 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
 	const { state } = useLocation();
+	
+	let history = useNavigate();
+		const goToPreviousPath = () => {
+		history(-1);
+	}
 
 	const submit = async () => {
 		var finish = 0;
@@ -61,7 +66,9 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 					setIsAdmin(res.data.is_superuser);
 
 					setLoggedIn(true);
-					setRedirectToReferrer(true);
+						
+					goToPreviousPath();
+					// setRedirectToReferrer(true);
 				});
 			});
 	};
