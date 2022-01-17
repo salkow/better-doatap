@@ -66,9 +66,9 @@ function App() {
 						element={<MyMyApplicationPage />}
 					/>
 
-					<Route path="/myNewAppF" element={<MyNewAppFirst />} />
-					<Route path="/myNewAppS" element={<MyNewAppSecond />} />
-					<Route path="/myNewAppT" element={<MyNewAppThird />} />
+					<Route path="/myNewAppF/:id" element={<MyNewAppFirst />} />
+					{/* <Route path="/myNewAppS" element={<MyNewAppSecond />} />
+					<Route path="/myNewAppT" element={<MyNewAppThird />} /> */}
 
 					{/* <Route path="/myApplications" element={<MyMyApplicationPage />} /> */}
 

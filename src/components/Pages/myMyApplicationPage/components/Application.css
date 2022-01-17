@@ -72,6 +72,7 @@
     height: max-content;
     width: max-content;
     display: flex;
+    text-decoration: none;
 }
 .tune-item {
     font-size: 46px !important;

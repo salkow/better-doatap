@@ -2,9 +2,9 @@ import './MySelectBox.css';
 
 import { useState } from "react";
 
-const MySelectBox = ({txt}) => 
+const MySelectBox = ({txt, filled, vaar}) => 
 {
-    const [curr, setCurr] = useState([]);
+    // const [curr, setCurr] = useState([]);
     function setActiveElement(event){
         // console.log(event.target)
         event.preventDefault();
@@ -48,8 +48,8 @@ const MySelectBox = ({txt}) =>
                         type="text" name="q" 
                         placeholder="Αναζήτηση..." 
                         autoComplete='off' 
-                        onChange={e => setCurr(e.target.value)} 
-                        value={curr} 
+                        onChange={e => vaar(e.target.value)} 
+                        value={filled} 
                         onBlur={e => { removeActiveElement(e); }}
                         />
                         <button className="expandButton" type="submit">
@@ -60,31 +60,31 @@ const MySelectBox = ({txt}) =>
                 <div className="container-options-select">
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test1" value="test1" name="test" />
-                        <label className="option-select" htmlFor="test1" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test1</label>
+                        <label className="option-select" htmlFor="test1" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test1</label>
                     </div>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test2" value="test2" name="test" />
-                        <label className="option-select" htmlFor="test2" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test2</label>
+                        <label className="option-select" htmlFor="test2" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test2</label>
                     </div>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test3" value="test3" name="test" />
-                        <label className="option-select" htmlFor="test3" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test3</label>
+                        <label className="option-select" htmlFor="test3" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test3</label>
                     </div>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test4" value="test4" name="test" />
-                        <label className="option-select" htmlFor="test4" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test4</label>
+                        <label className="option-select" htmlFor="test4" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test4</label>
                     </div>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test5" value="test5" name="test" />
-                        <label className="option-select" htmlFor="test5" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test5</label>
+                        <label className="option-select" htmlFor="test5" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test5</label>
                     </div>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test6" value="test6" name="test" />
-                        <label className="option-select" htmlFor="test6" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test6</label>
+                        <label className="option-select" htmlFor="test6" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test6</label>
                     </div>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test7" value="test7" name="test" />
-                        <label className="option-select" htmlFor="test7" onClick={(e) =>{ setCurr(e.target.previousSibling.value);}}>test7</label>
+                        <label className="option-select" htmlFor="test7" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test7</label>
                     </div>
                 </div>
             </div>
