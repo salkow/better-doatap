@@ -31,3 +31,17 @@ class ApplicationDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Application.objects.all()
     serializer_class = ApplicationDetailSerializer
+
+
+class ApplicationListAdmin(generics.ListAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = Application.objects.all()
+    serializer_class = ApplicationListSerializer
+
+    def get_queryset(self):
+        return Application.objects.filter(is_submitted=True)
+
+class ApplicationDetailAdmin(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = Application.objects.all()
+    serializer_class = ApplicationDetailSerializer
