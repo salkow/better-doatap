@@ -36,9 +36,12 @@ class Application(models.Model):
     is_submitted = models.BooleanField(default=False)
     progress = models.CharField(max_length=1, choices=PROGRESS_OPTIONS, default='N')
 
-    origin_country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='origin_applications')
-    origin_university = models.ForeignKey(University, on_delete=models.CASCADE, related_name='origin_universities')
-    origin_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='origin_departments')
+    origin_country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='origin_applications', null=True, blank=True)
+    origin_university = models.ForeignKey(University, on_delete=models.CASCADE, related_name='origin_universities', null=True, blank=True)
+    origin_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='origin_departments', null=True, blank=True)
+
+    extra_origin_university = models.CharField(max_length=150, blank=True, null=True)
+    extra_origin_department = models.CharField(max_length=150, blank=True, null=True)
 
     destination_university = models.ForeignKey(University, on_delete=models.CASCADE, null=True, blank=True, related_name='destination_universities')
     destination_department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True, related_name='destination_departments')
