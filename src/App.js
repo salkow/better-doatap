@@ -46,7 +46,7 @@ function App() {
 					<Route path="/new_application" element={<HomePage />} />
 					<Route
 						path="/how_to_create_new_application"
-						element={<HomePage />}
+						element={<HowToCreateANewApplication />}
 					/>
 					<Route path="/qna" element={<QNA />} />
 					<Route path="/communication" element={<Communication />} />
