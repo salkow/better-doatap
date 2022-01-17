@@ -8,12 +8,18 @@ from university.serializers import UniversitySerializer
 from department.serializers import DepartmentSerializer
 from university.models import University
 
+
 class CountryList(generics.ListAPIView):
     permission_classes = [AllowAny]
     authentication_classes = ()
 
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
+
+    def get_queryset(self):
+        countries = Country.objects.all()
+        return countries.order_by('name')
+
 
 class UniversityList(generics.ListAPIView):
 
@@ -28,7 +34,7 @@ class UniversityList(generics.ListAPIView):
 
     def get(self, request, pk, format=None):
         country = self.get_object(pk)
-        universities = country.universities.all()
+        universities = country.universities.all().order_by('name')
         serializer = UniversitySerializer(universities, many=True)
         return Response(serializer.data)
 
@@ -53,6 +59,6 @@ class DepartmentList(generics.ListAPIView):
 
         country = self.get_country_object(country_pk)
         university = self.get_uni_object(uni_pk)
-        departments = university.departments.all()
+        departments = university.departments.all().order_by('name')
         serializer = DepartmentSerializer(departments, many=True)
         return Response(serializer.data)
