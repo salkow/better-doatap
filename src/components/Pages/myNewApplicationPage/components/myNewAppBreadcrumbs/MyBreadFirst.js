@@ -1,5 +1,5 @@
 import './MyNewAppBreadcrumbs.css'
-const MyBreadFirst = ({txt, curr, setCurr}) => 
+const MyBreadFirst = ({txt, curr, setCurr, val}) => 
 {
     var txt_clr ="";
     var clr ="";
@@ -18,7 +18,7 @@ const MyBreadFirst = ({txt, curr, setCurr}) =>
         out_clr= "#6DB416";
     }
     return (
-        <div className="hovers" onClick={()=>{setCurr(1)}}>
+        <div className="hovers" onClick={()=>{setCurr(1);val()}}>
             <svg width="230" height="60" viewBox="0 0 230 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g>
                     <mask id="path-1-inside-1_216_519" fill="white">

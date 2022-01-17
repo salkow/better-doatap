@@ -62,7 +62,7 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 			})
 			.then(() => {
 				axiosInstance.get("user/is_superuser").then((res) => {
-					console.log(res.data.is_superuser);
+					// console.log(res.data.is_superuser);
 					setIsAdmin(res.data.is_superuser);
 
 					setLoggedIn(true);
