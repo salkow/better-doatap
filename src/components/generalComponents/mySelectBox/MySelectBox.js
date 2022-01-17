@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const MySelectBox = ({txt, filled, vaar}) => 
 {
+    let items = ["First", "Second", "Third", "Fourth"] 
     // const [curr, setCurr] = useState([]);
     function setActiveElement(event){
         // console.log(event.target)
@@ -58,7 +59,23 @@ const MySelectBox = ({txt, filled, vaar}) =>
                     </div>
                 </div>
                 <div className="container-options-select">
+        
+				{items.map((item, index) => (
                     <div className="option-select-div">
+                        {/* <input onChange={filter} type="radio" className="radio" id="test1" value="test1" name="test" 
+                        onChange={(e) =>
+                            setNewComment(
+                                e.target
+                                    .value
+                            )
+                        }
+                        /> */}
+                        <label className="option-select" htmlFor="test1" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>{item}</label>
+                    </div>
+                ))}
+
+        
+                    {/* <div className="option-select-div">
                         <input type="radio" className="radio" id="test1" value="test1" name="test" />
                         <label className="option-select" htmlFor="test1" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test1</label>
                     </div>
@@ -85,7 +102,7 @@ const MySelectBox = ({txt, filled, vaar}) =>
                     <div className="option-select-div">
                         <input type="radio" className="radio" id="test7" value="test7" name="test" />
                         <label className="option-select" htmlFor="test7" onClick={(e) =>{ vaar(e.target.previousSibling.value);}}>test7</label>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

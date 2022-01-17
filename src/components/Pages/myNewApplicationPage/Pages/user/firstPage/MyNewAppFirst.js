@@ -49,9 +49,9 @@ const MyNewAppFirst = ({loggedIn}) =>
       setsecondPage(1);
     }
     if(diploma || updatedFile){
-      setthirdPage(1);
-    }else{
       setthirdPage(2);
+    }else{
+      setthirdPage(1);
     }
   }
   
@@ -71,8 +71,7 @@ const MyNewAppFirst = ({loggedIn}) =>
       axiosInstance
         .get(`applications/${params.id}`)
         .then((res) => {
-          console.log(res.data);
-          settypeOfDiploma(res.data.type_of_diploma);
+          settypeOfDiploma(res.data.type_of_diploma)
           setCountry(res.data.origin_country);
           setMyUni(res.data.origin_university);
           setMyDep(res.data.origin_department);
@@ -83,24 +82,27 @@ const MyNewAppFirst = ({loggedIn}) =>
           //diploma
           setDiploma(res.data.diploma);
 
-          // if(!typeOfDiploma || !country || !myUni || !myDep){
-          //   setfirstPage(2);
-          // }else{
-          //   setfirstPage(1);
-          // }
-          // if(!otherUni || !otherDep){
-          //   setsecondPage(2);
-          // }else{
-          //   setsecondPage(1);
-          // }
-          // if(!diploma){
-          //   setthirdPage(2);
-          // }else{
-          //   setthirdPage(1);
-          // }
+          if(res.data.type_of_diploma && res.data.origin_country && res.data.origin_university && res.data.origin_department){
+            setfirstPage(2);
+          }else{
+            setfirstPage(1);
+          }
+      
+          if(res.data.destination_university && res.data.destination_department){
+            setsecondPage(2);
+          }else{
+            setsecondPage(1);
+          }
+          if(res.data.diploma){
+            setthirdPage(2);
+          }else{
+            setthirdPage(1);
+          }
+
         });
     }else{
       settypeOfDiploma(localStorage.getItem("typeOfDiploma")??"");
+      // console.log(typeOfDiploma);
       setCountry(localStorage.getItem("country")??"");
       setMyUni(localStorage.getItem("myUni")??"");
       setMyDep(localStorage.getItem("myDep")??"");
@@ -108,6 +110,23 @@ const MyNewAppFirst = ({loggedIn}) =>
       setOtherDep(localStorage.getItem("otherDep")??"");
       setDiploma(localStorage.getItem("diploma")??"");
       setUpdated(localStorage.getItem("updatedFile")??"");
+
+      // if(localStorage.getItem("typeOfDiploma") && localStorage.getItem("country") && localStorage.getItem("myUni") && localStorage.getItem("myDep")){
+      //   setfirstPage(2);
+      // }else{
+      //   setfirstPage(1);
+      // }
+  
+      // if(localStorage.getItem("otherUni") && localStorage.getItem("otherDep")){
+      //   setsecondPage(2);
+      // }else{
+      //   setsecondPage(1);
+      // }
+      // if(localStorage.getItem("diploma") || localStorage.getItem("updatedFile")){
+      //   setthirdPage(2);
+      // }else{
+      //   setthirdPage(1);
+      // }
 
       localStorage.removeItem("typeOfDiploma");
       localStorage.removeItem("country");
@@ -117,25 +136,8 @@ const MyNewAppFirst = ({loggedIn}) =>
       localStorage.removeItem("otherDep");
       localStorage.removeItem("diploma");
       localStorage.removeItem("updatedFile");
-
-      // if(!typeOfDiploma || !country || !myUni || !myDep){
-      //   setfirstPage(2);
-      // }else{
-      //   setfirstPage(1);
-      // }
-      // if(!otherUni || !otherDep){
-      //   setsecondPage(2);
-      // }else{
-      //   setsecondPage(1);
-      // }
-      // if(diploma || updatedFile){
-      //   console.log("3 test")
-      //   setthirdPage(1);
-      // }else{
-      //   console.log("3 else")
-      //   setthirdPage(2);
-      // }
     }
+    // validate();
   }, []);
   
   useEffect(() => {
