@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from .serializers import CustomUserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from users.models import NewUser
 from .serializers import ChangePasswordSerializer
 from .serializers import AdminSerializer
@@ -82,3 +82,9 @@ class AdminDisplay(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class CustomAdminDisplay(generics.RetrieveAPIView):
+    permission_classes = [IsAdminUser]
+    queryset = NewUser.objects.all()
+    serializer_class = CustomUserSerializer
