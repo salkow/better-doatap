@@ -13,9 +13,7 @@ import MyNewAppSecond from "./components/Pages/myNewApplicationPage/Pages/user/s
 import MyNewAppThird from "./components/Pages/myNewApplicationPage/Pages/user/thirdPage/MyNewAppThird";
 
 // import MyAdminAppFirst from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminAppFirst";
-import MyAdminAppFirst from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminAppFirst";
-import MyAdminAppSecond from "./components/Pages/myNewApplicationPage/Pages/admin/secondPage/MyAdminAppSecond";
-import MyAdminAppThird from "./components/Pages/myNewApplicationPage/Pages/admin/thirdPage/MyAdminAppThird";
+import MyAdminApp from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminApplication";
 
 import TheNav from "./components/generalComponents/myNav/myNav";
 import Footer from "./components/generalComponents/MyFooter/MyFooter";
@@ -25,6 +23,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import MyAdminApplicationsPage from "./components/Pages/myAdminApplicationsPage/MyAdminApplicationsPage";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(
@@ -73,9 +72,11 @@ function App() {
 
 					{/* <Route path="/myApplications" element={<MyMyApplicationPage />} /> */}
 
-					<Route path="/myAdminAppF" element={<MyAdminAppFirst />} />
-					<Route path="/myAdminAppS" element={<MyAdminAppSecond />} />
-					<Route path="/myAdminAppT" element={<MyAdminAppThird />} />
+					<Route
+						path="/myAdminApplications"
+						element={<MyAdminApplicationsPage />}
+					/>
+					<Route path="/myAdminAppF/:id" element={<MyAdminApp loggedIn={loggedIn} />} />
 				</Routes>
 			</div>
 			<Footer />

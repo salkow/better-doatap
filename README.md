@@ -1,5 +1,4 @@
 ## Xristos
-* home page
 * status bar
 * footer
 * backend
@@ -15,7 +14,7 @@
 * κανε αιτηση
 * οι αιτησεις μου
 * admin 
-
+* home page
 
 
 ## Other
@@ -41,8 +40,9 @@ TODO:
 login: enter
 
 login: go back form no history
-kane aithsh, login, back: colors bug
 
 help icons, ask
 
 admin
+
+new application > login > register.

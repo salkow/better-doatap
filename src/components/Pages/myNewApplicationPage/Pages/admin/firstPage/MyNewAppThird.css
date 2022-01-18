@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.external {
+    display: flex;
+    justify-content: center;
+}
+.internal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.internal > div:first-child{
+    margin-bottom: 70px;
+}
+.top > span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: bold;
+    opacity: 85%;
+    padding: 0 25px 10px 25px;
+    border-style: none none solid none;
+    border-color: rgba(0, 0, 0, 0.47);
+    border-width: 1px;
+}
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.middle > .middle-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.lower > .controls{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.chevronButton {
+    margin: 0;
+    /* padding: 0 10px 0 0; */
+    background: none;
+    border-style: none;
+    border-color: rgb(73, 64, 64);
+    cursor: pointer;
+    height: max-content;
+    width: max-content;
+    display: flex;
+}
+
+.chevron-item {
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.795);
+    font-size: 45px !important; /*change this to make smaller */
+    border-style: none;
+    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5), 5px 5px 10px rgba(170, 170, 204, 0.25), 10px 10px 20px rgba(170, 170, 204, 0.5), -10px -10px 20px #FFFFFF;
+    border-radius: 32px;
+}
+
+.chevronButton:disabled {
+    opacity: 40%;
+    cursor: not-allowed;
+}
+
+.lower > .login-promt {
+    display: flex;
+    flex-direction: column;
+}
+
+.lower > .login-promt > .login-promt-txt {
+    font-size: 18px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.lower > .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
