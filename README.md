@@ -31,7 +31,9 @@ python manage.py runserver
 
 
 TODO:
-πως κανω αιτηση
+help icons, ask
+
+
 
 κανε αιτηση: κουμπια κατω
 
@@ -41,8 +43,24 @@ login: enter
 
 login: go back form no history
 
-help icons, ask
-
 admin
 
 new application > login > register.
+
+οι αιτησεις μου delete
+admin μαθηματα + - , ονομα
+admin υποβληθεισες αιτησεις name/lastname
+
+απο call:
+κανε αιτηση login promt μονο στο τελευταιο στεπ
+οριστικη/προσωρινη  μονο αν ειναι logged in και οριστικη disabled εκτος αν ειναι στο τελευταιο βημα + ειναι ολα οκ
+breadcrumbs επομενο βημα disabled εκτος αν ειναι συμπληρωμενα ολα τα πεδια
+
+logged in hover/click παει σε αλλη σελιδα αν κανει click
+πως κανω αιτηση style
+
+admin:
+λογος απορριψης στο τελος
+αντιστοιχηση μαθηματων αν >1 μαθηματα τοτε disabled accept button
+
+αναζητηση δεν πρεπει να λειτουργει
