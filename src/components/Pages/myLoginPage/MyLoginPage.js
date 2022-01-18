@@ -21,11 +21,11 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
 	const { state } = useLocation();
-	
+
 	let history = useNavigate();
-		const goToPreviousPath = () => {
+	const goToPreviousPath = () => {
 		history(-1);
-	}
+	};
 
 	const submit = async () => {
 		var finish = 0;
@@ -66,9 +66,12 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 					setIsAdmin(res.data.is_superuser);
 
 					setLoggedIn(true);
-						
-					goToPreviousPath();
-					// setRedirectToReferrer(true);
+
+					if (!isAdmin) {
+						goToPreviousPath();
+					} else {
+						setRedirectToReferrer(true);
+					}
 				});
 			});
 	};
@@ -83,7 +86,7 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 
 			return <Navigate to={path || "/"} />;
 		} else {
-			return <Navigate to="/myAdminAppF" />;
+			return <Navigate to="/myAdminApplication" />;
 		}
 	}
 

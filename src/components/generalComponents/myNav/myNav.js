@@ -47,38 +47,54 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
-						<NavLink className="nav-link selected" to="/myNewAppF/-1">
-							Κάνε αίτηση
-						</NavLink>
+					{!isAdmin && (
+						<Nav className="me-auto">
+							<NavLink
+								className="nav-link selected"
+								to="/myNewAppF/-1"
+							>
+								Κάνε αίτηση
+							</NavLink>
 
-						<NavLink
-							className="nav-link selected"
-							to="/how_to_create_new_application"
-						>
-							Πώς να κάνω αίτηση
-						</NavLink>
+							<NavLink
+								className="nav-link selected"
+								to="/how_to_create_new_application"
+							>
+								Πώς να κάνω αίτηση
+							</NavLink>
 
-						<NavDropdown title="Πληροφορίες">
-							<NavDropdown.Item as="div">
-								<NavLink
-									className="nav-link selected"
-									to="/communication"
-								>
-									Επικοινωνία
-								</NavLink>
-							</NavDropdown.Item>
+							<NavDropdown title="Πληροφορίες">
+								<NavDropdown.Item as="div">
+									<NavLink
+										className="nav-link selected"
+										to="/communication"
+									>
+										Επικοινωνία
+									</NavLink>
+								</NavDropdown.Item>
 
-							<NavDropdown.Item as="div">
-								<NavLink
-									className="nav-link selected"
-									to="/qna"
-								>
-									Συχνές ερωτήσεις
-								</NavLink>
-							</NavDropdown.Item>
-						</NavDropdown>
-					</Nav>
+								<NavDropdown.Item as="div">
+									<NavLink
+										className="nav-link selected"
+										to="/qna"
+									>
+										Συχνές ερωτήσεις
+									</NavLink>
+								</NavDropdown.Item>
+							</NavDropdown>
+						</Nav>
+					)}
+
+					{isAdmin && (
+						<Nav className="me-auto">
+							<NavLink
+								className="nav-link selected"
+								to="/myAdminApplication"
+							>
+								Υποβληθείσες Αιτήσεις
+							</NavLink>
+						</Nav>
+					)}
 
 					<MySearchBar />
 
