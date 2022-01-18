@@ -3,7 +3,6 @@ import "./MyNewAppSecond.css";
 import "./MyNewAppThird.css";
 
 import MyBreadcrumb from "../../../../../generalComponents/MyBreadcrumb/MyBreadcrumb";
-import MyNewAppBreadcrumbs from "../../../components/myNewAppBreadcrumbs/MyNewAppBreadcrumbs";
 import MyRadioButton from "../../../../../generalComponents/MyRadioButton/MyRadioButton";
 import MySelectBox from "../../../../../generalComponents/mySelectBox/MySelectBox";
 import MyFileCard from "../../../components/myFileCard/MyFileCard";
@@ -13,14 +12,16 @@ import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 
 import axiosInstance from "../../../../../../axios.js";
+import MyTextArea from "../../../../../generalComponents/MyTextArea/MyTextArea";
+import MyAdminAppBreadcrumbs from "../../../components/myAdminAppBreadcrumbs/MyAdminAppBreadcrumbs";
 
 const MyAdminApp = ({ loggedIn }) => {
 	const params = useParams();
 
 	const [currPage, setCurrPage] = useState(1);
-	const [firstPage, setfirstPage] = useState(1);
-	const [secondPage, setsecondPage] = useState(1);
-	const [thirdPage, setthirdPage] = useState(1);
+	const [firstPage, setfirstPage] = useState(3);
+	const [secondPage, setsecondPage] = useState(3);
+	const [thirdPage, setthirdPage] = useState(3);
 
 	const [typeOfDiploma, settypeOfDiploma] = useState("");
 	const [country, setCountry] = useState("");
@@ -37,24 +38,10 @@ const MyAdminApp = ({ loggedIn }) => {
 
 	const [countries, setCountries] = useState([]);
 
-	const validate = () => {
-		if (typeOfDiploma && country && myUni && myDep) {
-			setfirstPage(2);
-		} else {
-			setfirstPage(1);
-		}
 
-		if (otherUni && otherDep) {
-			setsecondPage(2);
-		} else {
-			setsecondPage(1);
-		}
-		if (diploma || updatedFile) {
-			setthirdPage(2);
-		} else {
-			setthirdPage(1);
-		}
-	};
+	const [reject, setReject] = useState([]);
+
+
 
 	const save_on_local_storage = () => {
 		localStorage.setItem("typeOfDiploma", typeOfDiploma);
@@ -88,31 +75,6 @@ const MyAdminApp = ({ loggedIn }) => {
 				setOtherDep(res.data.destination_department);
 
 				setDiploma(res.data.diploma);
-
-				if (
-					res.data.type_of_diploma &&
-					res.data.origin_country &&
-					res.data.origin_university &&
-					res.data.origin_department
-				) {
-					setfirstPage(2);
-				} else {
-					setfirstPage(1);
-				}
-
-				if (
-					res.data.destination_university &&
-					res.data.destination_department
-				) {
-					setsecondPage(2);
-				} else {
-					setsecondPage(1);
-				}
-				if (res.data.diploma) {
-					setthirdPage(2);
-				} else {
-					setthirdPage(1);
-				}
 			});
 		} else {
 			settypeOfDiploma(localStorage.getItem("typeOfDiploma") ?? "");
@@ -123,34 +85,6 @@ const MyAdminApp = ({ loggedIn }) => {
 			setOtherDep(localStorage.getItem("otherDep") ?? "");
 			setDiploma(localStorage.getItem("diploma") ?? "");
 			setUpdated(localStorage.getItem("updatedFile") ?? "");
-
-			if (
-				localStorage.getItem("typeOfDiploma") &&
-				localStorage.getItem("country") &&
-				localStorage.getItem("myUni") &&
-				localStorage.getItem("myDep")
-			) {
-				setfirstPage(2);
-			} else {
-				setfirstPage(1);
-			}
-
-			if (
-				localStorage.getItem("otherUni") &&
-				localStorage.getItem("otherDep")
-			) {
-				setsecondPage(2);
-			} else {
-				setsecondPage(1);
-			}
-			if (
-				localStorage.getItem("diploma") ||
-				localStorage.getItem("updatedFile")
-			) {
-				setthirdPage(2);
-			} else {
-				setthirdPage(1);
-			}
 
 			localStorage.removeItem("typeOfDiploma");
 			localStorage.removeItem("country");
@@ -191,9 +125,9 @@ const MyAdminApp = ({ loggedIn }) => {
 							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
 						</div>
 						<div className="middle">
-							<MyNewAppBreadcrumbs
+							<MyAdminAppBreadcrumbs
 								setCurr={setCurrPage}
-								val={validate}
+								val={()=>{}}
 								curr={currPage}
 								first={firstPage}
 								second={secondPage}
@@ -213,6 +147,7 @@ const MyAdminApp = ({ loggedIn }) => {
 									filled={country}
 									items={countries}
 									setItems={setCountries}
+									disabled={true}
 								/>
 								<div className="grouped">
 									<MySelectBox
@@ -229,6 +164,7 @@ const MyAdminApp = ({ loggedIn }) => {
 										filled={myDep}
 										items={countries}
 										setItems={setCountries}
+										disabled={true}
 									/>
 								</div>
 							</div>
@@ -248,7 +184,6 @@ const MyAdminApp = ({ loggedIn }) => {
 								<button
 									onClick={() => {
 										setCurrPage(2);
-										validate();
 									}}
 									className="chevronButton"
 									type="submit"
@@ -258,38 +193,6 @@ const MyAdminApp = ({ loggedIn }) => {
 										chevron_right{" "}
 									</i>
 								</button>
-							</div>
-
-							{!loggedIn && (
-								<div className="login-promt">
-									<span className="login-promt-txt">
-										<span id="star">*</span>Απαιτείται
-										σύνδεση για
-										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
-										της αίτησης σας
-									</span>
-									<MyButton
-										btn_color="#A8A8A8"
-										txt_color="white"
-										curr_msg="Κάνε σύνδεση"
-										funcc={login}
-									/>
-								</div>
-							)}
-
-							<div className="buttons">
-								<MyButton
-									btn_color="#1FAEFF"
-									txt_color="white"
-									curr_msg="Προσωρινή Αποθήκευση"
-									disable={!loggedIn}
-								/>
-								<MyButton
-									btn_color="#DD9F00"
-									txt_color="white"
-									curr_msg="Οριστική Υποβολή"
-									disable={!loggedIn}
-								/>
 							</div>
 						</div>
 					</div>
@@ -306,9 +209,9 @@ const MyAdminApp = ({ loggedIn }) => {
 							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
 						</div>
 						<div className="middle">
-							<MyNewAppBreadcrumbs
+							<MyAdminAppBreadcrumbs
 								setCurr={setCurrPage}
-								val={validate}
+								val={()=>{}}
 								curr={currPage}
 								first={firstPage}
 								second={secondPage}
@@ -322,6 +225,7 @@ const MyAdminApp = ({ loggedIn }) => {
 										filled={otherUni}
 										items={countries}
 										setItems={setCountries}
+										disabled={true}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
@@ -329,6 +233,7 @@ const MyAdminApp = ({ loggedIn }) => {
 										filled={otherDep}
 										items={countries}
 										setItems={setCountries}
+										disabled={true}
 									/>
 								</div>
 							</div>
@@ -338,7 +243,6 @@ const MyAdminApp = ({ loggedIn }) => {
 								<button
 									onClick={() => {
 										setCurrPage(1);
-										validate();
 									}}
 									className="chevronButton"
 									type="submit"
@@ -351,7 +255,6 @@ const MyAdminApp = ({ loggedIn }) => {
 								<button
 									onClick={() => {
 										setCurrPage(3);
-										validate();
 									}}
 									className="chevronButton"
 									type="submit"
@@ -361,37 +264,6 @@ const MyAdminApp = ({ loggedIn }) => {
 										chevron_right{" "}
 									</i>
 								</button>
-							</div>
-							{!loggedIn && (
-								<div className="login-promt">
-									<span className="login-promt-txt">
-										<span id="star">*</span>Απαιτείται
-										σύνδεση για
-										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
-										της αίτησης σας
-									</span>
-									<MyButton
-										btn_color="#A8A8A8"
-										txt_color="white"
-										curr_msg="Κάνε σύνδεση"
-										funcc={login}
-									/>
-								</div>
-							)}
-
-							<div className="buttons">
-								<MyButton
-									btn_color="#1FAEFF"
-									txt_color="white"
-									curr_msg="Προσωρινή Αποθήκευση"
-									disable={!loggedIn}
-								/>
-								<MyButton
-									btn_color="#DD9F00"
-									txt_color="white"
-									curr_msg="Οριστική Υποβολή"
-									disable={!loggedIn}
-								/>
 							</div>
 						</div>
 					</div>
@@ -408,9 +280,9 @@ const MyAdminApp = ({ loggedIn }) => {
 							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
 						</div>
 						<div className="middle">
-							<MyNewAppBreadcrumbs
+							<MyAdminAppBreadcrumbs
 								setCurr={setCurrPage}
-								val={validate}
+								val={()=>{}}
 								curr={currPage}
 								first={firstPage}
 								second={secondPage}
@@ -423,6 +295,14 @@ const MyAdminApp = ({ loggedIn }) => {
 									link={diploma}
 									setLink={setDiploma}
 									setUpdated={setUpdated}
+									disabled={true}
+								/>
+								<MyTextArea txt={"Γράψε τον λόγο απορριψης:"} filled={reject} setFilled={setReject}/>
+								<MyButton
+									btn_color="#E37171"
+									txt_color="#FFFFFF"
+									curr_msg="Απόρριψη"
+									disable={!reject}
 								/>
 							</div>
 						</div>
@@ -431,7 +311,66 @@ const MyAdminApp = ({ loggedIn }) => {
 								<button
 									onClick={() => {
 										setCurrPage(2);
-										validate();
+									}}
+									className="chevronButton"
+									type="submit"
+								>
+									<i className="material-icons chevron-item">
+										{" "}
+										chevron_left{" "}
+									</i>
+								</button>
+								<button
+									className="chevronButton"
+									type="submit"
+									onClick={() =>{
+										setCurrPage(4)
+									}}
+								>
+									<i className="material-icons chevron-item">
+										{" "}
+										chevron_right{" "}
+									</i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}else if (currPage === 4) {
+		return (
+			<div className="content">
+				<MyBreadcrumb array={myBread} />
+				<div className="external">
+					<div className="internal">
+						<div className="top">
+							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
+						</div>
+						<div className="middle">
+							<MyAdminAppBreadcrumbs
+								setCurr={setCurrPage}
+								val={()=>{}}
+								curr={currPage}
+								first={firstPage}
+								second={secondPage}
+								third={thirdPage}
+							/>
+							<div className="middle-items">
+								<MySelectBox
+									txt="Μαθημα"
+									vaar={setOtherDep}
+									filled={otherDep}
+									items={countries}
+									setItems={setCountries}
+								/>
+							</div>
+						</div>
+						<div className="lower">
+							<div className="controls">
+								<button
+									onClick={() => {
+										setCurrPage(3);
 									}}
 									className="chevronButton"
 									type="submit"
@@ -451,37 +390,6 @@ const MyAdminApp = ({ loggedIn }) => {
 										chevron_right{" "}
 									</i>
 								</button>
-							</div>
-							{!loggedIn && (
-								<div className="login-promt">
-									<span className="login-promt-txt">
-										<span id="star">*</span>Απαιτείται
-										σύνδεση για
-										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
-										της αίτησης σας
-									</span>
-									<MyButton
-										btn_color="#A8A8A8"
-										txt_color="white"
-										curr_msg="Κάνε σύνδεση"
-										funcc={login}
-									/>
-								</div>
-							)}
-
-							<div className="buttons">
-								<MyButton
-									btn_color="#1FAEFF"
-									txt_color="white"
-									curr_msg="Προσωρινή Αποθήκευση"
-									disable={!loggedIn}
-								/>
-								<MyButton
-									btn_color="#DD9F00"
-									txt_color="white"
-									curr_msg="Οριστική Υποβολή"
-									disable={!loggedIn}
-								/>
 							</div>
 						</div>
 					</div>

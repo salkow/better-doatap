@@ -18,8 +18,8 @@ const MyAdminApp = ({id, name, Fname, Lname}) =>
                   </div>
               </div>
               <div className="edit-icon">
-                <Link className="tuneButton" type="submit" to={"/myNewAppF/" + id}>
-                    <i className="material-icons tune-item"> tune </i>
+                <Link className="tuneButton" type="submit" to={"/myAdminAppF/" + id}>
+                    <i className="material-icons tune-item"> reorder </i>
                 </Link>
               </div>
           </div>

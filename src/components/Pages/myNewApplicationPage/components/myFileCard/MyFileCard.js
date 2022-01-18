@@ -1,7 +1,7 @@
 import './MyFileCard.css';
 import { useState } from 'react';
 
-const MyFileCard = ({name, desc, link, setLink, setUpdated}) => 
+const MyFileCard = ({name, desc, link, setLink, setUpdated, disabled}) => 
 {    
     const [file_name, setfile_name] = useState(link.substring(link.lastIndexOf('/') + 1));
     const [currFile, setCurrFile] = useState(link);
@@ -17,8 +17,11 @@ const MyFileCard = ({name, desc, link, setLink, setUpdated}) =>
                         <div className="left-FC">
                             <span className="fileName-FC"><a href={tempUrl} target="_blank">{file_name}</a></span>
                             <div className="file-FC">
-                                <input type="file" onChange={(e)=>{setCurrFile(e.target.files[0]);setLink(window.URL.createObjectURL(e.target.files[0]));setfile_name(e.target.files[0].name);setUpdated(e.target.files[0]);setTempUrl(window.URL.createObjectURL(e.target.files[0]))}} id="file-btn-FC" hidden></input>
-                                <label htmlFor="file-btn-FC">Επιλογή αρχείου<i className="material-icons upload-item"> upload_file </i></label>
+                                <input type="file" onChange={(e)=>{setCurrFile(e.target.files[0]);setLink(window.URL.createObjectURL(e.target.files[0]));setfile_name(e.target.files[0].name);setUpdated(e.target.files[0]);setTempUrl(window.URL.createObjectURL(e.target.files[0]))}} id="file-btn-FC" hidden disabled={disabled}></input>
+                                <label htmlFor="file-btn-FC" className={(disabled ?' disabled-file-input' : '')}>
+                                    <span>Επιλογή αρχείου</span>
+                                    <i className={"material-icons upload-item"}> upload_file </i>
+                                </label>
                             </div>
                         </div>
                     </div>

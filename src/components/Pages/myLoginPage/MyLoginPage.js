@@ -44,7 +44,7 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 			return;
 		}
 
-		axiosInstance
+		const res = await axiosInstance
 			.post(`token/`, {
 				email: email,
 				password: password,
@@ -59,36 +59,43 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 				localStorage.setItem("refresh_token", res.data.refresh);
 				axiosInstance.defaults.headers["Authorization"] =
 					"JWT " + localStorage.getItem("access_token");
-			})
-			.then(() => {
-				axiosInstance.get("user/is_superuser").then((res) => {
+			});
+
+			// .then(() => {
+				 const ad = await axiosInstance.get("user/is_superuser").then((res) => {
 					// console.log(res.data.is_superuser);
 					setIsAdmin(res.data.is_superuser);
+					
+					console.log(isAdmin)
 
 					setLoggedIn(true);
-
-					if (!isAdmin) {
-						goToPreviousPath();
-					} else {
-						setRedirectToReferrer(true);
-					}
+					 
+					return res.data.is_superuser
 				});
-			});
-	};
 
-	if (redirectToReferrer === true) {
-		if (!isAdmin) {
-			let path = state?.from.pathname;
+				// }).then(() => {
+					console.log(ad)
+					if (!ad) {
+						goToPreviousPath()
+					} else {
+						history('/myAdminApplications/')
+					}
+				// });
+			// });
+				};
+	// if (redirectToReferrer === true) {
+	// 	if (!isAdmin) {
+	// 		let path = state?.from.pathname;
 
-			if (path === "/myAdminAppF") {
-				path = "/";
-			}
+	// 		if (path === "/myAdminAppF") {
+	// 			path = "/";
+	// 		}
 
-			return <Navigate to={path || "/"} />;
-		} else {
-			return <Navigate to="/myAdminApplication" />;
-		}
-	}
+	// 		return <Navigate to={path || "/"} />;
+	// 	} else {
+	// 		return <Navigate to="/myAdminApplications/" />;
+	// 	}
+	// }
 
 	return (
 		<div className="content">

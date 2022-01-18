@@ -38,6 +38,7 @@ function App() {
 				loggedIn={loggedIn}
 				setLoggedIn={setLoggedIn}
 				isAdmin={isAdmin}
+				setIsAdmin={setIsAdmin}
 			/>
 			<div className="gen-space content">
 				<Routes>

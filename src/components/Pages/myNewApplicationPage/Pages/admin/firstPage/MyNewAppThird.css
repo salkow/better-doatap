@@ -32,6 +32,7 @@
 .middle > .middle-items {
     display: flex;
     flex-direction: column;
+    gap: 30px;
 }
 
 .lower > .controls{
