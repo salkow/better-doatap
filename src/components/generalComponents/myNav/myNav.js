@@ -40,11 +40,11 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 	const [delayHandler, setDelayHandler] = useState(null);
 
 	const hideDropdown = (e) => {
-		clearTimeout(delayHandler);
+		// clearTimeout(delayHandler);
 		setDelayHandler(
 			setTimeout(() => {
 				setShow(false);
-			}, 600)
+			}, 100)
 		);
 	};
 
