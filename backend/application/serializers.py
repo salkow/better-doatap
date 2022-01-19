@@ -15,7 +15,7 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
 class ApplicationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
-        fields = ('diploma', 'id', 'name', 'is_submitted', 'progress', 'origin_country',
+        fields = ('user', 'diploma', 'id', 'name', 'is_submitted', 'progress', 'origin_country',
                   'origin_university', 'origin_department', 'destination_university',
                   'destination_department', 'type_of_diploma', 'reasons_for_declination',
                   'extra_subject')
