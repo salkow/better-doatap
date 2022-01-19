@@ -19,6 +19,14 @@ const MyMyApplicationPage = () =>
         });
     }, []);
 
+    const deleteApp = (id) =>{
+      axiosInstance
+      .delete('applications/'+id+'/')
+      .then(()=>{
+        window.location.reload();
+      })
+    }
+
     const myBread = [{first: "/", second: "Αρχική"}, {second: "Οι αιτήσεις μου"}]
     
     return (
@@ -32,7 +40,21 @@ const MyMyApplicationPage = () =>
             <div className="middle">
       
 				{data.map((item, index) => (
-              <Application key={item.id} id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination}/>
+              <div className="middle-middle">
+                <Application key={item.id} id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination}/>
+                {!(item.is_submitted) &&
+                  <button
+                    className="chevronButton"
+                    type="submit"
+                    onClick={()=>{deleteApp(item.id)}}
+                    >
+                    <i className="material-icons chevron-item">
+                      {" "}
+                      close{" "}
+                    </i>
+                  </button>
+                }
+              </div>
         ))}
             </div>
           </div>
