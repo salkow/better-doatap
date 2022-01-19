@@ -39,11 +39,7 @@ help icons, ask
 
 login: enter
 
-login: go back form no history
-
 admin
-
-new application > login > register.
 
 οι αιτησεις μου delete
 admin μαθηματα + - , ονομα

@@ -160,14 +160,15 @@ const myCommunication = () => {
 						</Col>
 					</Row>
 					<Row>
+						<MyTextArea txt={txt} />
+					</Row>
+
+					<Row>
 						<MyButton
 							btn_color="#73B6E6"
 							txt_color="white"
 							curr_msg="Υποβολή"
 						/>
-					</Row>
-					<Row>
-						<MyTextArea txt={txt} />
 					</Row>
 				</Container>
 			</Container>
