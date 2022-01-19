@@ -1,6 +1,6 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import logo from "../../../assets/doatap-logo.png";
 import user_icon from "../../../assets/user-icon.png";

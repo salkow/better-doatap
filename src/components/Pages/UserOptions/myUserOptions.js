@@ -4,7 +4,7 @@ import { Container, Card, Row, Col } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
-const UserOptions = () => {
+const UserOptions = ({ isAdmin }) => {
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Επιλογές προφίλ" },
@@ -46,7 +46,11 @@ const UserOptions = () => {
 						</Col>
 						<Col>
 							<Link
-								to="/myApplications"
+								to={
+									isAdmin === true
+										? "/myAdminApplications"
+										: "/myApplications"
+								}
 								style={{
 									color: "inherit",
 									textDecoration: "inherit",
