@@ -1,5 +1,7 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 
+import { useState, useEffect } from "react";
+
 import logo from "../../../assets/doatap-logo.png";
 import user_icon from "../../../assets/user-icon.png";
 import MySearchBar from "../../generalComponents/mySearchBar/mySearchBar";
@@ -24,6 +26,14 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 		axiosInstance.defaults.headers["Authorization"] = null;
 		setLoggedIn(false);
 		history("/");
+	};
+
+	const [show, setShow] = useState(false);
+	const showDropdown = (e) => {
+		setShow(!show);
+	};
+	const hideDropdown = (e) => {
+		setShow(false);
 	};
 
 	return (
@@ -110,7 +120,11 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 						)}
 
 						{loggedIn && (
-							<Dropdown>
+							<Dropdown
+								show={show}
+								onMouseEnter={showDropdown}
+								onMouseLeave={hideDropdown}
+							>
 								<Dropdown.Toggle
 									id="dropdown-basic"
 									className="dropdown-header"
