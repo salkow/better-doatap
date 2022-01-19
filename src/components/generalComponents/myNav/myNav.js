@@ -1,6 +1,6 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import logo from "../../../assets/doatap-logo.png";
 import user_icon from "../../../assets/user-icon.png";
@@ -24,7 +24,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 		localStorage.removeItem("access_token");
 		localStorage.removeItem("refresh_token");
 		axiosInstance.defaults.headers["Authorization"] = null;
-		setIsAdmin(false)
+		setIsAdmin(false);
 		setLoggedIn(false);
 		history("/");
 	};
@@ -130,12 +130,14 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 									id="dropdown-basic"
 									className="dropdown-header"
 								>
-									<img
-										src={user_icon}
-										alt="doatap logo"
-										width="45"
-										height="45"
-									/>
+									<Link to="/myUserOptions">
+										<img
+											src={user_icon}
+											alt="doatap logo"
+											width="45"
+											height="45"
+										/>
+									</Link>
 								</Dropdown.Toggle>
 
 								<Dropdown.Menu>
