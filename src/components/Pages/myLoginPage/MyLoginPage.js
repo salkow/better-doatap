@@ -32,8 +32,8 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 		if (was_in_new_app) {
 			localStorage.setItem("was_in_new_app", false);
 			setPath("/myNewAppF/-1");
-			setRedirectToReferrer(true);
 		}
+		setRedirectToReferrer(true);
 	};
 
 	const submit = async () => {
