@@ -68,7 +68,10 @@ function App() {
 						element={<MyMyApplicationPage />}
 					/>
 
-					<Route path="/myUserOptions" element={<UserOptions />} />
+					<Route
+						path="/myUserOptions"
+						element={<UserOptions isAdmin={isAdmin} />}
+					/>
 
 					<Route
 						path="/myNewAppF/:id"
