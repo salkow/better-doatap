@@ -59,10 +59,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 
 	const fieldsOK =()=>{
 		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === "" || otherUni === "" || otherDep === "" || (diploma === "" || updatedFile === null)){
-			console.log("testttt")
 			return true;
 		}else{
-			console.log("test")
 			return false;
 		}
 	}

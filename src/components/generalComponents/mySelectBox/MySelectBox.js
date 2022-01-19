@@ -20,7 +20,6 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 
 	// const [curr, setCurr] = useState([]);
 	function setActiveElement(event) {
-		// console.log(event.target)
 		if(!disabled){
 			event.preventDefault();
 			// let el = event.currentTarget.querySelector('.container-options-select');
@@ -30,11 +29,9 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 				event.target.classList.contains("expandButton") ||
 				event.target.classList.contains("expand-item")
 			) {
-				// console.log("test")
 				if (el.classList.contains("active")) {
 					el.classList.remove("active");
 					inpu.parentElement.blur();
-					console.log(inpu.parentElement);
 					inpu.blur();
 				} else {
 					el.classList.add("active");
@@ -45,15 +42,12 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 				inpu.focus();
 			}
 		}
-
-		// console.log(el)
 	}
 	function removeActiveElement(event) {
 		if(!disabled){
 			event.preventDefault();
 			let el =
 				event.currentTarget.parentElement.parentElement.nextElementSibling;
-			// console.log(el);
 			el.classList.toggle("active");
 		}
 	}

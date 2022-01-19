@@ -51,8 +51,6 @@ const RegisterPage = () => {
 	const goToPreviousPath = () => {
 		const was_in_new_app = localStorage.getItem("was_in_new_app");
 
-		console.log("was_in_new_app", was_in_new_app);
-
 		if (was_in_new_app) {
 			localStorage.setItem("was_in_new_app", false);
 			setPath("/myNewAppF/-1");
@@ -140,8 +138,6 @@ const RegisterPage = () => {
 			})
 			.then((res) => {
 				// history.push('/login');
-				console.log(res);
-				console.log(res.data);
 				goToPreviousPath();
 			});
 	};

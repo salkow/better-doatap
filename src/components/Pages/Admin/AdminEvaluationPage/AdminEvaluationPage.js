@@ -59,7 +59,6 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 	};
 
 	// useEffect(() => {
-	// 	console.log(classFinal)
 	// 	setclassFinal(classToTake.filter(i=> i.value !== ""));
 	// }, [classToTake])
 
@@ -111,7 +110,6 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 	const updateCurrItemTxt = (item, e) => {
 		item.value = e;
 		setclassFinal(classToTake.filter(i=> i.value !== ""));
-		console.log(classFinal.length)
 	}
 
 	useEffect(() => {

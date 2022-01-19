@@ -11,7 +11,6 @@ const EvaluationCard = ({id, name, user}) =>
     useEffect(() => {
         axiosInstance.get('user/all_profiles/'+user+'/')
         .then((res)=>{
-            console.log(res.data);
             setFname(res.data.first_name);
             setLname(res.data.last_name);
         })

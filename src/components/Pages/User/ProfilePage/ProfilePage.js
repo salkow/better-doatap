@@ -42,8 +42,6 @@ const ProfilePage = () => {
       .get(`user/profile/`)
       .then((res) => {
         // history.push('/login');
-        // console.log(res);
-        // console.log(res.data);
 
         setEmail(res.data.email)
         setPhoneNum(res.data.phone)
@@ -139,8 +137,6 @@ const ProfilePage = () => {
             })
             .then((res) => {
               // history.push('/login');
-              // console.log(res);
-              console.log(res.data);
               // navigate.go(0)
             });
 
@@ -162,8 +158,6 @@ const ProfilePage = () => {
             })
             .then((res) => {
               // history.push('/login');
-              // console.log(res);
-              console.log(res.data);
               // navigate.go(0)
             });
 

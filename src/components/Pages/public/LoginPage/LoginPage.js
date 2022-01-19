@@ -28,8 +28,6 @@ const LoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	const goToPreviousPath = () => {
 		const was_in_new_app = localStorage.getItem("was_in_new_app");
 
-		console.log("was_in_new_app", was_in_new_app);
-
 		if (was_in_new_app) {
 			localStorage.setItem("was_in_new_app", false);
 			setPath("/myNewAppF/-1");
@@ -73,10 +71,7 @@ const LoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 
 		// .then(() => {
 		const ad = await axiosInstance.get("user/is_superuser").then((res) => {
-			// console.log(res.data.is_superuser);
 			setIsAdmin(res.data.is_superuser);
-
-			console.log(isAdmin);
 
 			setLoggedIn(true);
 
@@ -84,7 +79,6 @@ const LoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 		});
 
 		// }).then(() => {
-		console.log(ad);
 		if (!ad) {
 			goToPreviousPath();
 		} else {
@@ -95,7 +89,6 @@ const LoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	};
 
 	if (redirectToReferrer === true) {
-		console.log("111");
 		return <Navigate to={path} />;
 	}
 

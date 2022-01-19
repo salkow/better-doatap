@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-import full_logo from "../../../doatap-logo-full.png";
-import call from "../../../call.png";
+import full_logo from "../../../assets/doatap-logo-full.png";
+import call from "../../../assets/call.png";
 
 const Footer = () => {
 	return (

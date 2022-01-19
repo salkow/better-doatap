@@ -16,7 +16,6 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 	const history = useNavigate();
 
 	const logout = async () => {
-		// console.log("hey");
 		axiosInstance.post("user/logout/blacklist/", {
 			refresh_token: localStorage.getItem("refresh_token"),
 		});

@@ -15,7 +15,6 @@ const AdminEvaluationListPage = () =>
       axiosInstance
         .get(`applications/admin/`)
         .then((res) => {
-          console.log(res.data);
           setData(res.data)
         });
     }, []);
