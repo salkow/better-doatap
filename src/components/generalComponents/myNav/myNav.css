@@ -32,3 +32,7 @@ btn-check:active + .btn-primary:focus,
 	-moz-box-shadow: none !important;
 	box-shadow: none !important;
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+	display: block !important;
+}

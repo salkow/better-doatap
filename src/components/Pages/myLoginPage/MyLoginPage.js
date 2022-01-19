@@ -94,6 +94,7 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	};
 
 	if (redirectToReferrer === true) {
+		console.log("111");
 		return <Navigate to={path} />;
 	}
 
