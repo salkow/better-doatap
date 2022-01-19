@@ -10,7 +10,7 @@ const UserAppBreadcrumbs = ({setCurr, curr, first, second, third, val, firstdis,
     return (
     <div className="external-nab">
         <MyBreadFirst setCurr={setCurr} val={val} txt="Το Πανεπιστήμιο μου" curr={(curr===1 ? 0 : first)} disabled={firstdis}/>
-        <MyBreadSecond setCurr={setCurr} val={val} txt="Το αλλο Πανεπιστήμιο" curr={(curr===2 ? 0 : second)} disabled={seconddis}/>
+        <MyBreadSecond setCurr={setCurr} val={val} txt={<tspan><tspan>πανεπιστημιο προς</tspan><tspan x="70" dy="1.2em"> αντιστοιχηση</tspan></tspan>} curr={(curr===2 ? 0 : second)} disabled={seconddis}/>
         <MyBreadThird setCurr={setCurr} val={val} txt="Επισυναπτόμενα" curr={(curr===3 ? 0 : third)} disabled={thirddis}/>
     </div>
 	);

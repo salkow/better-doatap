@@ -112,7 +112,6 @@
     visibility: visible;
 }
 
-
-
-
-
+.tooltip-inner {
+    text-align: left !important;
+}

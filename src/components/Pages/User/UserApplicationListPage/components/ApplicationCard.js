@@ -5,11 +5,12 @@ import AppCardTag from './AppCardTag';
 
 import {Link} from "react-router-dom"
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
-const ApplicationCard = ({id, name, isFinalized, status, tool_txt}) => 
+const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt}) => 
 {
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
           {tool_txt}
+          {class_txt && (<div><br />Πρέπει να πάρετε αυτά τα επιπλέον μαθήματα:<br />{class_txt}</div>)}
         </Tooltip>
       );
     const fin = [];

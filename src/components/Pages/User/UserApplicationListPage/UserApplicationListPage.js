@@ -43,7 +43,7 @@ const UserApplicationListPage = () =>
       
 				{data.map((item, index) => (
               <div key={item.id} className="middle-middle">
-                <ApplicationCard id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination}/>
+                <ApplicationCard id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination} class_txt={item.extra_subject}/>
                 {!(item.is_submitted) &&
                   <button
                     className="chevronButton"
