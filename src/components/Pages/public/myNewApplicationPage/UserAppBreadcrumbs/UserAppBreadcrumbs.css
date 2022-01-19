@@ -8,3 +8,7 @@
 .hovers:hover {
   cursor: pointer;
 }
+
+.hovers.disabled {
+  /* opacity: 90%; */
+}

@@ -19,9 +19,11 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const params = useParams();
 
 	const [currPage, setCurrPage] = useState(1);
-	const [firstPage, setfirstPage] = useState(1);
-	const [secondPage, setsecondPage] = useState(1);
-	const [thirdPage, setthirdPage] = useState(1);
+	const [firstPage, setfirstPage] = useState(3);
+	const [secondPage, setsecondPage] = useState(3);
+	const [secondPageDisabled, setsecondPageDisabled] = useState(true);
+	const [thirdPage, setthirdPage] = useState(3);
+	const [thirdPageDisabled, setthirdPageDisabled] = useState(true);
 
 	const [typeOfDiploma, settypeOfDiploma] = useState("");
 	const [country, setCountry] = useState("");
@@ -39,30 +41,52 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [countries, setCountries] = useState([]);
 
 	const validate = () => {
-		if (typeOfDiploma && country && myUni && myDep) {
+		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === ""){
+			setsecondPageDisabled(true);
+			setthirdPageDisabled(true);
+		}else{
+			setsecondPageDisabled(false);
 			setfirstPage(2);
-		} else {
-			setfirstPage(1);
+			// if(otherUni === "" || otherDep === ""){//TODO switch to this cause these wont ever be null
+			if(otherUni === "" || otherDep === "" || otherUni === null || otherDep === null){
+				setthirdPageDisabled(true);
+				setsecondPage(1);
+			}else{
+				setfirstPage(2);
+				setsecondPage(2);
+				setthirdPageDisabled(false);
+				if(diploma === "" && (updatedFile === null || updatedFile === "")){
+					setfirstPage(2);
+					setthirdPage(1);
+					return true;
+				}else{
+					setfirstPage(2);
+					setsecondPage(2);
+					setthirdPage(2);
+				}
+			}
 		}
-
-		if (otherUni && otherDep) {
-			setsecondPage(2);
-		} else {
-			setsecondPage(1);
-		}
-		if (diploma || updatedFile) {
-			setthirdPage(2);
-		} else {
-			setthirdPage(1);
-		}
+		return false;
 	};
 
+	useEffect(() => {
+	  validate()
+	}, [typeOfDiploma, country, myUni, myDep, otherUni, otherDep, diploma, updatedFile]);
+	
+
 	const fieldsOK =()=>{
-		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === "" || otherUni === "" || otherDep === "" || (diploma === "" || updatedFile === null)){
-			return true;
+		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === ""){
+
 		}else{
-			return false;
+			if(otherUni === "" || otherDep === "" || otherUni === null || otherDep === null){
+
+			}else{
+				if(diploma === "" && (updatedFile === null || updatedFile === "")){
+					return true;
+				}
+			}
 		}
+		return false;
 	}
 
 	const save_on_local_storage = () => {
@@ -98,31 +122,6 @@ const NewApplicationPage = ({ loggedIn }) => {
 				setOtherDep(res.data.destination_department);
 
 				setDiploma(res.data.diploma);
-
-				if (
-					res.data.type_of_diploma &&
-					res.data.origin_country &&
-					res.data.origin_university &&
-					res.data.origin_department
-				) {
-					setfirstPage(2);
-				} else {
-					setfirstPage(1);
-				}
-
-				if (
-					res.data.destination_university &&
-					res.data.destination_department
-				) {
-					setsecondPage(2);
-				} else {
-					setsecondPage(1);
-				}
-				if (res.data.diploma) {
-					setthirdPage(2);
-				} else {
-					setthirdPage(1);
-				}
 			});
 		} else {
 			settypeOfDiploma(localStorage.getItem("typeOfDiploma") ?? "");
@@ -133,34 +132,6 @@ const NewApplicationPage = ({ loggedIn }) => {
 			setOtherDep(localStorage.getItem("otherDep") ?? "");
 			setDiploma(localStorage.getItem("diploma") ?? "");
 			setUpdated(localStorage.getItem("updatedFile") ?? "");
-
-			if (
-				localStorage.getItem("typeOfDiploma") &&
-				localStorage.getItem("country") &&
-				localStorage.getItem("myUni") &&
-				localStorage.getItem("myDep")
-			) {
-				setfirstPage(2);
-			} else {
-				setfirstPage(1);
-			}
-
-			if (
-				localStorage.getItem("otherUni") &&
-				localStorage.getItem("otherDep")
-			) {
-				setsecondPage(2);
-			} else {
-				setsecondPage(1);
-			}
-			if (
-				localStorage.getItem("diploma") ||
-				localStorage.getItem("updatedFile")
-			) {
-				setthirdPage(2);
-			} else {
-				setthirdPage(1);
-			}
 
 			localStorage.removeItem("typeOfDiploma");
 			localStorage.removeItem("country");
@@ -208,6 +179,9 @@ const NewApplicationPage = ({ loggedIn }) => {
 								first={firstPage}
 								second={secondPage}
 								third={thirdPage}
+								firstdis={false}
+								seconddis={secondPageDisabled}
+								thirddis={thirdPageDisabled}
 							/>
 							<div className="middle-items">
 								<MyRadioButton
@@ -262,6 +236,9 @@ const NewApplicationPage = ({ loggedIn }) => {
 								first={firstPage}
 								second={secondPage}
 								third={thirdPage}
+								firstdis={false}
+								seconddis={secondPageDisabled}
+								thirddis={thirdPageDisabled}
 							/>
 							<div className="middle-items">
 								<div className="grouped">
@@ -303,6 +280,9 @@ const NewApplicationPage = ({ loggedIn }) => {
 								first={firstPage}
 								second={secondPage}
 								third={thirdPage}
+								firstdis={false}
+								seconddis={secondPageDisabled}
+								thirddis={thirdPageDisabled}
 							/>
 							<div className="middle-items">
 								<MyFileCard
@@ -348,7 +328,6 @@ const NewApplicationPage = ({ loggedIn }) => {
 								/>
 							</div>
 						}
-
 						</div>
 					</div>
 				</div>

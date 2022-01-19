@@ -1,5 +1,5 @@
 import './UserAppBreadcrumbs.css'
-const MyBreadThird = ({txt, curr, setCurr, val}) => 
+const MyBreadThird = ({txt, curr, setCurr, val, disabled}) => 
 {
     var txt_clr ="";
     var clr ="";
@@ -22,7 +22,7 @@ const MyBreadThird = ({txt, curr, setCurr, val}) =>
         out_clr= "#dbdbdb";
     }
     return (
-        <div className="hovers" onClick={()=>{setCurr(3);val()}}>
+        <div className={"hovers "+(disabled ? "disabled" : "")} onClick={()=>{if(!disabled){setCurr(3);val()}}}>
             <svg width="230" height="60" viewBox="0 0 230 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g>
                     <mask id="path-1-inside-1_221_507" fill="white">
