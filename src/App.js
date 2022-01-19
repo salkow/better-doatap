@@ -5,6 +5,7 @@ import MyLoginPage from "./components/Pages/myLoginPage/MyLoginPage";
 import MyProfilePage from "./components/Pages/myProfilePage/MyProfilePage";
 import MyRegisterPage from "./components/Pages/myRegisterPage/MyRegisterPage";
 import HowToCreateANewApplication from "./components/Pages/myHowToCreateANewApplication/myHowToCreateANewApplication";
+import UserOptions from "./components/Pages/UserOptions/myUserOptions";
 
 import MyMyApplicationPage from "./components/Pages/myMyApplicationPage/MyMyApplicationPage";
 
@@ -67,7 +68,12 @@ function App() {
 						element={<MyMyApplicationPage />}
 					/>
 
-					<Route path="/myNewAppF/:id" element={<MyNewAppFirst loggedIn={loggedIn} />} />
+					<Route path="/myUserOptions" element={<UserOptions />} />
+
+					<Route
+						path="/myNewAppF/:id"
+						element={<MyNewAppFirst loggedIn={loggedIn} />}
+					/>
 					{/* <Route path="/myNewAppS" element={<MyNewAppSecond />} />
 					<Route path="/myNewAppT" element={<MyNewAppThird />} /> */}
 
@@ -77,7 +83,10 @@ function App() {
 						path="/myAdminApplications"
 						element={<MyAdminApplicationsPage />}
 					/>
-					<Route path="/myAdminAppF/:id" element={<MyAdminApp loggedIn={loggedIn} />} />
+					<Route
+						path="/myAdminAppF/:id"
+						element={<MyAdminApp loggedIn={loggedIn} />}
+					/>
 				</Routes>
 			</div>
 			<Footer />
