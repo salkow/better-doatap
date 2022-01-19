@@ -39,7 +39,8 @@ class ApplicationListAdmin(generics.ListAPIView):
     serializer_class = ApplicationListSerializer
 
     def get_queryset(self):
-        return Application.objects.filter(is_submitted=True)
+        return Application.objects.filter(is_submitted=True, progress='P')
+
 
 class ApplicationDetailAdmin(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAdminUser]
