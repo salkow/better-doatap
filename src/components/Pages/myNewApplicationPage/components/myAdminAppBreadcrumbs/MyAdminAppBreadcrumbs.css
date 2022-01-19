@@ -1,0 +1,10 @@
+.external-nab {
+  display: flex;
+}
+.external-nab > *{
+  margin-right: -10px;
+}
+
+.hovers:hover {
+  cursor: pointer;
+}

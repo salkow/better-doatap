@@ -1,4 +1,4 @@
-import './MyNewAppBreadcrumbs.css'
+import './MyAdminAppBreadcrumbs.css'
 const MyBreadSecond = ({txt, curr, setCurr, val}) => 
 {
     var txt_clr ="";

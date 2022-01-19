@@ -12,7 +12,7 @@ import axiosInstance from "../../../axios";
 
 import "./myNav.css";
 
-const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
+const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 	const history = useNavigate();
 
 	const logout = async () => {
@@ -24,6 +24,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 		localStorage.removeItem("access_token");
 		localStorage.removeItem("refresh_token");
 		axiosInstance.defaults.headers["Authorization"] = null;
+		setIsAdmin(false)
 		setLoggedIn(false);
 		history("/");
 	};
@@ -99,7 +100,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin }) => {
 						<Nav className="me-auto">
 							<NavLink
 								className="nav-link selected"
-								to="/myAdminApplication"
+								to="/myAdminApplications"
 							>
 								Υποβληθείσες Αιτήσεις
 							</NavLink>

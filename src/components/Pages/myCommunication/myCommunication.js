@@ -2,15 +2,22 @@ import "./myCommunication.css";
 
 import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
+import MyTextArea from "../../generalComponents/MyTextArea/MyTextArea"
 import MyButton from "../../generalComponents/MyButton/MyButton";
 
 import { Row, Col, Container } from "react-bootstrap";
+import { useState } from "react";
+
+// import { useState } from "react";
 
 const myCommunication = () => {
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Επικοινωνία" },
 	];
+
+	const txt = "Συμπλήρωσε εδώ το κείμενο που θέλεις να στείλειΣυμπλήρωσε εδώ το κείμενο που θέλεις να στείλεις"
+
 	return (
 		<div>
 			<MyBreadcrumb array={myBread} />
@@ -157,6 +164,9 @@ const myCommunication = () => {
 							txt_color="white"
 							curr_msg="Υποβολή"
 						/>
+					</Row>
+					<Row>
+					<MyTextArea txt={txt}/>
 					</Row>
 				</Container>
 			</Container>

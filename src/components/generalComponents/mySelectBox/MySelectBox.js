@@ -2,7 +2,7 @@ import "./MySelectBox.css";
 
 import { useState, useEffect } from "react";
 
-const MySelectBox = ({ txt, filled, vaar, items, setItems }) => {
+const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 	// const [items, setItems] = useState([
 	// 	"First",
 	// 	"Second",
@@ -21,37 +21,41 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems }) => {
 	// const [curr, setCurr] = useState([]);
 	function setActiveElement(event) {
 		// console.log(event.target)
-		event.preventDefault();
-		// let el = event.currentTarget.querySelector('.container-options-select');
-		let el = event.currentTarget.nextElementSibling;
-		let inpu = event.currentTarget.querySelector(".expandInput");
-		if (
-			event.target.classList.contains("expandButton") ||
-			event.target.classList.contains("expand-item")
-		) {
-			// console.log("test")
-			if (el.classList.contains("active")) {
-				el.classList.remove("active");
-				inpu.parentElement.blur();
-				console.log(inpu.parentElement);
-				inpu.blur();
+		if(!disabled){
+			event.preventDefault();
+			// let el = event.currentTarget.querySelector('.container-options-select');
+			let el = event.currentTarget.nextElementSibling;
+			let inpu = event.currentTarget.querySelector(".expandInput");
+			if (
+				event.target.classList.contains("expandButton") ||
+				event.target.classList.contains("expand-item")
+			) {
+				// console.log("test")
+				if (el.classList.contains("active")) {
+					el.classList.remove("active");
+					inpu.parentElement.blur();
+					console.log(inpu.parentElement);
+					inpu.blur();
+				} else {
+					el.classList.add("active");
+					inpu.focus();
+				}
 			} else {
 				el.classList.add("active");
 				inpu.focus();
 			}
-		} else {
-			el.classList.add("active");
-			inpu.focus();
 		}
 
 		// console.log(el)
 	}
 	function removeActiveElement(event) {
-		event.preventDefault();
-		let el =
-			event.currentTarget.parentElement.parentElement.nextElementSibling;
-		// console.log(el);
-		el.classList.toggle("active");
+		if(!disabled){
+			event.preventDefault();
+			let el =
+				event.currentTarget.parentElement.parentElement.nextElementSibling;
+			// console.log(el);
+			el.classList.toggle("active");
+		}
 	}
 
 	function filter(event) {
@@ -78,7 +82,7 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems }) => {
 								{txt}
 							</span>
 						</div>
-						<div className="expandBox">
+						<div className={"expandBox"+(disabled ?' disabled' : '')}>
 							<input
 								className="expandInput"
 								type="text"
@@ -91,8 +95,9 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems }) => {
 								onBlur={(e) => {
 									removeActiveElement(e);
 								}}
+								disabled={disabled}
 							/>
-							<button className="expandButton" type="submit">
+							<button className="expandButton" type="submit" disabled={disabled}>
 								<i className="material-icons expand-item">
 									{" "}
 									expand_more{" "}

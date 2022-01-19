@@ -49,3 +49,13 @@
     font-weight: normal;
     cursor: pointer;
 }
+
+.disabled-file-input{
+    background-color: rgb(236, 236, 236);
+    border-color: rgb(175, 175, 175);
+    opacity: 80%;
+    cursor: not-allowed !important;
+}
+.disabled-file-input > * {
+    cursor: not-allowed;
+}
