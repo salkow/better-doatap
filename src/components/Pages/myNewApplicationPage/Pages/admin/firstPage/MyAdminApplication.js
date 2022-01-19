@@ -39,8 +39,12 @@ const MyAdminApp = ({ loggedIn }) => {
 	const [countries, setCountries] = useState([]);
 
 
-	const [reject, setReject] = useState([]);
+	const [reject, setReject] = useState("");
+	
 
+	const [classToTake, setclassToTake] = useState([{id: 0, value:""}]);
+	const [classFinal, setclassFinal] = useState([]);
+	const [classMaxID, setclassMaxID] = useState(1);
 
 
 	const save_on_local_storage = () => {
@@ -53,6 +57,29 @@ const MyAdminApp = ({ loggedIn }) => {
 		localStorage.setItem("diploma", diploma);
 		localStorage.setItem("updatedFile", updatedFile);
 	};
+
+	// useEffect(() => {
+	// 	console.log(classFinal)
+	// 	setclassFinal(classToTake.filter(i=> i.value !== ""));
+	// }, [classToTake])
+
+	const RemoveItem = (id)=>{
+		setclassToTake(classToTake.filter(d => d.id !== id));
+		setclassFinal(classToTake.filter(i=> i.value !== ""));
+	}
+
+	const AppendItem = () =>{
+		setclassToTake(classToTake => [...classToTake,{id: classMaxID+1, value: ""}]);
+		setclassFinal(classToTake.filter(i=> i.value !== ""));
+		setclassFinal(classToTake.filter(i=> i.value !== ""));
+		setclassMaxID(classMaxID+1);
+	}
+
+	const updateCurrItemTxt = (item, e) => {
+		item.value = e;
+		setclassFinal(classToTake.filter(i=> i.value !== ""));
+		console.log(classFinal.length)
+	}
 
 	useEffect(() => {
 		axiosInstance
@@ -115,6 +142,8 @@ const MyAdminApp = ({ loggedIn }) => {
 		{ item: "Μεταπτυχιακό", value: "P" },
 		{ item: "Διδακτορικό", value: "D" },
 	];
+	
+
 	if (currPage === 1) {
 		return (
 			<div className="content">
@@ -170,30 +199,7 @@ const MyAdminApp = ({ loggedIn }) => {
 							</div>
 						</div>
 						<div className="lower">
-							<div className="controls">
-								<button
-									className="chevronButton"
-									type="submit"
-									disabled
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									onClick={() => {
-										setCurrPage(2);
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -239,32 +245,7 @@ const MyAdminApp = ({ loggedIn }) => {
 							</div>
 						</div>
 						<div className="lower">
-							<div className="controls">
-								<button
-									onClick={() => {
-										setCurrPage(1);
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									onClick={() => {
-										setCurrPage(3);
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -297,42 +278,10 @@ const MyAdminApp = ({ loggedIn }) => {
 									setUpdated={setUpdated}
 									disabled={true}
 								/>
-								<MyTextArea txt={"Γράψε τον λόγο απορριψης:"} filled={reject} setFilled={setReject}/>
-								<MyButton
-									btn_color="#E37171"
-									txt_color="#FFFFFF"
-									curr_msg="Απόρριψη"
-									disable={!reject}
-								/>
 							</div>
 						</div>
 						<div className="lower">
-							<div className="controls">
-								<button
-									onClick={() => {
-										setCurrPage(2);
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									className="chevronButton"
-									type="submit"
-									onClick={() =>{
-										setCurrPage(4)
-									}}
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -357,40 +306,109 @@ const MyAdminApp = ({ loggedIn }) => {
 								third={thirdPage}
 							/>
 							<div className="middle-items">
-								<MySelectBox
-									txt="Μαθημα"
-									vaar={setOtherDep}
-									filled={otherDep}
-									items={countries}
-									setItems={setCountries}
-								/>
+							{classToTake.map((item, index)=>{
+								if(classToTake.length === 1){//only +
+									return(
+									<div key={index} className="classes-boxes class-boxes-first">
+										<button
+											className="chevronButton"
+											type="submit"
+											onClick={()=>{AppendItem()}}
+											disabled={!item.value}
+											>
+											<i className="material-icons chevron-item add">
+												{" "}
+												add{" "}
+											</i>
+										</button>
+										<MySelectBox
+											txt="Μαθημα"
+											vaar={(e)=>{updateCurrItemTxt(item, e)}}
+											filled={item.value}
+											items={countries}
+											setItems={setCountries}
+										/>
+									</div>
+									);
+								}else{
+									if(classToTake.length === index+1){ // - +
+										return(
+											<div key={index} className="classes-boxes">
+											<button
+												className="chevronButton"
+												type="submit"
+												onClick={()=>{AppendItem()}}
+												disabled={!item.value}
+												>
+												<i className="material-icons chevron-item add">
+													{" "}
+													add{" "}
+												</i>
+											</button>					
+											<MySelectBox
+												txt="Μαθημα"
+												vaar={(e)=>{updateCurrItemTxt(item, e)}}
+												filled={item.value}
+												items={countries}
+												setItems={setCountries}
+											/>
+											<button
+												className="chevronButton"
+												type="submit"
+												onClick={()=>{RemoveItem(item.id)}}
+												>
+												<i className="material-icons chevron-item">
+													{" "}
+													close{" "}
+												</i>
+											</button>
+										</div>
+										);
+									}else{
+										return(
+											<div key={index} className="classes-boxes class-boxes-end">					
+											<MySelectBox
+												txt="Μαθημα"
+												vaar={(e)=>{updateCurrItemTxt(item, e)}}
+												filled={item.value}
+												items={countries}
+												setItems={setCountries}
+											/>
+											<button
+												className="chevronButton"
+												type="submit"
+												onClick={()=>{RemoveItem(item.id)}}
+												>
+												<i className="material-icons chevron-item">
+													{" "}
+													close{" "}
+												</i>
+											</button>
+										</div>
+										);
+									}
+								}
+							})}
 							</div>
+
+							<MyTextArea txt={"Γράψε τον λόγο απορριψης:"} filled={reject} setFilled={setReject}/>
 						</div>
-						<div className="lower">
-							<div className="controls">
-								<button
-									onClick={() => {
-										setCurrPage(3);
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									className="chevronButton"
-									type="submit"
-									disabled
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
+						<div className="lower-admin-fourth">
+							<MyButton
+							btn_color="#6EC501"
+							txt_color="#FFFFFF"
+							curr_msg="Αποδοχή"
+							disable={classFinal.length > 0 || reject.length !== 0}
+							funcc={()=>{}}
+							/>
+
+							<MyButton
+								btn_color="#E37171"
+								txt_color="#FFFFFF"
+								curr_msg="Απόρριψη"
+								disable={reject.length === 0 && classFinal.length === 0}
+								funcc={()=>{}}
+							/>
 						</div>
 					</div>
 				</div>

@@ -42,6 +42,22 @@
     padding: 20px;
 }
 
+.classes-boxes {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 5px;
+}
+
+.class-boxes-first {
+    justify-content: flex-start;
+}
+
+.class-boxes-end {
+    justify-content: flex-end;
+}
+
 .chevronButton {
     margin: 0;
     /* padding: 0 10px 0 0; */
@@ -52,16 +68,21 @@
     height: max-content;
     width: max-content;
     display: flex;
+    padding-top: 15px;
 }
 
 .chevron-item {
     margin: 0;
-    padding: 0;
-    color: rgba(0, 0, 0, 0.795);
-    font-size: 45px !important; /*change this to make smaller */
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.479);
+    background-color: #FFD3D3;
+    font-size: 35px !important; /*change this to make smaller */
     border-style: none;
     box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5), 5px 5px 10px rgba(170, 170, 204, 0.25), 10px 10px 20px rgba(170, 170, 204, 0.5), -10px -10px 20px #FFFFFF;
     border-radius: 32px;
+}
+.chevron-item.add {
+    background-color: #D4FFD3;
 }
 
 .chevronButton:disabled {
@@ -69,20 +90,7 @@
     cursor: not-allowed;
 }
 
-.lower > .login-promt {
-    display: flex;
-    flex-direction: column;
-}
-
-.lower > .login-promt > .login-promt-txt {
-    font-size: 18px;
-    font-weight: normal;
-    font-family: 'Roboto', sans-serif;
-}
-
-
-.lower > .buttons {
-    width: 100%;
+.lower-admin-fourth {
     display: flex;
     flex-direction: row;
     justify-content: center;

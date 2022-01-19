@@ -8,6 +8,10 @@
     color: red;
 }
 
+.txt-area-external{
+    width: 100%;
+}
+
 .txt-area-internal {
     display: flex;
     flex-direction: column;
