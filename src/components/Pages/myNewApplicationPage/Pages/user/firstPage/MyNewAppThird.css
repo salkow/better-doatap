@@ -34,6 +34,10 @@
     flex-direction: column;
 }
 
+.lower {
+    margin-top: 50px;
+}
+
 .lower > .controls{
     display: flex;
     justify-content: center;

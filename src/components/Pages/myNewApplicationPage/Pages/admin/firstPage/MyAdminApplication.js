@@ -63,6 +63,39 @@ const MyAdminApp = ({ loggedIn }) => {
 	// 	setclassFinal(classToTake.filter(i=> i.value !== ""));
 	// }, [classToTake])
 
+	const [redirect, setRedirect] = useState(false);
+
+	const acceptRequest = async () =>{
+		axiosInstance
+		.patch('applications/'+params.id+'/', {
+			progress: 'A'
+		})
+		.then(()=>{
+			setRedirect(true);
+		})
+	}
+
+	const makeUsuableArray = () =>{
+		var t = ""
+		classFinal.map((e)=>{
+			t = t + e.value + ', '
+		})
+
+		return t.slice(0,-2);
+	}
+
+	const declineRequest = async () =>{
+		axiosInstance
+		.patch('applications/'+params.id+'/', {
+			progress: 'D',
+			reasons_for_declination: reject,
+			extra_subject: makeUsuableArray()
+		})
+		.then(()=>{
+			setRedirect(true);
+		})
+	}
+
 	const RemoveItem = (id)=>{
 		setclassToTake(classToTake.filter(d => d.id !== id));
 		setclassFinal(classToTake.filter(i=> i.value !== ""));
@@ -142,6 +175,10 @@ const MyAdminApp = ({ loggedIn }) => {
 		{ item: "Μεταπτυχιακό", value: "P" },
 		{ item: "Διδακτορικό", value: "D" },
 	];
+
+	if(redirect === true){
+		return <Navigate to="/myAdminApplications"/>;
+	}
 	
 
 	if (currPage === 1) {
@@ -399,7 +436,7 @@ const MyAdminApp = ({ loggedIn }) => {
 							txt_color="#FFFFFF"
 							curr_msg="Αποδοχή"
 							disable={classFinal.length > 0 || reject.length !== 0}
-							funcc={()=>{}}
+							funcc={()=>{acceptRequest()}}
 							/>
 
 							<MyButton
@@ -407,7 +444,7 @@ const MyAdminApp = ({ loggedIn }) => {
 								txt_color="#FFFFFF"
 								curr_msg="Απόρριψη"
 								disable={reject.length === 0 && classFinal.length === 0}
-								funcc={()=>{}}
+								funcc={()=>{declineRequest()}}
 							/>
 						</div>
 					</div>

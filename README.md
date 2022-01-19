@@ -39,16 +39,21 @@ help icons, ask
 
 login: enter
 
-admin
 
-οι αιτησεις μου delete
-admin μαθηματα + - , ονομα
-admin υποβληθεισες αιτησεις name/lastname
+
+admin ονομα μαθηματων
+admin accept/reject
+
+-οι αιτησεις μου delete
+-admin μαθηματα + - , 
+-admin υποβληθεισες αιτησεις name/lastname
+οι αιτησεις μου declined, message print classes
 
 απο call:
-κανε αιτηση login promt μονο στο τελευταιο στεπ
-οριστικη/προσωρινη μονο αν ειναι logged in και οριστικη disabled εκτος αν ειναι στο τελευταιο βημα + ειναι ολα οκ
-breadcrumbs επομενο βημα disabled εκτος αν ειναι συμπληρωμενα ολα τα πεδια
+-κανε αιτηση login promt μονο στο τελευταιο στεπ
+-κανε αιτηση οριστικη/προσωρινη μονο αν ειναι logged in και οριστικη disabled εκτος αν ειναι στο τελευταιο βημα + ειναι ολα οκ
+κανε αιτηση breadcrumbs επομενο βημα disabled εκτος αν ειναι συμπληρωμενα ολα τα πεδια
+κανε αιτηση empy field prompt 
 
 πως κανω αιτηση style
 

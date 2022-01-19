@@ -10,20 +10,24 @@ const MyMyApplicationPage = () =>
 {
   const [data, setData] = useState([])
 
-  useEffect(() => {
-      axiosInstance
+  const initFunc = () =>{
+    axiosInstance
         .get(`applications/`)
         .then((res) => {
           console.log(res.data);
           setData(res.data)
         });
+  }
+
+  useEffect(() => {
+      initFunc();
     }, []);
 
     const deleteApp = (id) =>{
       axiosInstance
       .delete('applications/'+id+'/')
       .then(()=>{
-        window.location.reload();
+        initFunc();
       })
     }
 

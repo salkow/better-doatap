@@ -56,6 +56,16 @@ const MyNewAppFirst = ({ loggedIn }) => {
 		}
 	};
 
+	const fieldsOK =()=>{
+		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === "" || otherUni === "" || otherDep === "" || (diploma === "" || updatedFile === null)){
+			console.log("testttt")
+			return true;
+		}else{
+			console.log("test")
+			return false;
+		}
+	}
+
 	const save_on_local_storage = () => {
 		localStorage.setItem("was_in_new_app", true);
 		localStorage.setItem("typeOfDiploma", typeOfDiploma);
@@ -232,65 +242,6 @@ const MyNewAppFirst = ({ loggedIn }) => {
 								</div>
 							</div>
 						</div>
-						<div className="lower">
-							<div className="controls">
-								<button
-									className="chevronButton"
-									type="submit"
-									disabled
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									onClick={() => {
-										setCurrPage(2);
-										validate();
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
-
-							{!loggedIn && (
-								<div className="login-promt">
-									<span className="login-promt-txt">
-										<span id="star">*</span>Απαιτείται
-										σύνδεση για
-										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
-										της αίτησης σας
-									</span>
-									<MyButton
-										btn_color="#A8A8A8"
-										txt_color="white"
-										curr_msg="Κάνε σύνδεση"
-										funcc={login}
-									/>
-								</div>
-							)}
-
-							<div className="buttons">
-								<MyButton
-									btn_color="#1FAEFF"
-									txt_color="white"
-									curr_msg="Προσωρινή Αποθήκευση"
-									disable={!loggedIn}
-								/>
-								<MyButton
-									btn_color="#DD9F00"
-									txt_color="white"
-									curr_msg="Οριστική Υποβολή"
-									disable={!loggedIn}
-								/>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -332,67 +283,6 @@ const MyNewAppFirst = ({ loggedIn }) => {
 								</div>
 							</div>
 						</div>
-						<div className="lower">
-							<div className="controls">
-								<button
-									onClick={() => {
-										setCurrPage(1);
-										validate();
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									onClick={() => {
-										setCurrPage(3);
-										validate();
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
-							{!loggedIn && (
-								<div className="login-promt">
-									<span className="login-promt-txt">
-										<span id="star">*</span>Απαιτείται
-										σύνδεση για
-										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
-										της αίτησης σας
-									</span>
-									<MyButton
-										btn_color="#A8A8A8"
-										txt_color="white"
-										curr_msg="Κάνε σύνδεση"
-										funcc={login}
-									/>
-								</div>
-							)}
-
-							<div className="buttons">
-								<MyButton
-									btn_color="#1FAEFF"
-									txt_color="white"
-									curr_msg="Προσωρινή Αποθήκευση"
-									disable={!loggedIn}
-								/>
-								<MyButton
-									btn_color="#DD9F00"
-									txt_color="white"
-									curr_msg="Οριστική Υποβολή"
-									disable={!loggedIn}
-								/>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -426,35 +316,11 @@ const MyNewAppFirst = ({ loggedIn }) => {
 							</div>
 						</div>
 						<div className="lower">
-							<div className="controls">
-								<button
-									onClick={() => {
-										setCurrPage(2);
-										validate();
-									}}
-									className="chevronButton"
-									type="submit"
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_left{" "}
-									</i>
-								</button>
-								<button
-									className="chevronButton"
-									type="submit"
-									disabled
-								>
-									<i className="material-icons chevron-item">
-										{" "}
-										chevron_right{" "}
-									</i>
-								</button>
-							</div>
-							{!loggedIn && (
+							{!loggedIn ? (
 								<div className="login-promt">
 									<span className="login-promt-txt">
-										<span id="star">*</span>Απαιτείται
+										<span id="star">*</span>
+										Απαιτείται
 										σύνδεση για
 										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
 										της αίτησης σας
@@ -466,8 +332,8 @@ const MyNewAppFirst = ({ loggedIn }) => {
 										funcc={login}
 									/>
 								</div>
-							)}
-
+							)
+							:
 							<div className="buttons">
 								<MyButton
 									btn_color="#1FAEFF"
@@ -479,9 +345,11 @@ const MyNewAppFirst = ({ loggedIn }) => {
 									btn_color="#DD9F00"
 									txt_color="white"
 									curr_msg="Οριστική Υποβολή"
-									disable={!loggedIn}
+									disable={fieldsOK() || !loggedIn}
 								/>
 							</div>
+						}
+
 						</div>
 					</div>
 				</div>
