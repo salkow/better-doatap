@@ -1,8 +1,21 @@
 import './MyAdminApp.css';
 
 import {Link} from "react-router-dom"
-const MyAdminApp = ({id, name, Fname, Lname}) => 
+import axiosInstance from '../../../../axios';
+
+import { useEffect, useState } from "react";
+const MyAdminApp = ({id, name, user}) => 
 {  
+    const [Fname, setFname ] = useState("");
+    const [Lname, setLname ] = useState("");
+    useEffect(() => {
+        axiosInstance.get('user/all_profiles/'+user+'/')
+        .then((res)=>{
+            console.log(res.data);
+            setFname(res.data.first_name);
+            setLname(res.data.last_name);
+        })
+    }, [])
     return (
       <div className="external-app">
           <div className="internal-app">

@@ -32,7 +32,7 @@ const MyAdminApplicationsPage = () =>
             </div>
             <div className="middle">
               {data.map((item, index) => (
-                <MyAdminApp key={item.id} id={item.id} name={item.name} Fname={""} Lname={""} />
+                <MyAdminApp key={item.id} id={item.id} name={item.name} user={item.user} />
               ))}
             </div>
           </div>
