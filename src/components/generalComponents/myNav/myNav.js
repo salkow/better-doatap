@@ -31,10 +31,21 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 
 	const [show, setShow] = useState(false);
 	const showDropdown = (e) => {
-		setShow(!show);
+		clearTimeout(delayHandler);
+		setShow(true);
 	};
+
+	const [timedOut, setTimedOut] = useState(false);
+
+	const [delayHandler, setDelayHandler] = useState(null);
+
 	const hideDropdown = (e) => {
-		setShow(false);
+		clearTimeout(delayHandler);
+		setDelayHandler(
+			setTimeout(() => {
+				setShow(false);
+			}, 600)
+		);
 	};
 
 	return (
