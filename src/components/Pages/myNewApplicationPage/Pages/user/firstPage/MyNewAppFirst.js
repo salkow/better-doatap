@@ -57,6 +57,7 @@ const MyNewAppFirst = ({ loggedIn }) => {
 	};
 
 	const save_on_local_storage = () => {
+		localStorage.setItem("was_in_new_app", true);
 		localStorage.setItem("typeOfDiploma", typeOfDiploma);
 		localStorage.setItem("country", country);
 		localStorage.setItem("myUni", myUni);

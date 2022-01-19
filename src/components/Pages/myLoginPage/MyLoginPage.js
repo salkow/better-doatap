@@ -19,12 +19,21 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 	const [Errorpassword, setErrorPass] = useState("");
 
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+	const [path, setPath] = useState("/");
 
 	const { state } = useLocation();
 
 	let history = useNavigate();
 	const goToPreviousPath = () => {
-		history(-1);
+		const was_in_new_app = localStorage.getItem("was_in_new_app");
+
+		console.log("was_in_new_app", was_in_new_app);
+
+		if (was_in_new_app) {
+			localStorage.setItem("was_in_new_app", false);
+			setPath("/myNewAppF/-1");
+			setRedirectToReferrer(true);
+		}
 	};
 
 	const submit = async () => {
@@ -61,41 +70,32 @@ const MyLoginPage = ({ setLoggedIn, isAdmin, setIsAdmin }) => {
 					"JWT " + localStorage.getItem("access_token");
 			});
 
-			// .then(() => {
-				 const ad = await axiosInstance.get("user/is_superuser").then((res) => {
-					// console.log(res.data.is_superuser);
-					setIsAdmin(res.data.is_superuser);
-					
-					console.log(isAdmin)
+		// .then(() => {
+		const ad = await axiosInstance.get("user/is_superuser").then((res) => {
+			// console.log(res.data.is_superuser);
+			setIsAdmin(res.data.is_superuser);
 
-					setLoggedIn(true);
-					 
-					return res.data.is_superuser
-				});
+			console.log(isAdmin);
 
-				// }).then(() => {
-					console.log(ad)
-					if (!ad) {
-						goToPreviousPath()
-					} else {
-						history('/myAdminApplications/')
-					}
-				// });
-			// });
-				};
-	// if (redirectToReferrer === true) {
-	// 	if (!isAdmin) {
-	// 		let path = state?.from.pathname;
+			setLoggedIn(true);
 
-	// 		if (path === "/myAdminAppF") {
-	// 			path = "/";
-	// 		}
+			return res.data.is_superuser;
+		});
 
-	// 		return <Navigate to={path || "/"} />;
-	// 	} else {
-	// 		return <Navigate to="/myAdminApplications/" />;
-	// 	}
-	// }
+		// }).then(() => {
+		console.log(ad);
+		if (!ad) {
+			goToPreviousPath();
+		} else {
+			history("/myAdminApplications/");
+		}
+		// });
+		// });
+	};
+
+	if (redirectToReferrer === true) {
+		return <Navigate to={path} />;
+	}
 
 	return (
 		<div className="content">

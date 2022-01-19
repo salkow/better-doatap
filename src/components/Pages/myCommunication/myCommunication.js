@@ -2,7 +2,7 @@ import "./myCommunication.css";
 
 import MyBreadcrumb from "../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 import MyTextBox from "../../generalComponents/MyTextBox/MyTextBox";
-import MyTextArea from "../../generalComponents/MyTextArea/MyTextArea"
+import MyTextArea from "../../generalComponents/MyTextArea/MyTextArea";
 import MyButton from "../../generalComponents/MyButton/MyButton";
 
 import { Row, Col, Container } from "react-bootstrap";
@@ -16,7 +16,8 @@ const myCommunication = () => {
 		{ second: "Επικοινωνία" },
 	];
 
-	const txt = "Συμπλήρωσε εδώ το κείμενο που θέλεις να στείλειΣυμπλήρωσε εδώ το κείμενο που θέλεις να στείλεις"
+	const txt =
+		"Συμπλήρωσε εδώ το κείμενο που θέλεις να στείλειΣυμπλήρωσε εδώ το κείμενο που θέλεις να στείλεις";
 
 	return (
 		<div>
@@ -66,8 +67,8 @@ const myCommunication = () => {
 									title="map1"
 									width="350"
 									height="350"
-									frameborder="0"
-									marginwidth="0"
+									frameBorder="0"
+									marginWidth="0"
 									src="https://www.openstreetmap.org/export/embed.html?bbox=23.7215530872345%2C37.984574350644934%2C23.72360765933991%2C37.98576455342547&amp;layer=mapnik&amp;marker=37.98517%2C23.722579999999994"
 									style={{ border: "1px solid black" }}
 								></iframe>
@@ -119,10 +120,10 @@ const myCommunication = () => {
 									title="map2"
 									width="350"
 									height="350"
-									frameborder="0"
+									frameBorder="0"
 									scrolling="no"
-									marginheight="0"
-									marginwidth="0"
+									marginHeight="0"
+									marginWidth="0"
 									src="https://www.openstreetmap.org/export/embed.html?bbox=22.943221628665928%2C40.64030454666005%2C22.945276200771332%2C40.641450408453906&amp;layer=mapnik&amp;marker=40.640877480015725%2C22.944248914718628"
 									style={{ border: "1px solid black" }}
 								></iframe>
@@ -166,7 +167,7 @@ const myCommunication = () => {
 						/>
 					</Row>
 					<Row>
-					<MyTextArea txt={txt}/>
+						<MyTextArea txt={txt} />
 					</Row>
 				</Container>
 			</Container>
