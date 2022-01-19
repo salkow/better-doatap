@@ -1,20 +1,17 @@
-import HomePage from "./components/Pages/myHomePage/myHomePage";
-import Communication from "./components/Pages/myCommunication/myCommunication";
-import QNA from "./components/Pages/myQNA/myQNA";
-import MyLoginPage from "./components/Pages/myLoginPage/MyLoginPage";
-import MyProfilePage from "./components/Pages/myProfilePage/MyProfilePage";
-import MyRegisterPage from "./components/Pages/myRegisterPage/MyRegisterPage";
-import HowToCreateANewApplication from "./components/Pages/myHowToCreateANewApplication/myHowToCreateANewApplication";
-import UserOptions from "./components/Pages/UserOptions/myUserOptions";
+import HomePage from "./components/Pages/public/HomePage/HomePage";
+import CommunicationPage from "./components/Pages/public/CommunicationPage/CommunicationPage";
+import QnaPage from "./components/Pages/public/QnaPage/QnaPage";
+import LoginPage from "./components/Pages/public/LoginPage/LoginPage";
+import ProfilePage from "./components/Pages/User/ProfilePage/ProfilePage";
+import RegisterPage from "./components/Pages/public/RegisterPage/RegisterPage";
+import HowToCreateANewApplicationPage from "./components/Pages/public/HowToCreateANewApplicationPage/HowToCreateANewApplicationPage";
+import UserOptions from "./components/Pages/User/UserOptions/myUserOptions";
 
-import MyMyApplicationPage from "./components/Pages/myMyApplicationPage/MyMyApplicationPage";
+import UserApplicationListPage from "./components/Pages/User/UserApplicationListPage/UserApplicationListPage";
 
-import MyNewAppFirst from "./components/Pages/myNewApplicationPage/Pages/user/firstPage/MyNewAppFirst";
-import MyNewAppSecond from "./components/Pages/myNewApplicationPage/Pages/user/secondPage/MyNewAppSecond";
-import MyNewAppThird from "./components/Pages/myNewApplicationPage/Pages/user/thirdPage/MyNewAppThird";
+import NewApplicationPage from "./components/Pages/public/myNewApplicationPage/NewApplicationPage";
 
-// import MyAdminAppFirst from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminAppFirst";
-import MyAdminApp from "./components/Pages/myNewApplicationPage/Pages/admin/firstPage/MyAdminApplication";
+import AdminEvaluationPage from "./components/Pages/Admin/AdminEvaluationPage/AdminEvaluationPage";
 
 import TheNav from "./components/generalComponents/myNav/myNav";
 import Footer from "./components/generalComponents/MyFooter/MyFooter";
@@ -24,7 +21,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import MyAdminApplicationsPage from "./components/Pages/myAdminApplicationsPage/MyAdminApplicationsPage";
+import AdminEvaluationListPage from "./components/Pages/Admin/AdminEvaluationListPage/AdminEvaluationListPage";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(
@@ -47,25 +44,25 @@ function App() {
 					<Route path="/new_application" element={<HomePage />} />
 					<Route
 						path="/how_to_create_new_application"
-						element={<HowToCreateANewApplication />}
+						element={<HowToCreateANewApplicationPage />}
 					/>
-					<Route path="/qna" element={<QNA />} />
-					<Route path="/communication" element={<Communication />} />
+					<Route path="/qna" element={<QnaPage />} />
+					<Route path="/communication" element={<CommunicationPage />} />
 					<Route
 						path="/loginPage"
 						element={
-							<MyLoginPage
+							<LoginPage
 								setLoggedIn={setLoggedIn}
 								isAdmin={isAdmin}
 								setIsAdmin={setIsAdmin}
 							/>
 						}
 					/>
-					<Route path="/profile" element={<MyProfilePage />} />
-					<Route path="/register" element={<MyRegisterPage />} />
+					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/register" element={<RegisterPage />} />
 					<Route
 						path="/myApplications"
-						element={<MyMyApplicationPage />}
+						element={<UserApplicationListPage />}
 					/>
 
 					<Route
@@ -75,7 +72,7 @@ function App() {
 
 					<Route
 						path="/myNewAppF/:id"
-						element={<MyNewAppFirst loggedIn={loggedIn} />}
+						element={<NewApplicationPage loggedIn={loggedIn} />}
 					/>
 					{/* <Route path="/myNewAppS" element={<MyNewAppSecond />} />
 					<Route path="/myNewAppT" element={<MyNewAppThird />} /> */}
@@ -84,11 +81,11 @@ function App() {
 
 					<Route
 						path="/myAdminApplications"
-						element={<MyAdminApplicationsPage />}
+						element={<AdminEvaluationListPage />}
 					/>
 					<Route
 						path="/myAdminAppF/:id"
-						element={<MyAdminApp loggedIn={loggedIn} />}
+						element={<AdminEvaluationPage loggedIn={loggedIn} />}
 					/>
 				</Routes>
 			</div>
