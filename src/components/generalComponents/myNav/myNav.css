@@ -36,3 +36,7 @@ btn-check:active + .btn-primary:focus,
 .nav-item.dropdown:hover .dropdown-menu {
 	display: block !important;
 }
+
+.parent * {
+	pointer-events: none;
+}
