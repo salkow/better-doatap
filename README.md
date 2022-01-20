@@ -79,5 +79,5 @@ admin:
 
 
 register/profile fix error messages
-file localstorage fix
+-file localstorage fix
 footer κανε αιτηση

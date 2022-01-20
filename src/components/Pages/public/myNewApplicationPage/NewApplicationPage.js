@@ -36,8 +36,10 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [otherUni, setOtherUni] = useState("");
 	const [otherDep, setOtherDep] = useState("");
 
-	const [diploma, setDiploma] = useState("");
-	const [updatedFile, setUpdated] = useState(null);
+	const [diplomaFile, setDiplomaFile] = useState("");
+	const [diplomaName, setDiplomaName] = useState("");
+
+	const [uploaded, setUploaded] = useState(null);
 
 	const [hasToLogIn, setHasToLogIn] = useState(false);
 
@@ -58,8 +60,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 
 	const TempSave = () => {
 		const fd = new FormData();
-		if(updatedFile !== null && updatedFile !== ""){
-			fd.append('diploma', updatedFile);
+		if(uploaded !== null){
+			fd.append('diploma', uploaded);
 		}
 		fd.append("name", getName());
 		fd.append("is_submitted", false);
@@ -81,9 +83,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 
 	const FullSubmit =  () =>{
 		const fd = new FormData();
-		if(updatedFile !== null && updatedFile !== ""){
-			console.log(updatedFile)
-			fd.append('diploma', updatedFile);
+		if(uploaded !== null){
+			fd.append('diploma', uploaded);
 		}
 		fd.append("name", getName());
 		fd.append("is_submitted", true);
@@ -193,8 +194,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 			setfirstPage(2);
 			setsecondPage(2);
 			setthirdPageDisabled(false);
-			if (diploma === "" &&
-				(updatedFile === null || updatedFile === "")) {
+			if (uploaded === null) {
 				setfirstPage(2);
 				setthirdPage(1);
 				return true;
@@ -216,8 +216,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 		myDep,
 		otherUni,
 		otherDep,
-		diploma,
-		updatedFile,
+		diplomaFile,
+		uploaded,
 	]);
 
 	const fieldsOK = () => {
@@ -228,15 +228,19 @@ const NewApplicationPage = ({ loggedIn }) => {
 			myDep === ""
 		) {
 		} else {
-			if (
-				diploma === "" &&
-				(updatedFile === null || updatedFile === "")
-			) {
+			if (uploaded === null){
 				return true;
 			}
 		}
 		return false;
 	};
+
+	function blobToFile(theBlob, fileName){
+		//A Blob() is almost a File() - it's just missing the two properties below which we will add
+		theBlob.lastModifiedDate = new Date();
+		theBlob.name = fileName;
+		return theBlob;
+	}
 
 	const save_on_local_storage = () => {
 		console.log("I saved the data.");
@@ -247,12 +251,18 @@ const NewApplicationPage = ({ loggedIn }) => {
 		localStorage.setItem("myDep", myDep);
 		localStorage.setItem("otherUni", otherUni);
 		localStorage.setItem("otherDep", otherDep);
-		localStorage.setItem("diploma", diploma);
-		// console.log(updatedFile);
-		localStorage.setItem("updatedFile", JSON.stringify(updatedFile));
+		if(uploaded !== null){
+			// /* */
+			localStorage.setItem("uploaded", URL.createObjectURL(uploaded));
+			console.log(uploaded.name)
+			localStorage.setItem("uploadedName", uploaded.name);
+			// /* */
+		}else{
+			localStorage.setItem("diploma", diplomaFile);
+		}
 	};
 
-	useEffect(() => {
+	useEffect(async() => {
 		axiosInstance
 			.get(`countries/`)
 			.then((res) => {
@@ -284,7 +294,9 @@ const NewApplicationPage = ({ loggedIn }) => {
 				setOtherUni(res.data.destination_university_1);
 				setOtherDep(res.data.destination_department_1);
 
-				setDiploma(res.data.diploma);
+				
+				setDiplomaFile(res.data.diploma);
+				setDiplomaName(res.data.diploma.substring(res.data.diploma.lastIndexOf('/') + 1))
 			});
 		} else {
 			settypeOfDiploma(localStorage.getItem("typeOfDiploma") ?? "");
@@ -293,8 +305,28 @@ const NewApplicationPage = ({ loggedIn }) => {
 			setMyDep(localStorage.getItem("myDep") ?? "");
 			setOtherUni(localStorage.getItem("otherUni") ?? "");
 			setOtherDep(localStorage.getItem("otherDep") ?? "");
-			setDiploma(localStorage.getItem("diploma") ?? "");
-			setUpdated(JSON.parse(localStorage.getItem("updatedFile")) ?? "");
+
+			if(localStorage["uploaded"]){
+				/* */
+				var url = localStorage.getItem("uploaded");
+				var myblob = await fetch(url).then(r => r.blob())
+				console.log(localStorage.getItem("uploadedName"))
+				var file = new File([myblob], localStorage.getItem("uploadedName"), {type: myblob.type});
+				setUploaded(file);
+				/* */
+
+				setDiplomaFile(window.URL.createObjectURL(file));
+				setDiplomaName(file.name);
+				localStorage.removeItem("uploaded");
+				localStorage.removeItem("uploadedName");
+			}else if(localStorage.getItem("diploma")){
+				setDiplomaFile(localStorage.getItem("diploma") ?? "");
+				setDiplomaName(localStorage.getItem("diploma").substring(localStorage.getItem("diploma").lastIndexOf('/') + 1))
+				localStorage.removeItem("diploma");
+			}else{
+				setDiplomaName("");
+				setDiplomaFile("");
+			}
 
 			localStorage.removeItem("typeOfDiploma");
 			localStorage.removeItem("country");
@@ -302,8 +334,6 @@ const NewApplicationPage = ({ loggedIn }) => {
 			localStorage.removeItem("myDep");
 			localStorage.removeItem("otherUni");
 			localStorage.removeItem("otherDep");
-			localStorage.removeItem("diploma");
-			localStorage.removeItem("updatedFile");
 		}
 	}, []);
 
@@ -468,9 +498,11 @@ const NewApplicationPage = ({ loggedIn }) => {
 								<MyFileCard
 									name="Πτυχίο φοίτησης"
 									desc="Αφορά το πτυχίου που παραλάβατε αφού ολοκληρώσατε την φοίτησή σας."
-									link={diploma}
-									setLink={setDiploma}
-									setUpdated={setUpdated}
+									link={diplomaFile}
+									file_name={diplomaName}
+									setLink={setDiplomaFile}
+									setFileName={setDiplomaName}
+									setUploaded={setUploaded}
 									disabled={submited}
 								/>
 							</div>
