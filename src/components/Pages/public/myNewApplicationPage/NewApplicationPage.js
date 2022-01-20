@@ -59,8 +59,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 					})
 					.then((res) => {
 						setMyUniversities(res);
-						setMyUni("");
-						setMyDep("");
+						// setMyUni("");
+						// setMyDep("");
 					});
 			}
 		}, 500);
@@ -103,7 +103,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 					})
 					.then((res) => {
 						setOtherDepartments(res);
-						setOtherDep("");
+						// setOtherDep("");
 					});
 			}
 		}, 500);

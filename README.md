@@ -46,7 +46,7 @@ login: enter
 -admin υποβληθεισες αιτησεις name/lastname
 -οι αιτησεις μου declined, message print classes
 
-home page button redirect
+-home page button redirect
 login redrects need fixing
 
 απο call:
@@ -56,7 +56,7 @@ login redrects need fixing
 -κανε αιτηση breadcrumbs show better when disabled
 κανε αιτηση empty field prompt
 
-πως κανω αιτηση style
+-πως κανω αιτηση style
 
 admin:
 -λογος απορριψης στο τελος

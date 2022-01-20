@@ -58,12 +58,25 @@ const UserOptions = ({ isAdmin }) => {
 							>
 								<Card>
 									<Card.Header as="h5">
-										Οι αιτήσεις μου
+										{isAdmin && (
+											<div>Υποβληθείσες Αιτήσεις</div>
+										)}
+										{!isAdmin && <div>Οι αιτήσεις μου</div>}
 									</Card.Header>
 									<Card.Body>
 										<Card.Text>
-											Εδώ μπορείς να δεις και να αλλάξεις
-											τις αιτήσεις σου.
+											{isAdmin && (
+												<div>
+													Εδώ μπορείς να δεις τις
+													αιτήσεις των χρηστών.
+												</div>
+											)}
+											{!isAdmin && (
+												<div>
+													Εδώ μπορείς να δεις και να
+													αλλάξεις τις αιτήσεις σου.
+												</div>
+											)}
 										</Card.Text>
 									</Card.Body>
 								</Card>
