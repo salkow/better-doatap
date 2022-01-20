@@ -1,6 +1,6 @@
 import MyBreadcrumb from "../../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 
-import { Container } from "react-bootstrap";
+import { Container, ListGroup } from "react-bootstrap";
 
 const HowToCreateANewApplicationPage = () => {
 	const myBread = [
@@ -24,22 +24,36 @@ const HowToCreateANewApplicationPage = () => {
 				<Container>
 					<h5>
 						<b>Για να κάνεις αίτηση θα χρειαστείς:</b>
-						<ol>
-							<li>Να συνδεθείς ή να εγγραφείς στην σελίδα.</li>
-							<li>Να πλοηγηθείς στην σελίδα 'Κάνε αίτηση'.</li>
-							<li>Να συμπληρώσεις τον τύπο του πτυχίου σου.</li>
-							<li>
+						<ListGroup variant="flush" as="ol" numbered>
+							<ListGroup.Item as="li">
+								Να συνδεθείς ή να εγγραφείς στην σελίδα.
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
+								Να πλοηγηθείς στην σελίδα 'Κάνε αίτηση'.
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
+								Να συμπληρώσεις τον τύπο του πτυχίου σου.
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
 								Να συμπληρώσεις την χώρα, το πανεπιστήμιο και το
 								τμήμα από το οποίο το οποίο πήρες πτυχίο.
-							</li>
-							<li>Να πας στην επόμενη καρτέλα.</li>
-							<li>
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
+								Να πας στην επόμενη καρτέλα.
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
 								Να συμπληρώσεις το πανεπιστήμιο και το τμήμα στο
 								οποίο θέλεις να γίνει η αντιστοίχιση.
-							</li>
-							<li>Να πας στην επόμενη καρτέλα.</li>
-							<li>Να ανεβάσεις το πτυχίο σου.</li>
-							<li>Να πατήσεις οριστική υποβολή.</li>
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
+								Να πας στην επόμενη καρτέλα.
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
+								Να ανεβάσεις το πτυχίο σου.
+							</ListGroup.Item>
+							<ListGroup.Item as="li">
+								Να πατήσεις οριστική υποβολή.
+							</ListGroup.Item>
 
 							<div className="pt-4">
 								Είσαι έτοιμος!
@@ -50,7 +64,7 @@ const HowToCreateANewApplicationPage = () => {
 								Θα σου σταλθεί email και μύνημα στην περίπτωση
 								που εγκριθεί ή απορριφθεί η αίτησή σου.
 							</div>
-						</ol>
+						</ListGroup>
 					</h5>
 				</Container>
 			</Container>
