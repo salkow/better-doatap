@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import axiosInstance from "../../../../axios";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const RegisterPage = () => {
 	const myBread = [
@@ -48,15 +49,7 @@ const RegisterPage = () => {
 
 	const [msg, setMsg] = useState("");
 
-	const goToPreviousPath = () => {
-		const was_in_new_app = localStorage.getItem("was_in_new_app");
-
-		if (was_in_new_app) {
-			localStorage.setItem("was_in_new_app", false);
-			setPath("/myNewAppF/-1");
-			setRedirectToReferrer(true);
-		}
-	};
+	const goToPreviousPath = () => {};
 
 	const submit = async () => {
 		var finish = 0;
@@ -124,26 +117,23 @@ const RegisterPage = () => {
 			return;
 		}
 
-		axiosInstance
-			.post(`user/create/`, {
-				email: email,
-				first_name: firstName,
-				last_name: lastName,
-				password: password,
-				phone: phone,
-				id_num: id,
-				afm: afm,
-				birthday: "2021-12-30",
-				gender: gender,
-			})
-			.then((res) => {
-				// history.push('/login');
-				goToPreviousPath();
-			});
+		axiosInstance.post(`user/create/`, {
+			email: email,
+			first_name: firstName,
+			last_name: lastName,
+			password: password,
+			phone: phone,
+			id_num: id,
+			afm: afm,
+			birthday: "2021-12-30",
+			gender: gender,
+		});
+
+		setRedirectToReferrer(true);
 	};
 
 	if (redirectToReferrer === true) {
-		return <Navigate to={path} />;
+		return <Navigate to="/loginPage" />;
 	}
 
 	return (
