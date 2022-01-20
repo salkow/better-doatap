@@ -56,7 +56,10 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 		>
 			<Container>
 				<Navbar.Brand>
-					<Link className="navbar-brand" to="/">
+					<Link
+						className="navbar-brand"
+						to={isAdmin === true ? "/myAdminApplications" : "/"}
+					>
 						<img
 							src={logo}
 							alt="doatap logo"

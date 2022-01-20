@@ -7,7 +7,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import full_logo from "../../../assets/doatap-logo-full.png";
 import call from "../../../assets/call.png";
 
-const Footer = () => {
+const Footer = ({ isAdmin }) => {
 	return (
 		<div
 			style={{ position: "relative", backgroundColor: "#D0CECE" }}
@@ -15,68 +15,89 @@ const Footer = () => {
 		>
 			<footer className="the-footer text-center footer mt-auto py-3">
 				<Container className="p-4">
-					<Row>
-						<Col lg={3} md={6} className="mx-auto">
-							<h5>
-								<NavLink
-									className={({ isActive }) =>
-										isActive
-											? "link-secondary"
-											: "link-dark"
-									}
-									to="/new_application"
-								>
-									Κάνε αίτηση
-								</NavLink>
-							</h5>
-						</Col>
-
-						<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
-							<h5>
-								<NavLink
-									className={({ isActive }) =>
-										isActive
-											? "link-secondary"
-											: "link-dark"
-									}
-									to="/how_to_create_new_application"
-								>
-									Πώς κάνω αίτηση
-								</NavLink>
-							</h5>
-						</Col>
-
-						<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
-							<h5>Πληροφορίες</h5>
-
-							<ul className="list-unstyled mb-0 mt-3">
-								<li className="mt-2">
+					{isAdmin && (
+						<Row>
+							<Col lg={3} md={6} className="mx-auto">
+								<h5>
 									<NavLink
 										className={({ isActive }) =>
 											isActive
 												? "link-secondary"
 												: "link-dark"
 										}
-										to="/communication"
+										to="myAdminApplications"
 									>
-										Επικοινωνία
+										Υποβληθείσες αιτήσεις
 									</NavLink>
-								</li>
-								<li>
+								</h5>
+							</Col>
+						</Row>
+					)}
+
+					{!isAdmin && (
+						<Row>
+							<Col lg={3} md={6} className="mx-auto">
+								<h5>
 									<NavLink
 										className={({ isActive }) =>
 											isActive
 												? "link-secondary"
 												: "link-dark"
 										}
-										to="/qna"
+										to="/myNewAppF/-1"
 									>
-										Συχνές ερωτήσεις
+										Κάνε αίτηση
 									</NavLink>
-								</li>
-							</ul>
-						</Col>
-					</Row>
+								</h5>
+							</Col>
+
+							<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
+								<h5>
+									<NavLink
+										className={({ isActive }) =>
+											isActive
+												? "link-secondary"
+												: "link-dark"
+										}
+										to="/how_to_create_new_application"
+									>
+										Πώς κάνω αίτηση
+									</NavLink>
+								</h5>
+							</Col>
+
+							<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
+								<h5>Πληροφορίες</h5>
+
+								<ul className="list-unstyled mb-0 mt-3">
+									<li className="mt-2">
+										<NavLink
+											className={({ isActive }) =>
+												isActive
+													? "link-secondary"
+													: "link-dark"
+											}
+											to="/communication"
+										>
+											Επικοινωνία
+										</NavLink>
+									</li>
+									<li>
+										<NavLink
+											className={({ isActive }) =>
+												isActive
+													? "link-secondary"
+													: "link-dark"
+											}
+											to="/qna"
+										>
+											Συχνές ερωτήσεις
+										</NavLink>
+									</li>
+								</ul>
+							</Col>
+						</Row>
+					)}
 
 					<Row className="mt-5" md={2}>
 						<Col lg={3} md={6} className="mb-4 mb-md-0 mx-auto">
