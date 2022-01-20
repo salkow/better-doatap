@@ -91,7 +91,7 @@ function App() {
 					/>
 				</Routes>
 			</div>
-			<Footer />
+			<Footer isAdmin={isAdmin} />
 		</BrowserRouter>
 	);
 }
