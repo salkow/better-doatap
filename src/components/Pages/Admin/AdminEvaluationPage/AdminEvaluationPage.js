@@ -22,74 +22,81 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 
 	const [typeOfDiploma, settypeOfDiploma] = useState("");
 	const [country, setCountry] = useState("");
+
 	const [myUni, setMyUni] = useState("");
 	const [myDep, setMyDep] = useState("");
 
 	const [otherUni, setOtherUni] = useState("");
 	const [otherDep, setOtherDep] = useState("");
 
-	const [diploma, setDiploma] = useState("");
+	const [otherUniversities, setOtherUniversities] = useState([]);
+	const [otherDepartments, setOtherDepartments] = useState([]);
 
+	const [allUniversities, setAllUniversities] = useState([]);
+	const [allDepartments, setAllDepartments] = useState([]);
+
+	const [diploma, setDiploma] = useState("");
 
 	const [countries, setCountries] = useState([]);
 
-
 	const [reject, setReject] = useState("");
-	
 
-	const [classToTake, setclassToTake] = useState([{id: 0, value:""}]);
+	const [classToTake, setclassToTake] = useState([{ id: 0, value: "" }]);
 	const [classFinal, setclassFinal] = useState([]);
 	const [classMaxID, setclassMaxID] = useState(1);
 
 	const [redirect, setRedirect] = useState(false);
 
-	const acceptRequest = async () =>{
+	const acceptRequest = async () => {
 		axiosInstance
-		.patch('applications/'+params.id+'/', {
-			progress: 'A'
-		})
-		.then(()=>{
-			setRedirect(true);
-		})
-	}
+			.patch("applications/" + params.id + "/", {
+				progress: "A",
+			})
+			.then(() => {
+				setRedirect(true);
+			});
+	};
 
-	const makeUsuableArray = () =>{
-		var t = ""
-		classFinal.map((e)=>{
-			t = t + e.value + ', '
-		})
+	const makeUsuableArray = () => {
+		var t = "";
+		classFinal.map((e) => {
+			t = t + e.value + ", ";
+		});
 
-		return t.slice(0,-2);
-	}
+		return t.slice(0, -2);
+	};
 
-	const declineRequest = async () =>{
+	const declineRequest = async () => {
 		axiosInstance
-		.patch('applications/'+params.id+'/', {
-			progress: 'D',
-			reasons_for_declination: reject,
-			extra_subject: makeUsuableArray()
-		})
-		.then(()=>{
-			setRedirect(true);
-		})
-	}
+			.patch("applications/" + params.id + "/", {
+				progress: "D",
+				reasons_for_declination: reject,
+				extra_subject: makeUsuableArray(),
+			})
+			.then(() => {
+				setRedirect(true);
+			});
+	};
 
-	const RemoveItem = (id)=>{
-		setclassToTake(classToTake.filter(d => d.id !== id));
-		setclassFinal(classToTake.filter(i=> i.value !== ""));
-	}
+	const RemoveItem = (id) => {
+		setclassToTake(classToTake.filter((d) => d.id !== id));
+		setclassFinal(classToTake.filter((i) => i.value !== ""));
+	};
 
-	const AppendItem = () =>{
-		setclassToTake(classToTake => [...classToTake,{id: classMaxID+1, value: ""}]);
-		setclassFinal(classToTake.filter(i=> i.value !== ""));
-		setclassFinal(classToTake.filter(i=> i.value !== ""));
-		setclassMaxID(classMaxID+1);
-	}
+	const AppendItem = () => {
+		setclassToTake((classToTake) => [
+			...classToTake,
+			{ id: classMaxID + 1, value: "" },
+		]);
+		setclassFinal(classToTake.filter((i) => i.value !== ""));
+		setclassFinal(classToTake.filter((i) => i.value !== ""));
+		setclassMaxID(classMaxID + 1);
+	};
 
 	const updateCurrItemTxt = (item, e) => {
 		item.value = e;
-		setclassFinal(classToTake.filter(i=> i.value !== ""));
-	}
+		setclassFinal(classToTake.filter((i) => i.value !== ""));
+	};
 
 	useEffect(() => {
 		axiosInstance
@@ -114,7 +121,45 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 				setDiploma(res.data.diploma);
 			});
 		}
+
+		axiosInstance
+			.get("countries/Greece/" + country)
+			.catch(() => {
+				setOtherUniversities([]);
+				return [];
+			})
+			.then((res) => {
+				return res.data.map((i) => i.name);
+			})
+			.then((res) => {
+				setOtherUniversities(res);
+				setAllUniversities(res);
+				// setMyUni("");
+				// setMyDep("");
+			});
 	}, []);
+
+	useEffect(() => {
+		const delayDebounceFn = setTimeout(() => {
+			if (otherUni.length !== 0) {
+				axiosInstance
+					.get("countries/Greece/" + otherUni)
+					.catch(() => {
+						setOtherDepartments([]);
+						return [];
+					})
+					.then((res) => {
+						return res.data.map((i) => i.name);
+					})
+					.then((res) => {
+						setOtherDepartments(res);
+						// setOtherDep("");
+					});
+			}
+		}, 500);
+
+		return () => clearTimeout(delayDebounceFn);
+	}, [otherUni]);
 
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
@@ -126,10 +171,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 		{ item: "Διδακτορικό", value: "D" },
 	];
 
-	if(redirect === true){
-		return <Navigate to="/myAdminApplications"/>;
+	if (redirect === true) {
+		return <Navigate to="/myAdminApplications" />;
 	}
-	
 
 	if (currPage === 1) {
 		return (
@@ -138,12 +182,14 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 				<div className="external">
 					<div className="internal">
 						<div className="top">
-							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
+							<span id="underlined">
+								Λεπτομέρειες Αίτησης: {params.id}
+							</span>
 						</div>
 						<div className="middle">
 							<AdminEvalBreadcrumbs
 								setCurr={setCurrPage}
-								val={()=>{}}
+								val={() => {}}
 								curr={currPage}
 								first={3}
 								second={3}
@@ -185,9 +231,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								</div>
 							</div>
 						</div>
-						<div className="lower">
-
-						</div>
+						<div className="lower"></div>
 					</div>
 				</div>
 			</div>
@@ -199,12 +243,14 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 				<div className="external">
 					<div className="internal">
 						<div className="top">
-							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
+							<span id="underlined">
+								Λεπτομέρειες Αίτησης: {params.id}
+							</span>
 						</div>
 						<div className="middle">
 							<AdminEvalBreadcrumbs
 								setCurr={setCurrPage}
-								val={()=>{}}
+								val={() => {}}
 								curr={currPage}
 								first={3}
 								second={3}
@@ -216,22 +262,22 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 										txt="Πανεπιστήμιο"
 										vaar={setOtherUni}
 										filled={otherUni}
-										items={countries}
-										setItems={setCountries}//TODO
+										items={otherUniversities}
+										setItems={setOtherUniversities}
+										all_items={allUniversities}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
 										vaar={setOtherDep}
 										filled={otherDep}
-										items={countries}
-										setItems={setCountries}//TODO
+										items={otherDepartments}
+										setItems={setOtherDepartments}
+										all_items={allDepartments}
 									/>
 								</div>
 							</div>
 						</div>
-						<div className="lower">
-
-						</div>
+						<div className="lower"></div>
 					</div>
 				</div>
 			</div>
@@ -243,12 +289,14 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 				<div className="external">
 					<div className="internal">
 						<div className="top">
-							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
+							<span id="underlined">
+								Λεπτομέρειες Αίτησης: {params.id}
+							</span>
 						</div>
 						<div className="middle">
 							<AdminEvalBreadcrumbs
 								setCurr={setCurrPage}
-								val={()=>{}}
+								val={() => {}}
 								curr={currPage}
 								first={3}
 								second={3}
@@ -264,126 +312,168 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								/>
 							</div>
 						</div>
-						<div className="lower">
-
-						</div>
+						<div className="lower"></div>
 					</div>
 				</div>
 			</div>
 		);
-	}else if (currPage === 4) {
+	} else if (currPage === 4) {
 		return (
 			<div className="content">
 				<MyBreadcrumb array={myBread} />
 				<div className="external">
 					<div className="internal">
 						<div className="top">
-							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
+							<span id="underlined">
+								Λεπτομέρειες Αίτησης: {params.id}
+							</span>
 						</div>
 						<div className="middle">
 							<AdminEvalBreadcrumbs
 								setCurr={setCurrPage}
-								val={()=>{}}
+								val={() => {}}
 								curr={currPage}
 								first={3}
 								second={3}
 								third={3}
 							/>
 							<div className="middle-items">
-							{classToTake.map((item, index)=>{
-								if(classToTake.length === 1){//only +
-									return(
-									<div key={index} className="classes-boxes class-boxes-first">
-										<button
-											className="chevronButton"
-											type="submit"
-											onClick={()=>{AppendItem()}}
-											disabled={!item.value}
+								{classToTake.map((item, index) => {
+									if (classToTake.length === 1) {
+										//only +
+										return (
+											<div
+												key={index}
+												className="classes-boxes class-boxes-first"
 											>
-											<i className="material-icons chevron-item add">
-												{" "}
-												add{" "}
-											</i>
-										</button>
-										<MySelectBox
-											txt="Μαθημα"
-											vaar={(e)=>{updateCurrItemTxt(item, e)}}
-											filled={item.value}
-											items={countries}
-											setItems={setCountries}
-										/>
-									</div>
-									);
-								}else{
-									if(classToTake.length === index+1){ // - +
-										return(
-											<div key={index} className="classes-boxes">
-											<button
-												className="chevronButton"
-												type="submit"
-												onClick={()=>{AppendItem()}}
-												disabled={!item.value}
+												<button
+													className="chevronButton"
+													type="submit"
+													onClick={() => {
+														AppendItem();
+													}}
+													disabled={!item.value}
 												>
-												<i className="material-icons chevron-item add">
-													{" "}
-													add{" "}
-												</i>
-											</button>					
-											<MySelectBox
-												txt="Μαθημα"
-												vaar={(e)=>{updateCurrItemTxt(item, e)}}
-												filled={item.value}
-												items={countries}
-												setItems={setCountries}
-											/>
-											<button
-												className="chevronButton"
-												type="submit"
-												onClick={()=>{RemoveItem(item.id)}}
-												>
-												<i className="material-icons chevron-item">
-													{" "}
-													close{" "}
-												</i>
-											</button>
-										</div>
+													<i className="material-icons chevron-item add">
+														{" "}
+														add{" "}
+													</i>
+												</button>
+												<MySelectBox
+													txt="Μαθημα"
+													vaar={(e) => {
+														updateCurrItemTxt(
+															item,
+															e
+														);
+													}}
+													filled={item.value}
+													items={countries}
+													setItems={setCountries}
+												/>
+											</div>
 										);
-									}else{
-										return(
-											<div key={index} className="classes-boxes class-boxes-end">					
-											<MySelectBox
-												txt="Μαθημα"
-												vaar={(e)=>{updateCurrItemTxt(item, e)}}
-												filled={item.value}
-												items={countries}
-												setItems={setCountries}
-											/>
-											<button
-												className="chevronButton"
-												type="submit"
-												onClick={()=>{RemoveItem(item.id)}}
+									} else {
+										if (classToTake.length === index + 1) {
+											// - +
+											return (
+												<div
+													key={index}
+													className="classes-boxes"
 												>
-												<i className="material-icons chevron-item">
-													{" "}
-													close{" "}
-												</i>
-											</button>
-										</div>
-										);
+													<button
+														className="chevronButton"
+														type="submit"
+														onClick={() => {
+															AppendItem();
+														}}
+														disabled={!item.value}
+													>
+														<i className="material-icons chevron-item add">
+															{" "}
+															add{" "}
+														</i>
+													</button>
+													<MySelectBox
+														txt="Μαθημα"
+														vaar={(e) => {
+															updateCurrItemTxt(
+																item,
+																e
+															);
+														}}
+														filled={item.value}
+														items={countries}
+														setItems={setCountries}
+													/>
+													<button
+														className="chevronButton"
+														type="submit"
+														onClick={() => {
+															RemoveItem(item.id);
+														}}
+													>
+														<i className="material-icons chevron-item">
+															{" "}
+															close{" "}
+														</i>
+													</button>
+												</div>
+											);
+										} else {
+											return (
+												<div
+													key={index}
+													className="classes-boxes class-boxes-end"
+												>
+													<MySelectBox
+														txt="Μαθημα"
+														vaar={(e) => {
+															updateCurrItemTxt(
+																item,
+																e
+															);
+														}}
+														filled={item.value}
+														items={countries}
+														setItems={setCountries}
+													/>
+													<button
+														className="chevronButton"
+														type="submit"
+														onClick={() => {
+															RemoveItem(item.id);
+														}}
+													>
+														<i className="material-icons chevron-item">
+															{" "}
+															close{" "}
+														</i>
+													</button>
+												</div>
+											);
+										}
 									}
-								}
-							})}
+								})}
 							</div>
 
-							<MyTextArea txt={"Γράψε τον λόγο απορριψης:"} filled={reject} setFilled={setReject}/>
+							<MyTextArea
+								txt={"Γράψε τον λόγο απορριψης:"}
+								filled={reject}
+								setFilled={setReject}
+							/>
 						</div>
 						<div className="lower-admin-fourth">
 							<MyButton
-							btn_color="#6EC501"
-							txt_color="#FFFFFF"
-							curr_msg="Αποδοχή"
-							disable={classFinal.length > 0 || reject.length !== 0}
-							funcc={()=>{acceptRequest()}}
+								btn_color="#6EC501"
+								txt_color="#FFFFFF"
+								curr_msg="Αποδοχή"
+								disable={
+									classFinal.length > 0 || reject.length !== 0
+								}
+								funcc={() => {
+									acceptRequest();
+								}}
 							/>
 
 							<MyButton
@@ -391,7 +481,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								txt_color="#FFFFFF"
 								curr_msg="Εκκρεμής"
 								disable={classFinal.length === 0}
-								funcc={()=>{declineRequest()}}
+								funcc={() => {
+									declineRequest();
+								}}
 							/>
 
 							<MyButton
@@ -399,7 +491,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								txt_color="#FFFFFF"
 								curr_msg="Απόρριψη"
 								disable={reject.length === 0}
-								funcc={()=>{declineRequest()}}
+								funcc={() => {
+									declineRequest();
+								}}
 							/>
 						</div>
 					</div>
