@@ -113,7 +113,7 @@ const RegisterPage = () => {
 		}
 
 		if (password != repeatPassword) {
-			setErrorPass("Passwords dont match");
+			setErrorRePass("Passwords dont match");
 			return;
 		}
 
@@ -176,10 +176,18 @@ const RegisterPage = () => {
 										validate={(pass, setError) => {
 											if (pass.value != "") {
 												setError("");
+												if(pass.value.length < 8 || !(pass.value.match(/(?!^\d+$)^.+$/))){
+													setError("Must be 8 length and have at least 1 char")
+												}else{
+													setError("")
+												}
 											} else {
 												setError(
 													"This field is required"
 												);
+											}
+											if (pass.value != repeatPassword) {
+												setErrorRePass("Passwords dont match");
 											}
 										}}
 									/>
@@ -192,6 +200,9 @@ const RegisterPage = () => {
 										validate={(Repass, setError) => {
 											if (Repass.value != "") {
 												setError("");
+												if (password != Repass.value) {
+													setError("Passwords dont match");
+												}
 											} else {
 												setError(
 													"This field is required"

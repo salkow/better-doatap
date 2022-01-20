@@ -74,3 +74,5 @@ admin:
 
 remove go to new application in all pages.
 reset lists of country/university/department when they are empty.
+
+register/profile fix error messages

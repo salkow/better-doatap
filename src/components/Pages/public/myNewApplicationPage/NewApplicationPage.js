@@ -237,12 +237,12 @@ const NewApplicationPage = ({ loggedIn }) => {
 		if (params.id !== "-1") {
 			axiosInstance.get(`applications/${params.id}`).then((res) => {
 				settypeOfDiploma(res.data.type_of_diploma);
-				setCountry(res.data.origin_country);
-				setMyUni(res.data.origin_university);
-				setMyDep(res.data.origin_department);
+				setCountry(res.data.origin_country_1);
+				setMyUni(res.data.origin_university_1);
+				setMyDep(res.data.origin_department_1);
 
-				setOtherUni(res.data.destination_university);
-				setOtherDep(res.data.destination_department);
+				setOtherUni(res.data.destination_university_1);
+				setOtherDep(res.data.destination_department_1);
 
 				setDiploma(res.data.diploma);
 			});
