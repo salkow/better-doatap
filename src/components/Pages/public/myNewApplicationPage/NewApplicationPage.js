@@ -26,6 +26,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [thirdPageDisabled, setthirdPageDisabled] = useState(true);
 
 	const [typeOfDiploma, settypeOfDiploma] = useState("");
+
 	const [country, setCountry] = useState("");
 	const [myUni, setMyUni] = useState("");
 	const [myDep, setMyDep] = useState("");
@@ -37,6 +38,10 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [updatedFile, setUpdated] = useState(null);
 
 	const [hasToLogIn, setHasToLogIn] = useState(false);
+
+	const [allCountries, setAllCountries] = useState([]);
+	const [allUniversities, setAllUniversities] = useState([]);
+	const [allDepartments, setAllDepartments] = useState([]);
 
 	const [countries, setCountries] = useState([]);
 	const [myUniversities, setMyUniversities] = useState([]);
@@ -59,6 +64,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 					})
 					.then((res) => {
 						setMyUniversities(res);
+						setAllUniversities(res);
 						// setMyUni("");
 						// setMyDep("");
 					});
@@ -70,7 +76,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
-			if (myUni.length !== 0 && country.length !== 0) {
+			if (myUni.length !== 0) {
 				axiosInstance
 					.get("countries/" + country + "/" + myUni)
 					.catch(() => {
@@ -82,6 +88,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 					})
 					.then((res) => {
 						setMyDepartments(res);
+						setAllDepartments(res);
 					});
 			}
 		}, 500);
@@ -215,6 +222,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 			})
 			.then((res) => {
 				setCountries(res);
+				setAllCountries(res);
 			});
 
 		axiosInstance
@@ -311,6 +319,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 									filled={country}
 									items={countries}
 									setItems={setCountries}
+									all_items={allCountries}
 								/>
 								<div className="grouped">
 									<MySelectBox
@@ -319,6 +328,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 										filled={myUni}
 										items={myUniversities}
 										setItems={setMyUniversities}
+										all_items={allUniversities}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
@@ -326,6 +336,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 										filled={myDep}
 										items={myDepartments}
 										setItems={setMyDepartments}
+										all_items={allDepartments}
 									/>
 								</div>
 							</div>
@@ -363,6 +374,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 										filled={otherUni}
 										items={otherUniversities}
 										setItems={setOtherUniversities}
+										all_items={allUniversities}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
@@ -370,6 +382,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 										filled={otherDep}
 										items={otherDepartments}
 										setItems={setOtherDepartments}
+										all_items={allDepartments}
 									/>
 								</div>
 							</div>

@@ -2,7 +2,15 @@ import "./MySelectBox.css";
 
 import { useState, useEffect } from "react";
 
-const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
+const MySelectBox = ({
+	txt,
+	filled,
+	vaar,
+	items,
+	setItems,
+	disabled,
+	all_items,
+}) => {
 	// const [items, setItems] = useState([
 	// 	"First",
 	// 	"Second",
@@ -10,17 +18,12 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 	// 	"Fourth",
 	// 	"Fifth",
 	// ]);
-	const [allItems, setAllItems] = useState([]);
 
-	useEffect(() => {
-		if (allItems.length === 0) {
-			setAllItems(items);
-		}
-	}, [items]);
+	useEffect(() => {}, [items]);
 
 	// const [curr, setCurr] = useState([]);
 	function setActiveElement(event) {
-		if(!disabled){
+		if (!disabled) {
 			event.preventDefault();
 			// let el = event.currentTarget.querySelector('.container-options-select');
 			let el = event.currentTarget.nextElementSibling;
@@ -44,10 +47,11 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 		}
 	}
 	function removeActiveElement(event) {
-		if(!disabled){
+		if (!disabled) {
 			event.preventDefault();
 			let el =
-				event.currentTarget.parentElement.parentElement.nextElementSibling;
+				event.currentTarget.parentElement.parentElement
+					.nextElementSibling;
 			el.classList.toggle("active");
 		}
 	}
@@ -55,8 +59,10 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 	function filter(event) {
 		vaar(event);
 
+		let tmp = all_items;
+
 		setItems(
-			allItems.filter((name) => {
+			tmp.filter((name) => {
 				return name.includes(event);
 			})
 		);
@@ -76,7 +82,11 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 								{txt}
 							</span>
 						</div>
-						<div className={"expandBox"+(disabled ?' disabled' : '')}>
+						<div
+							className={
+								"expandBox" + (disabled ? " disabled" : "")
+							}
+						>
 							<input
 								className="expandInput"
 								type="text"
@@ -91,7 +101,11 @@ const MySelectBox = ({ txt, filled, vaar, items, setItems, disabled }) => {
 								}}
 								disabled={disabled}
 							/>
-							<button className="expandButton" type="submit" disabled={disabled}>
+							<button
+								className="expandButton"
+								type="submit"
+								disabled={disabled}
+							>
 								<i className="material-icons expand-item">
 									{" "}
 									expand_more{" "}
