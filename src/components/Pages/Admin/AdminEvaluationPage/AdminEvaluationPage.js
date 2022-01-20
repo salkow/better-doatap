@@ -19,9 +19,6 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 	const params = useParams();
 
 	const [currPage, setCurrPage] = useState(1);
-	const [firstPage, setfirstPage] = useState(3);
-	const [secondPage, setsecondPage] = useState(3);
-	const [thirdPage, setthirdPage] = useState(3);
 
 	const [typeOfDiploma, settypeOfDiploma] = useState("");
 	const [country, setCountry] = useState("");
@@ -32,9 +29,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 	const [otherDep, setOtherDep] = useState("");
 
 	const [diploma, setDiploma] = useState("");
-	const [updatedFile, setUpdated] = useState(null);
 
-	const [hasToLogIn, setHasToLogIn] = useState(false);
 
 	const [countries, setCountries] = useState([]);
 
@@ -45,22 +40,6 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 	const [classToTake, setclassToTake] = useState([{id: 0, value:""}]);
 	const [classFinal, setclassFinal] = useState([]);
 	const [classMaxID, setclassMaxID] = useState(1);
-
-
-	const save_on_local_storage = () => {
-		localStorage.setItem("typeOfDiploma", typeOfDiploma);
-		localStorage.setItem("country", country);
-		localStorage.setItem("myUni", myUni);
-		localStorage.setItem("myDep", myDep);
-		localStorage.setItem("otherUni", otherUni);
-		localStorage.setItem("otherDep", otherDep);
-		localStorage.setItem("diploma", diploma);
-		localStorage.setItem("updatedFile", updatedFile);
-	};
-
-	// useEffect(() => {
-	// 	setclassFinal(classToTake.filter(i=> i.value !== ""));
-	// }, [classToTake])
 
 	const [redirect, setRedirect] = useState(false);
 
@@ -125,44 +104,17 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 		if (params.id !== "-1") {
 			axiosInstance.get(`applications/${params.id}`).then((res) => {
 				settypeOfDiploma(res.data.type_of_diploma);
-				setCountry(res.data.origin_country);
-				setMyUni(res.data.origin_university);
-				setMyDep(res.data.origin_department);
+				setCountry(res.data.origin_country_1);
+				setMyUni(res.data.origin_university_1);
+				setMyDep(res.data.origin_department_1);
 
-				setOtherUni(res.data.destination_university);
-				setOtherDep(res.data.destination_department);
+				setOtherUni(res.data.destination_university_1);
+				setOtherDep(res.data.destination_department_1);
 
 				setDiploma(res.data.diploma);
 			});
-		} else {
-			settypeOfDiploma(localStorage.getItem("typeOfDiploma") ?? "");
-			setCountry(localStorage.getItem("country") ?? "");
-			setMyUni(localStorage.getItem("myUni") ?? "");
-			setMyDep(localStorage.getItem("myDep") ?? "");
-			setOtherUni(localStorage.getItem("otherUni") ?? "");
-			setOtherDep(localStorage.getItem("otherDep") ?? "");
-			setDiploma(localStorage.getItem("diploma") ?? "");
-			setUpdated(localStorage.getItem("updatedFile") ?? "");
-
-			localStorage.removeItem("typeOfDiploma");
-			localStorage.removeItem("country");
-			localStorage.removeItem("myUni");
-			localStorage.removeItem("myDep");
-			localStorage.removeItem("otherUni");
-			localStorage.removeItem("otherDep");
-			localStorage.removeItem("diploma");
-			localStorage.removeItem("updatedFile");
 		}
 	}, []);
-
-	const login = () => {
-		save_on_local_storage();
-		setHasToLogIn(true);
-	};
-
-	if (hasToLogIn) {
-		return <Navigate to="/loginPage" />;
-	}
 
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
@@ -193,9 +145,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								setCurr={setCurrPage}
 								val={()=>{}}
 								curr={currPage}
-								first={firstPage}
-								second={secondPage}
-								third={thirdPage}
+								first={3}
+								second={3}
+								third={3}
 							/>
 							<div className="middle-items">
 								<MyRadioButton
@@ -254,9 +206,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								setCurr={setCurrPage}
 								val={()=>{}}
 								curr={currPage}
-								first={firstPage}
-								second={secondPage}
-								third={thirdPage}
+								first={3}
+								second={3}
+								third={3}
 							/>
 							<div className="middle-items">
 								<div className="grouped">
@@ -300,9 +252,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								setCurr={setCurrPage}
 								val={()=>{}}
 								curr={currPage}
-								first={firstPage}
-								second={secondPage}
-								third={thirdPage}
+								first={3}
+								second={3}
+								third={3}
 							/>
 							<div className="middle-items">
 								<MyFileCard
@@ -310,7 +262,6 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 									desc="Αφορά το πτυχίου που παραλάβατε αφού ολοκληρώσατε την φοίτησή σας."
 									link={diploma}
 									setLink={setDiploma}
-									setUpdated={setUpdated}
 									disabled={true}
 								/>
 							</div>
@@ -336,9 +287,9 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								setCurr={setCurrPage}
 								val={()=>{}}
 								curr={currPage}
-								first={firstPage}
-								second={secondPage}
-								third={thirdPage}
+								first={3}
+								second={3}
+								third={3}
 							/>
 							<div className="middle-items">
 							{classToTake.map((item, index)=>{
