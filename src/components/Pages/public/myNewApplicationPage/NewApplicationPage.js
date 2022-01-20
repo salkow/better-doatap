@@ -91,7 +91,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 		const delayDebounceFn = setTimeout(() => {
 			if (otherUni.length !== 0) {
 				axiosInstance
-					.get("countries/Greece/" + myUni)
+					.get("countries/Greece/" + otherUni)
 					.catch(() => {
 						setOtherDepartments([]);
 						return [];
@@ -190,6 +190,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 	};
 
 	const save_on_local_storage = () => {
+		console.log("I saved the data.");
 		localStorage.setItem("was_in_new_app", true);
 		localStorage.setItem("typeOfDiploma", typeOfDiploma);
 		localStorage.setItem("country", country);

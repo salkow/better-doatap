@@ -34,23 +34,20 @@ help icons, ask
 
 κανε αιτηση: κουμπια κατω
 
-κανε αιτηση: select items
+-κανε αιτηση: select items
 
 login: enter
-
-
 
 -admin ονομα μαθηματων
 -admin accept/reject
 
 -οι αιτησεις μου delete
--admin μαθηματα + - , 
+-admin μαθηματα + - ,
 -admin υποβληθεισες αιτησεις name/lastname
 -οι αιτησεις μου declined, message print classes
 
 home page button redirect
 login redrects need fixing
-
 
 απο call:
 -κανε αιτηση login promt μονο στο τελευταιο στεπ
@@ -65,4 +62,4 @@ admin:
 -λογος απορριψης στο τελος
 -αντιστοιχηση μαθηματων αν >1 μαθηματα τοτε disabled accept button
 
-αναζητηση δεν πρεπει να λειτουργει
+-αναζητηση δεν πρεπει να λειτουργει
