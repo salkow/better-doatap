@@ -14,6 +14,8 @@ import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 
 import axiosInstance from "../../../../axios.js";
+import axiosInstanceFD from "../../../../axios.js";
+
 
 const NewApplicationPage = ({ loggedIn }) => {
 	const params = useParams();
@@ -49,6 +51,47 @@ const NewApplicationPage = ({ loggedIn }) => {
 
 	const [otherUniversities, setOtherUniversities] = useState([]);
 	const [otherDepartments, setOtherDepartments] = useState([]);
+
+	const TempSave = () =>{
+		const fd = new FormData();
+		fd.append('diploma', updatedFile);
+		fd.append("name", getName());
+		fd.append("is_submitted", false);
+		fd.append("origin_country_1", country)
+		fd.append("origin_university_1", myUni);
+		fd.append("origin_department_1", myDep);
+		fd.append("destination_university_1", otherUni);
+		fd.append("destination_department_1", otherDep);
+		fd.append("type_of_diploma", typeOfDiploma);
+
+		axiosInstanceFD.post('applications/', fd)
+	}
+
+	const FullSubmit =  () =>{
+		const fd = new FormData();
+		fd.append('diploma', updatedFile);
+		fd.append("name", getName());
+		fd.append("is_submitted", true);
+		fd.append("progress", "P");
+		fd.append("origin_country_1", country)
+		fd.append("origin_university_1", myUni);
+		fd.append("origin_department_1", myDep);
+		fd.append("destination_university_1", otherUni);
+		fd.append("destination_department_1", otherDep);
+		fd.append("type_of_diploma", typeOfDiploma);
+
+		axiosInstanceFD.post('applications/', fd)
+	}
+
+	const getName = () =>{
+		if(typeOfDiploma === "B"){
+			return 'Αιτηση βασικου πτυχιου'
+		}else if(typeOfDiploma === "P"){
+			return 'Αιτηση μεταπτυχιακου πτυχιου'
+		}else{
+			return 'Αιτηση διδακτορικου πτυχιου'
+		}
+	}
 
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
@@ -420,12 +463,14 @@ const NewApplicationPage = ({ loggedIn }) => {
 										txt_color="white"
 										curr_msg="Προσωρινή Αποθήκευση"
 										disable={!loggedIn}
+										funcc={TempSave}
 									/>
 									<MyButton
 										btn_color="#DD9F00"
 										txt_color="white"
 										curr_msg="Οριστική Υποβολή"
 										disable={fieldsOK() || !loggedIn}
+										funcc={FullSubmit}
 									/>
 								</div>
 							)}
