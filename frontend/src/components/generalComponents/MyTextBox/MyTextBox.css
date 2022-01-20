@@ -26,6 +26,11 @@
     outline: none;
     width: 330px;
 }
+.txt-internal input:disabled {
+    cursor: not-allowed;
+    background-color: rgb(236, 236, 236);
+    border-color: rgb(175, 175, 175);
+}
 .txt-internal input:focus {
     border-color: rgba(0, 0, 0, 0.70);
 }

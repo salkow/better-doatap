@@ -37,7 +37,7 @@ const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt, ot
         );
     }else if(status === 'A'){
         stat.push(
-            <AppCardTag key={{id} + 'a'} txt="Εγγεγκριμένο" txt_clr="white" clr="#07BE2F"/>
+            <AppCardTag key={{id} + 'a'} txt="Εγγεγκριμένο" txt_clr="white" clr="#07BE2F" approved={true}/>
         );
     }else if(status === 'D'){
         stat.push(

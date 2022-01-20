@@ -1,6 +1,6 @@
 import './MyTextBox.css';
 
-const MyTextBox = ({txt, filled, type, error, setError, vaar, validate, star}) => 
+const MyTextBox = ({txt, filled, type, error, setError, vaar, validate, star, disabled}) => 
 {
     return (
 		<div className="txt-external">
@@ -8,7 +8,7 @@ const MyTextBox = ({txt, filled, type, error, setError, vaar, validate, star}) =
                 <div className="txt-top">
                    <span>{!star && (<span id="star">*</span>)}{txt}</span>
                 </div>
-                <input type={type} onChange={(e)=>{vaar(e.target.value);if(validate){validate(e.target, setError)}}} defaultValue={filled}/>
+                <input type={type} onChange={(e)=>{vaar(e.target.value);if(validate){validate(e.target, setError)}}} value={filled} defaultValue={filled} disabled={disabled}/>
                 <span className={'error_span_txt'+(error ? ' error_msg_txt' : '')}>*{error}</span>
             </div>
         </div>

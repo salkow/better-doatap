@@ -63,11 +63,6 @@ O πίνακας department, όπου αποθηκεύονται τα τμήμα
 
 -πως κανω αιτηση
 
-
-steps:
-
-
-
 TODO:
 help icons, ask
 
@@ -86,7 +81,7 @@ help icons, ask
 -οι αιτησεις μου declined, message print classes
 
 -home page button redirect
-login redrects need fixing
+-login redrects need fixing
 
 απο call:
 -κανε αιτηση login promt μονο στο τελευταιο στεπ
@@ -116,6 +111,6 @@ admin:
 
 
 
-register/profile fix error messages
+-register/profile fix error messages
 -file localstorage fix
-footer κανε αιτηση
+-footer κανε αιτηση

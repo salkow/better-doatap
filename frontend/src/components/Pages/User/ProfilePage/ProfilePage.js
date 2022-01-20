@@ -40,6 +40,8 @@ const ProfilePage = ({isAdmin}) => {
   const [id, setID] = useState("");
   const [Errorid, setErrorID] = useState("");
 
+  const [pass_dis, setpass_dis] = useState(true);
+
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
@@ -58,6 +60,19 @@ const ProfilePage = ({isAdmin}) => {
         setAFM(res.data.afm)
       });
   }, []);
+
+  useEffect(() => {
+    if(OldPassword === ""){
+      setpass_dis(true);
+      setErrorPass("")
+      setErrorRePass("")
+      setPass("");
+      setRePass("");
+    }else{
+      setpass_dis(false)
+    }
+  }, [OldPassword]);
+  
 
   const submit = async () => {
     var finish = 0;
@@ -192,7 +207,7 @@ const ProfilePage = ({isAdmin}) => {
               </div>
               <div className="first-group">
                 <span><span id="star">*</span>Συμπλήρωσε τον κωδικό σου, μόνο αν θες να τον αλλάξεις</span>
-                <MyTextBox className="myTextboxes" txt="Old Password" type="password" vaar={setOldPass} error={ErrorOldPassword} setError={setErrorOldPass} validate={(pass, setError) => {
+                <MyTextBox className="myTextboxes" txt="Old Password" type="password" vaar={setOldPass} error={ErrorOldPassword} setError={setErrorOldPass} star={true} validate={(pass, setError) => {
                   // if(pass.value != ""){
                   //   setError("");
                   // }else{
@@ -201,7 +216,7 @@ const ProfilePage = ({isAdmin}) => {
                 }
                 } />
                 <div className="first-other horizontal">
-                  <MyTextBox className="myTextboxes" txt="New Password" type="password" vaar={setPass} error={Errorpassword} setError={setErrorPass} validate={(pass, setError) => {
+                  <MyTextBox className="myTextboxes" txt="New Password" type="password" filled={password} vaar={setPass} error={Errorpassword} disabled={pass_dis} star={true} setError={setErrorPass} validate={(pass, setError) => {
                     if(OldPassword != ""){
                       if(pass.value != ""){
                         setError("");
@@ -226,7 +241,7 @@ const ProfilePage = ({isAdmin}) => {
                     }
                   }
                   } />
-                  <MyTextBox txt="Repeat New Password" type="password" vaar={setRePass} error={ErrorrepeatPassword} setError={setErrorRePass} validate={(Repass, setError) => {
+                  <MyTextBox txt="Repeat New Password" type="password" filled={repeatPassword} vaar={setRePass} error={ErrorrepeatPassword} disabled={pass_dis} star={true} setError={setErrorRePass} validate={(Repass, setError) => {
                     if(OldPassword != "" && password != ""){
                       if(Repass.value != ""){
                         setError("");
