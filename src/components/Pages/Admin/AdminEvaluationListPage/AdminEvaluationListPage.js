@@ -19,7 +19,7 @@ const AdminEvaluationListPage = () =>
         });
     }, []);
 
-    const myBread = [{first: "/", second: "Αρχική"}, {second: "Υποβληθείσες αιτήσεις"}]
+    const myBread = [{second: "Υποβληθείσες αιτήσεις"}]
     
     return (
       <div>

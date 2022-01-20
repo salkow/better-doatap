@@ -60,7 +60,7 @@ function App() {
 							/>
 						}
 					/>
-					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/profile" element={<ProfilePage isAdmin={isAdmin} />} />
 					<Route path="/register" element={<RegisterPage />} />
 					<Route
 						path="/myApplications"

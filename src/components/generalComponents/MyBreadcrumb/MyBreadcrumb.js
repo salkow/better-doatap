@@ -1,7 +1,6 @@
 import { Breadcrumb } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 import './MyBreadcrumb.css'
-
 const MyBreadcrumb = ({ array }) => 
 {
     const fin = []
@@ -14,7 +13,7 @@ const MyBreadcrumb = ({ array }) =>
             );    
         }else{
             fin.push(
-            <Breadcrumb.Item key={i} className={"bread"} href={e.first}>
+            <Breadcrumb.Item key={i} className={"bread"} linkAs={Link} linkProps={{to: e.first}}>
                 <span>{e.second}</span>
             </Breadcrumb.Item>
             );            

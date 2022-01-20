@@ -8,8 +8,13 @@ import MyDatePicker from '../../../generalComponents/MyDatePicker/MyDatePicker';
 import { useState, useEffect } from "react";
 import axiosInstance from "../../../../axios";
 
-const ProfilePage = () => {
-  const myBread = [{ first: "/", second: "Αρχική" }, { second: "Προφίλ" }]
+const ProfilePage = ({isAdmin}) => {
+  var myBread = []
+  if(isAdmin){
+    myBread = [{ second: "Προφίλ" }]
+  }else{
+    myBread = [{ first: "/", second: "Αρχική" }, { second: "Προφίλ" }]
+  }
   const myRadio = [{ item: "ΓΥΝΑΙΚΑ", value: "F" }, { item: "ΑΝΔΡΑΣ", value: "M" }, { item: "ΑΛΛΟ", value: "O" }]
 
   const [email, setEmail] = useState("");
