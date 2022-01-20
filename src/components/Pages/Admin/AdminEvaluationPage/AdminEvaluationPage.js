@@ -382,7 +382,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 							btn_color="#6EC501"
 							txt_color="#FFFFFF"
 							curr_msg="Αποδοχή"
-							disable={classFinal.length > 0 || reject.length !== 0}
+							disable={(otherUni  === "" || otherDep === "") || classFinal.length > 0 || reject.length !== 0}
 							funcc={()=>{acceptRequest()}}
 							/>
 

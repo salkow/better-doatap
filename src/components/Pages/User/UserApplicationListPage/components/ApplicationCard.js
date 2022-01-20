@@ -7,12 +7,17 @@ import {Link} from "react-router-dom"
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt}) => 
 {
-    const renderTooltip = (props) => (
+    const renderTooltipDec = (props) => (
         <Tooltip id="button-tooltip" {...props}>
           {tool_txt}
-          {class_txt && (<div><br />Πρέπει να πάρετε αυτά τα επιπλέον μαθήματα:<br />{class_txt}</div>)}
         </Tooltip>
       );
+
+    const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+        {class_txt && (<div><br />Πρέπει να πάρετε αυτά τα επιπλέον μαθήματα:<br />{class_txt}</div>)}
+    </Tooltip>
+    );
     const fin = [];
     if(isFinalized){
         fin.push(
@@ -36,6 +41,21 @@ const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt}) =
     }else if(status === 'D'){
         stat.push(
             <AppCardTag key={{id} + 'b'} txt="Μη εγγεγκριμένο" txt_clr="white" clr="#D41818"/>
+        );
+        stat.push(
+            <OverlayTrigger
+                placement="right"
+                delay={{ show: 50, hide: 400 }}
+                overlay={renderTooltipDec}>
+
+                <span key={{id} + 'bb'} className="helpSpan" type="submit">
+                    <i className="material-icons help-item"> help_outline </i>
+                </span>            
+            </OverlayTrigger>,
+        );
+    }else if(isFinalized && status === "N"){
+        stat.push(
+            <AppCardTag key={{id} + 'e'} txt="Σε εκκρεμότητα..." txt_clr="black" clr="#BFBFBF"/>
         );
         stat.push(
             <OverlayTrigger
