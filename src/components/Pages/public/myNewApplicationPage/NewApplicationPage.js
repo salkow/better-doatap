@@ -39,27 +39,108 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [hasToLogIn, setHasToLogIn] = useState(false);
 
 	const [countries, setCountries] = useState([]);
+	const [myUniversities, setMyUniversities] = useState([]);
+	const [myDepartments, setMyDepartments] = useState([]);
+
+	const [otherUniversities, setOtherUniversities] = useState([]);
+	const [otherDepartments, setOtherDepartments] = useState([]);
+
+	useEffect(() => {
+		const delayDebounceFn = setTimeout(() => {
+			if (country.length !== 0) {
+				axiosInstance
+					.get("countries/" + country)
+					.catch(() => {
+						setMyUniversities([]);
+						return [];
+					})
+					.then((res) => {
+						return res.data.map((i) => i.name);
+					})
+					.then((res) => {
+						setMyUniversities(res);
+					});
+			}
+		}, 500);
+
+		return () => clearTimeout(delayDebounceFn);
+	}, [country]);
+
+	useEffect(() => {
+		const delayDebounceFn = setTimeout(() => {
+			if (myUni.length !== 0 && country.length !== 0) {
+				axiosInstance
+					.get("countries/" + country + "/" + myUni)
+					.catch(() => {
+						setMyDepartments([]);
+						return [];
+					})
+					.then((res) => {
+						return res.data.map((i) => i.name);
+					})
+					.then((res) => {
+						setMyDepartments(res);
+					});
+			}
+		}, 500);
+
+		return () => clearTimeout(delayDebounceFn);
+	}, [myUni]);
+
+	useEffect(() => {
+		const delayDebounceFn = setTimeout(() => {
+			if (otherUni.length !== 0) {
+				axiosInstance
+					.get("countries/Greece/" + myUni)
+					.catch(() => {
+						setOtherDepartments([]);
+						return [];
+					})
+					.then((res) => {
+						return res.data.map((i) => i.name);
+					})
+					.then((res) => {
+						setOtherDepartments(res);
+					});
+			}
+		}, 500);
+
+		return () => clearTimeout(delayDebounceFn);
+	}, [otherUni]);
 
 	const validate = () => {
-		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === ""){
+		if (
+			typeOfDiploma === "" ||
+			country === "" ||
+			myUni === "" ||
+			myDep === ""
+		) {
 			setsecondPageDisabled(true);
 			setthirdPageDisabled(true);
-		}else{
+		} else {
 			setsecondPageDisabled(false);
 			setfirstPage(2);
 			// if(otherUni === "" || otherDep === ""){//TODO switch to this cause these wont ever be null
-			if(otherUni === "" || otherDep === "" || otherUni === null || otherDep === null){
+			if (
+				otherUni === "" ||
+				otherDep === "" ||
+				otherUni === null ||
+				otherDep === null
+			) {
 				setthirdPageDisabled(true);
 				setsecondPage(1);
-			}else{
+			} else {
 				setfirstPage(2);
 				setsecondPage(2);
 				setthirdPageDisabled(false);
-				if(diploma === "" && (updatedFile === null || updatedFile === "")){
+				if (
+					diploma === "" &&
+					(updatedFile === null || updatedFile === "")
+				) {
 					setfirstPage(2);
 					setthirdPage(1);
 					return true;
-				}else{
+				} else {
 					setfirstPage(2);
 					setsecondPage(2);
 					setthirdPage(2);
@@ -70,24 +151,43 @@ const NewApplicationPage = ({ loggedIn }) => {
 	};
 
 	useEffect(() => {
-	  validate()
-	}, [typeOfDiploma, country, myUni, myDep, otherUni, otherDep, diploma, updatedFile]);
-	
+		validate();
+	}, [
+		typeOfDiploma,
+		country,
+		myUni,
+		myDep,
+		otherUni,
+		otherDep,
+		diploma,
+		updatedFile,
+	]);
 
-	const fieldsOK =()=>{
-		if(typeOfDiploma === "" || country === "" || myUni === "" || myDep === ""){
-
-		}else{
-			if(otherUni === "" || otherDep === "" || otherUni === null || otherDep === null){
-
-			}else{
-				if(diploma === "" && (updatedFile === null || updatedFile === "")){
+	const fieldsOK = () => {
+		if (
+			typeOfDiploma === "" ||
+			country === "" ||
+			myUni === "" ||
+			myDep === ""
+		) {
+		} else {
+			if (
+				otherUni === "" ||
+				otherDep === "" ||
+				otherUni === null ||
+				otherDep === null
+			) {
+			} else {
+				if (
+					diploma === "" &&
+					(updatedFile === null || updatedFile === "")
+				) {
 					return true;
 				}
 			}
 		}
 		return false;
-	}
+	};
 
 	const save_on_local_storage = () => {
 		localStorage.setItem("was_in_new_app", true);
@@ -105,10 +205,20 @@ const NewApplicationPage = ({ loggedIn }) => {
 		axiosInstance
 			.get(`countries/`)
 			.then((res) => {
-				return res.data.map((i) => i.name);
+				const arr = res.data.map((i) => i.name);
+				return arr.filter((item) => item !== "Greece");
 			})
 			.then((res) => {
 				setCountries(res);
+			});
+
+		axiosInstance
+			.get(`countries/Greece`)
+			.then((res) => {
+				return res.data.map((i) => i.name);
+			})
+			.then((res) => {
+				setOtherUniversities(res);
 			});
 
 		if (params.id !== "-1") {
@@ -202,15 +312,15 @@ const NewApplicationPage = ({ loggedIn }) => {
 										txt="Πανεπιστήμιο"
 										vaar={setMyUni}
 										filled={myUni}
-										items={countries}
-										setItems={setCountries}
+										items={myUniversities}
+										setItems={setMyUniversities}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
 										vaar={setMyDep}
 										filled={myDep}
-										items={countries}
-										setItems={setCountries}
+										items={myDepartments}
+										setItems={setMyDepartments}
 									/>
 								</div>
 							</div>
@@ -246,15 +356,15 @@ const NewApplicationPage = ({ loggedIn }) => {
 										txt="Πανεπιστήμιο"
 										vaar={setOtherUni}
 										filled={otherUni}
-										items={countries}
-										setItems={setCountries}
+										items={otherUniversities}
+										setItems={setOtherUniversities}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
 										vaar={setOtherDep}
 										filled={otherDep}
-										items={countries}
-										setItems={setCountries}
+										items={otherDepartments}
+										setItems={setOtherDepartments}
 									/>
 								</div>
 							</div>
@@ -299,8 +409,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 								<div className="login-promt">
 									<span className="login-promt-txt">
 										<span id="star">*</span>
-										Απαιτείται
-										σύνδεση για
+										Απαιτείται σύνδεση για
 										αποθήκευση/υποβολή/διαγραφή/επαναπεξεργασία
 										της αίτησης σας
 									</span>
@@ -311,23 +420,22 @@ const NewApplicationPage = ({ loggedIn }) => {
 										funcc={login}
 									/>
 								</div>
-							)
-							:
-							<div className="buttons">
-								<MyButton
-									btn_color="#1FAEFF"
-									txt_color="white"
-									curr_msg="Προσωρινή Αποθήκευση"
-									disable={!loggedIn}
-								/>
-								<MyButton
-									btn_color="#DD9F00"
-									txt_color="white"
-									curr_msg="Οριστική Υποβολή"
-									disable={fieldsOK() || !loggedIn}
-								/>
-							</div>
-						}
+							) : (
+								<div className="buttons">
+									<MyButton
+										btn_color="#1FAEFF"
+										txt_color="white"
+										curr_msg="Προσωρινή Αποθήκευση"
+										disable={!loggedIn}
+									/>
+									<MyButton
+										btn_color="#DD9F00"
+										txt_color="white"
+										curr_msg="Οριστική Υποβολή"
+										disable={fieldsOK() || !loggedIn}
+									/>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

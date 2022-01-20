@@ -41,13 +41,15 @@ function App() {
 			<div className="gen-space content">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/new_application" element={<HomePage />} />
 					<Route
 						path="/how_to_create_new_application"
 						element={<HowToCreateANewApplicationPage />}
 					/>
 					<Route path="/qna" element={<QnaPage />} />
-					<Route path="/communication" element={<CommunicationPage />} />
+					<Route
+						path="/communication"
+						element={<CommunicationPage />}
+					/>
 					<Route
 						path="/loginPage"
 						element={

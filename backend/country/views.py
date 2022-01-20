@@ -30,13 +30,16 @@ class UniversityList(generics.ListAPIView):
         try:
             return Country.objects.get(pk=pk)
         except Country.DoesNotExist:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            raise
 
     def get(self, request, pk, format=None):
-        country = self.get_object(pk)
-        universities = country.universities.all().order_by('name')
-        serializer = UniversitySerializer(universities, many=True)
-        return Response(serializer.data)
+        try:
+            country = self.get_object(pk)
+            universities = country.universities.all().order_by('name')
+            serializer = UniversitySerializer(universities, many=True)
+            return Response(serializer.data)
+        except Country.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class DepartmentList(generics.ListAPIView):
 
@@ -47,18 +50,20 @@ class DepartmentList(generics.ListAPIView):
         try:
             return Country.objects.get(pk=pk)
         except Country.DoesNotExist:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            raise
 
     def get_uni_object(self, pk):
         try:
             return University.objects.get(pk=pk)
         except University.DoesNotExist:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            raise
 
     def get(self, request, country_pk, uni_pk, format=None):
-
-        country = self.get_country_object(country_pk)
-        university = self.get_uni_object(uni_pk)
-        departments = university.departments.all().order_by('name')
-        serializer = DepartmentSerializer(departments, many=True)
-        return Response(serializer.data)
+        try:
+            country = self.get_country_object(country_pk)
+            university = self.get_uni_object(uni_pk)
+            departments = university.departments.all().order_by('name')
+            serializer = DepartmentSerializer(departments, many=True)
+            return Response(serializer.data)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
