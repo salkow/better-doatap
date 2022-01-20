@@ -120,7 +120,7 @@ const RegisterPage = () => {
 		}
 
 		if (password != repeatPassword) {
-			setErrorPass("Passwords dont match");
+			setErrorRePass("Passwords dont match");
 			return;
 		}
 
@@ -196,6 +196,9 @@ const RegisterPage = () => {
 													"This field is required"
 												);
 											}
+											if (pass.value != repeatPassword) {
+												setErrorRePass("Passwords dont match");
+											}
 										}}
 									/>
 									<MyTextBox
@@ -207,6 +210,9 @@ const RegisterPage = () => {
 										validate={(Repass, setError) => {
 											if (Repass.value != "") {
 												setError("");
+												if (password != Repass.value) {
+													setError("Passwords dont match");
+												}
 											} else {
 												setError(
 													"This field is required"

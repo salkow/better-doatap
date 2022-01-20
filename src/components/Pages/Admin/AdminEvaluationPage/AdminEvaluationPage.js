@@ -217,16 +217,14 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 										vaar={setOtherUni}
 										filled={otherUni}
 										items={countries}
-										setItems={setCountries}
-										disabled={true}
+										setItems={setCountries}//TODO
 									/>
 									<MySelectBox
 										txt="Τμήμα"
 										vaar={setOtherDep}
 										filled={otherDep}
 										items={countries}
-										setItems={setCountries}
-										disabled={true}
+										setItems={setCountries}//TODO
 									/>
 								</div>
 							</div>
@@ -391,8 +389,16 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 							<MyButton
 								btn_color="#E37171"
 								txt_color="#FFFFFF"
+								curr_msg="Εκκρεμής"
+								disable={classFinal.length === 0}
+								funcc={()=>{declineRequest()}}
+							/>
+
+							<MyButton
+								btn_color="#E37171"
+								txt_color="#FFFFFF"
 								curr_msg="Απόρριψη"
-								disable={reject.length === 0 && classFinal.length === 0}
+								disable={reject.length === 0}
 								funcc={()=>{declineRequest()}}
 							/>
 						</div>

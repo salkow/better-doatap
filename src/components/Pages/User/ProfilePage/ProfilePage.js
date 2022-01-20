@@ -196,20 +196,46 @@ const ProfilePage = () => {
                 }
                 } />
                 <div className="first-other horizontal">
-                  <MyTextBox className="myTextboxes" txt="Password" type="password" vaar={setPass} error={Errorpassword} setError={setErrorPass} validate={(pass, setError) => {
-                    // if(pass.value != ""){
-                    //   setError("");
-                    // }else{
-                    //   setError("This field is required")
-                    // }
+                  <MyTextBox className="myTextboxes" txt="New Password" type="password" vaar={setPass} error={Errorpassword} setError={setErrorPass} validate={(pass, setError) => {
+                    if(OldPassword != ""){
+                      if(pass.value != ""){
+                        setError("");
+                        if(pass.value.length < 8 || !(pass.value.match(/(?!^\d+$)^.+$/))){
+													setError("Must be 8 length and have at least 1 char")
+												}else{
+													setError("")
+												}
+                      }else{
+                        setError("This field is required")
+                      }
+
+                      if (pass.value != "" && pass.value != repeatPassword) {
+												setErrorRePass("Passwords dont match");
+											}else{
+                        setErrorRePass("")
+                      }
+                    }else{
+                      console.log("test")
+                      setErrorRePass("")
+                      setError("")
+                    }
                   }
                   } />
-                  <MyTextBox txt="Repeat Password" type="password" vaar={setRePass} error={ErrorrepeatPassword} setError={setErrorRePass} validate={(Repass, setError) => {
-                    // if(Repass.value != ""){
-                    //   setError("");
-                    // }else{
-                    //   setError("This field is required")
-                    // }
+                  <MyTextBox txt="Repeat New Password" type="password" vaar={setRePass} error={ErrorrepeatPassword} setError={setErrorRePass} validate={(Repass, setError) => {
+                    if(OldPassword != "" && password != ""){
+                      if(Repass.value != ""){
+                        setError("");
+                        if (password != "" && password != Repass.value) {
+													setError("Passwords dont match");
+												}else{
+                          setError("")
+                        }
+                      }else{
+                        setError("This field is required")
+                      }
+                    }else{
+                      setError("")
+                    }
                   }
                   } />
                 </div>
