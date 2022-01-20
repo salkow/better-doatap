@@ -52,46 +52,52 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [otherUniversities, setOtherUniversities] = useState([]);
 	const [otherDepartments, setOtherDepartments] = useState([]);
 
-	const TempSave = () =>{
+	const [reddirect, setReddirect] = useState(false);
+
+	const TempSave = () => {
 		const fd = new FormData();
-		fd.append('diploma', updatedFile);
+		fd.append("diploma", updatedFile);
 		fd.append("name", getName());
 		fd.append("is_submitted", false);
-		fd.append("origin_country_1", country)
+		fd.append("origin_country_1", country);
 		fd.append("origin_university_1", myUni);
 		fd.append("origin_department_1", myDep);
 		fd.append("destination_university_1", otherUni);
 		fd.append("destination_department_1", otherDep);
 		fd.append("type_of_diploma", typeOfDiploma);
 
-		axiosInstanceFD.post('applications/x/', fd)
-	}
+		axiosInstanceFD.post("applications/x/", fd);
 
-	const FullSubmit =  () =>{
+		setReddirect(true);
+	};
+
+	const FullSubmit = () => {
 		const fd = new FormData();
-		fd.append('diploma', updatedFile);
+		fd.append("diploma", updatedFile);
 		fd.append("name", getName());
 		fd.append("is_submitted", true);
 		fd.append("progress", "P");
-		fd.append("origin_country_1", country)
+		fd.append("origin_country_1", country);
 		fd.append("origin_university_1", myUni);
 		fd.append("origin_department_1", myDep);
 		fd.append("destination_university_1", otherUni);
 		fd.append("destination_department_1", otherDep);
 		fd.append("type_of_diploma", typeOfDiploma);
 
-		axiosInstanceFD.post('applications/x/', fd)
-	}
+		axiosInstanceFD.post("applications/x/", fd);
 
-	const getName = () =>{
-		if(typeOfDiploma === "B"){
-			return 'Αιτηση βασικου πτυχιου'
-		}else if(typeOfDiploma === "P"){
-			return 'Αιτηση μεταπτυχιακου πτυχιου'
-		}else{
-			return 'Αιτηση διδακτορικου πτυχιου'
+		setReddirect(true);
+	};
+
+	const getName = () => {
+		if (typeOfDiploma === "B") {
+			return "Αιτηση βασικου πτυχιου";
+		} else if (typeOfDiploma === "P") {
+			return "Αιτηση μεταπτυχιακου πτυχιου";
+		} else {
+			return "Αιτηση διδακτορικου πτυχιου";
 		}
-	}
+	};
 
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
@@ -162,19 +168,23 @@ const NewApplicationPage = ({ loggedIn }) => {
 	}, [otherUni]);
 
 	const validate = () => {
-		if (typeOfDiploma === "" ||
+		if (
+			typeOfDiploma === "" ||
 			country === "" ||
 			myUni === "" ||
-			myDep === "") {
+			myDep === ""
+		) {
 			setsecondPageDisabled(true);
 			setthirdPageDisabled(true);
-		}else {
+		} else {
 			setsecondPageDisabled(false);
 			setfirstPage(2);
 			setsecondPage(2);
 			setthirdPageDisabled(false);
-			if (diploma === "" &&
-				(updatedFile === null || updatedFile === "")) {
+			if (
+				diploma === "" &&
+				(updatedFile === null || updatedFile === "")
+			) {
 				setfirstPage(2);
 				setthirdPage(1);
 				return true;
@@ -289,6 +299,10 @@ const NewApplicationPage = ({ loggedIn }) => {
 		save_on_local_storage();
 		setHasToLogIn(true);
 	};
+
+	if (reddirect) {
+		return <Navigate to="/myApplications" />;
+	}
 
 	if (hasToLogIn) {
 		return <Navigate to="/loginPage" />;
