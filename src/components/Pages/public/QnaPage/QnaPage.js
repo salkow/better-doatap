@@ -1,8 +1,12 @@
 import MyBreadcrumb from "../../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 
 import { Container } from "react-bootstrap";
+import { useEffect } from "react";
 
 const QnaPage = () => {
+	useEffect(() => {
+		localStorage.removeItem("was_in_new_app");
+	}, []);
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Συχνές Ερωτήσεις" },

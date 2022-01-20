@@ -6,8 +6,13 @@ import MyTextArea from "../../../generalComponents/MyTextArea/MyTextArea";
 import MyButton from "../../../generalComponents/MyButton/MyButton";
 
 import { Row, Col, Container } from "react-bootstrap";
+import { useEffect } from "react";
 
 const CommunicationPage = () => {
+	useEffect(() => {
+		localStorage.removeItem("was_in_new_app");
+	}, []);
+	
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Επικοινωνία" },

@@ -1,8 +1,12 @@
 import MyBreadcrumb from "../../../generalComponents/MyBreadcrumb/MyBreadcrumb";
 
 import { Container, ListGroup } from "react-bootstrap";
+import { useEffect } from "react";
 
 const HowToCreateANewApplicationPage = () => {
+	useEffect(() => {
+		localStorage.removeItem("was_in_new_app");
+	}, []);
 	const myBread = [
 		{ first: "/", second: "Αρχική" },
 		{ second: "Πώς να κάνω αίτηση" },

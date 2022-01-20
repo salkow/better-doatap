@@ -1,10 +1,14 @@
 import "./myHomePage.css";
 import img from "../../../../assets/bgImage.jpg";
 import MyButton from "../../../generalComponents/MyButton/MyButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 const HomePage = () => {
+	useEffect(() => {
+		localStorage.removeItem("was_in_new_app");
+	}, []);
+	
 	const [goToNewApp, setGoToNewApp] = useState(false);
 
 	if (goToNewApp) {

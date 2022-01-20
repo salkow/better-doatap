@@ -154,6 +154,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 	};
 
 	useEffect(() => {
+		// save_on_local_storage();
 		validate();
 	}, [
 		typeOfDiploma,
