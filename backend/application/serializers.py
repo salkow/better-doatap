@@ -32,4 +32,4 @@ class ApplicationListSerializer(serializers.ModelSerializer):
                   'destination_department', 'type_of_diploma', 'reasons_for_declination',
                   'extra_origin_university', 'extra_origin_department', 'origin_country_1',
                   'origin_university_1', 'origin_department_1', 'destination_university_1',
-                  'destination_department_1')
+                  'destination_department_1', 'extra_subject')

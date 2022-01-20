@@ -10,6 +10,7 @@ const MySelectBox = ({
 	setItems,
 	disabled,
 	all_items,
+	star
 }) => {
 	// const [items, setItems] = useState([
 	// 	"First",
@@ -77,10 +78,7 @@ const MySelectBox = ({
 						onClick={setActiveElement}
 					>
 						<div className="top-txt-select">
-							<span>
-								<span id="star-select">*</span>
-								{txt}
-							</span>
+							<span>{!star && (<span id="star-select">*</span>)}{txt}</span>
 						</div>
 						<div
 							className={

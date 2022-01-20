@@ -52,8 +52,10 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 
 	const acceptRequest = async () => {
 		axiosInstance
-			.patch("applications/" + params.id + "/", {
+			.patch("applications/admin/" + params.id + "/", {
 				progress: "A",
+				destination_university_1: otherUni,
+				destination_department_1: otherDep,
 			})
 			.then(() => {
 				setRedirect(true);
@@ -69,12 +71,25 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 		return t.slice(0, -2);
 	};
 
+	const holdRequest = async () => {
+		axiosInstance
+			.patch("applications/admin/" + params.id + "/", {
+				progress: "N",
+				extra_subject: makeUsuableArray(),
+				destination_university_1: otherUni,
+				destination_department_1: otherDep,
+			})
+			.then(() => {
+				setRedirect(true);
+			});
+	};
+
+
 	const declineRequest = async () => {
 		axiosInstance
-			.patch("applications/" + params.id + "/", {
+			.patch("applications/admin/" + params.id + "/", {
 				progress: "D",
 				reasons_for_declination: reject,
-				extra_subject: makeUsuableArray(),
 			})
 			.then(() => {
 				setRedirect(true);
@@ -439,8 +454,8 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								btn_color="#E37171"
 								txt_color="#FFFFFF"
 								curr_msg="Εκκρεμής"
-								disable={classFinal.length === 0}
-								funcc={()=>{declineRequest()}}
+								disable={classFinal.length === 0 || (otherUni  === "" || otherDep === "")}
+								funcc={()=>{holdRequest()}}
 							/>
 
 							<MyButton

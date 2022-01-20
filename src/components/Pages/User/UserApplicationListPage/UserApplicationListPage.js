@@ -13,6 +13,7 @@ const UserApplicationListPage = () =>
     axiosInstance
         .get(`applications/`)
         .then((res) => {
+          console.log(res.data)
           setData(res.data)
         });
   }
@@ -43,7 +44,7 @@ const UserApplicationListPage = () =>
       
 				{data.map((item, index) => (
               <div key={item.id} className="middle-middle">
-                <ApplicationCard id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination} class_txt={item.extra_subject}/>
+                <ApplicationCard id={item.id} name={item.name} isFinalized={item.is_submitted} status={item.progress} tool_txt={item.reasons_for_declination} otherUni={item.destination_university_1} otherDep={item.destination_department_1} class_txt={item.extra_subject}/>
                 {!(item.is_submitted) &&
                   <button
                     className="chevronButton"

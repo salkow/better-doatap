@@ -52,11 +52,15 @@ const NewApplicationPage = ({ loggedIn }) => {
 	const [otherUniversities, setOtherUniversities] = useState([]);
 	const [otherDepartments, setOtherDepartments] = useState([]);
 
+
+	const [submited, setSubmited] = useState(false);
 	const [reddirect, setReddirect] = useState(false);
 
 	const TempSave = () => {
 		const fd = new FormData();
-		fd.append("diploma", updatedFile);
+		if(updatedFile !== null && updatedFile !== ""){
+			fd.append('diploma', updatedFile);
+		}
 		fd.append("name", getName());
 		fd.append("is_submitted", false);
 		fd.append("origin_country_1", country);
@@ -66,38 +70,48 @@ const NewApplicationPage = ({ loggedIn }) => {
 		fd.append("destination_department_1", otherDep);
 		fd.append("type_of_diploma", typeOfDiploma);
 
-		axiosInstanceFD.post("applications/x/", fd);
+		if(params.id !== "-1"){
+			axiosInstanceFD.patch("applications/"+params.id+"/", fd);
+		}else{
+			axiosInstanceFD.post("applications/x/", fd);			
+		}
 
 		setReddirect(true);
 	};
 
-	const FullSubmit = () => {
+	const FullSubmit =  () =>{
 		const fd = new FormData();
-		fd.append("diploma", updatedFile);
+		if(updatedFile !== null && updatedFile !== ""){
+			console.log(updatedFile)
+			fd.append('diploma', updatedFile);
+		}
 		fd.append("name", getName());
 		fd.append("is_submitted", true);
 		fd.append("progress", "P");
-		fd.append("origin_country_1", country);
+		fd.append("origin_country_1", country)
 		fd.append("origin_university_1", myUni);
 		fd.append("origin_department_1", myDep);
 		fd.append("destination_university_1", otherUni);
 		fd.append("destination_department_1", otherDep);
 		fd.append("type_of_diploma", typeOfDiploma);
-
-		axiosInstanceFD.post("applications/x/", fd);
+		if(params.id !== "-1"){
+			axiosInstanceFD.patch("applications/"+params.id+"/", fd);
+		}else{
+			axiosInstanceFD.post("applications/x/", fd);			
+		}
 
 		setReddirect(true);
 	};
 
-	const getName = () => {
-		if (typeOfDiploma === "B") {
-			return "Αιτηση βασικου πτυχιου";
-		} else if (typeOfDiploma === "P") {
-			return "Αιτηση μεταπτυχιακου πτυχιου";
-		} else {
-			return "Αιτηση διδακτορικου πτυχιου";
+	const getName = () =>{
+		if(typeOfDiploma === "B"){
+			return 'Αιτηση βασικου πτυχιου'
+		}else if(typeOfDiploma === "P"){
+			return 'Αιτηση μεταπτυχιακου πτυχιου'
+		}else{
+			return 'Αιτηση διδακτορικου πτυχιου'
 		}
-	};
+	}
 
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
@@ -168,23 +182,19 @@ const NewApplicationPage = ({ loggedIn }) => {
 	}, [otherUni]);
 
 	const validate = () => {
-		if (
-			typeOfDiploma === "" ||
+		if (typeOfDiploma === "" ||
 			country === "" ||
 			myUni === "" ||
-			myDep === ""
-		) {
+			myDep === "") {
 			setsecondPageDisabled(true);
 			setthirdPageDisabled(true);
-		} else {
+		}else {
 			setsecondPageDisabled(false);
 			setfirstPage(2);
 			setsecondPage(2);
 			setthirdPageDisabled(false);
-			if (
-				diploma === "" &&
-				(updatedFile === null || updatedFile === "")
-			) {
+			if (diploma === "" &&
+				(updatedFile === null || updatedFile === "")) {
 				setfirstPage(2);
 				setthirdPage(1);
 				return true;
@@ -238,7 +248,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 		localStorage.setItem("otherUni", otherUni);
 		localStorage.setItem("otherDep", otherDep);
 		localStorage.setItem("diploma", diploma);
-		localStorage.setItem("updatedFile", updatedFile);
+		// console.log(updatedFile);
+		localStorage.setItem("updatedFile", JSON.stringify(updatedFile));
 	};
 
 	useEffect(() => {
@@ -264,6 +275,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 
 		if (params.id !== "-1") {
 			axiosInstance.get(`applications/${params.id}`).then((res) => {
+				setSubmited(res.data.is_submitted);
 				settypeOfDiploma(res.data.type_of_diploma);
 				setCountry(res.data.origin_country_1);
 				setMyUni(res.data.origin_university_1);
@@ -282,7 +294,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 			setOtherUni(localStorage.getItem("otherUni") ?? "");
 			setOtherDep(localStorage.getItem("otherDep") ?? "");
 			setDiploma(localStorage.getItem("diploma") ?? "");
-			setUpdated(localStorage.getItem("updatedFile") ?? "");
+			setUpdated(JSON.parse(localStorage.getItem("updatedFile")) ?? "");
 
 			localStorage.removeItem("typeOfDiploma");
 			localStorage.removeItem("country");
@@ -344,6 +356,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 									items={radioFin}
 									vaar={settypeOfDiploma}
 									selected={typeOfDiploma}
+									disabled={submited}
 								/>
 								<MySelectBox
 									txt="Χωρα Σπουδών"
@@ -352,6 +365,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 									items={countries}
 									setItems={setCountries}
 									all_items={allCountries}
+									disabled={submited}
 								/>
 								<div className="grouped">
 									<MySelectBox
@@ -361,6 +375,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 										items={myUniversities}
 										setItems={setMyUniversities}
 										all_items={allUniversities}
+										disabled={submited}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
@@ -369,6 +384,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 										items={myDepartments}
 										setItems={setMyDepartments}
 										all_items={allDepartments}
+										disabled={submited}
 									/>
 								</div>
 							</div>
@@ -407,6 +423,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 										items={otherUniversities}
 										setItems={setOtherUniversities}
 										all_items={allUniversities}
+										disabled={submited}
+										star={true}
 									/>
 									<MySelectBox
 										txt="Τμήμα"
@@ -415,6 +433,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 										items={otherDepartments}
 										setItems={setOtherDepartments}
 										all_items={allDepartments}
+										disabled={submited}
+										star={true}
 									/>
 								</div>
 							</div>
@@ -451,6 +471,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 									link={diploma}
 									setLink={setDiploma}
 									setUpdated={setUpdated}
+									disabled={submited}
 								/>
 							</div>
 						</div>
@@ -476,14 +497,14 @@ const NewApplicationPage = ({ loggedIn }) => {
 										btn_color="#1FAEFF"
 										txt_color="white"
 										curr_msg="Προσωρινή Αποθήκευση"
-										disable={!loggedIn}
+										disable={submited || !loggedIn}
 										funcc={TempSave}
 									/>
 									<MyButton
 										btn_color="#DD9F00"
 										txt_color="white"
 										curr_msg="Οριστική Υποβολή"
-										disable={fieldsOK() || !loggedIn}
+										disable={submited || fieldsOK() || !loggedIn}
 										funcc={FullSubmit}
 									/>
 								</div>
