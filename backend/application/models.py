@@ -52,3 +52,10 @@ class Application(models.Model):
 
     reasons_for_declination = models.TextField(null=True, blank=True)
     extra_subject = models.TextField(null=True, blank=True)
+
+    origin_country_1 = models.CharField(max_length=150, blank=True)
+    origin_university_1 = models.CharField(max_length=150, blank=True)
+    origin_department_1 = models.CharField(max_length=150, blank=True)
+
+    destination_university_1 = models.CharField(max_length=150, blank=True)
+    destination_department_1 = models.CharField(max_length=150, blank=True)
