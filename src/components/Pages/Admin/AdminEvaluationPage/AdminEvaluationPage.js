@@ -37,9 +37,12 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 
 	const [diploma, setDiploma] = useState("");
 
+
 	const [countries, setCountries] = useState([]);
 
+
 	const [reject, setReject] = useState("");
+	
 
 	const [classToTake, setclassToTake] = useState([{ id: 0, value: "" }]);
 	const [classFinal, setclassFinal] = useState([]);
@@ -317,163 +320,119 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 				</div>
 			</div>
 		);
-	} else if (currPage === 4) {
+	}else if (currPage === 4) {
 		return (
 			<div className="content">
 				<MyBreadcrumb array={myBread} />
 				<div className="external">
 					<div className="internal">
 						<div className="top">
-							<span id="underlined">
-								Λεπτομέρειες Αίτησης: {params.id}
-							</span>
+							<span id="underlined">Λεπτομέρειες Αίτησης: {params.id}</span>
 						</div>
 						<div className="middle">
 							<AdminEvalBreadcrumbs
 								setCurr={setCurrPage}
-								val={() => {}}
+								val={()=>{}}
 								curr={currPage}
 								first={3}
 								second={3}
 								third={3}
 							/>
 							<div className="middle-items">
-								{classToTake.map((item, index) => {
-									if (classToTake.length === 1) {
-										//only +
-										return (
-											<div
-												key={index}
-												className="classes-boxes class-boxes-first"
+							{classToTake.map((item, index)=>{
+								if(classToTake.length === 1){//only +
+									return(
+									<div key={index} className="classes-boxes class-boxes-first">
+										<button
+											className="chevronButton"
+											type="submit"
+											onClick={()=>{AppendItem()}}
+											disabled={!item.value}
 											>
-												<button
-													className="chevronButton"
-													type="submit"
-													onClick={() => {
-														AppendItem();
-													}}
-													disabled={!item.value}
+											<i className="material-icons chevron-item add">
+												{" "}
+												add{" "}
+											</i>
+										</button>
+										<MySelectBox
+											txt="Μαθημα"
+											vaar={(e)=>{updateCurrItemTxt(item, e)}}
+											filled={item.value}
+											items={countries}
+											setItems={setCountries}
+										/>
+									</div>
+									);
+								}else{
+									if(classToTake.length === index+1){ // - +
+										return(
+											<div key={index} className="classes-boxes">
+											<button
+												className="chevronButton"
+												type="submit"
+												onClick={()=>{AppendItem()}}
+												disabled={!item.value}
 												>
-													<i className="material-icons chevron-item add">
-														{" "}
-														add{" "}
-													</i>
-												</button>
-												<MySelectBox
-													txt="Μαθημα"
-													vaar={(e) => {
-														updateCurrItemTxt(
-															item,
-															e
-														);
-													}}
-													filled={item.value}
-													items={countries}
-													setItems={setCountries}
-												/>
-											</div>
+												<i className="material-icons chevron-item add">
+													{" "}
+													add{" "}
+												</i>
+											</button>					
+											<MySelectBox
+												txt="Μαθημα"
+												vaar={(e)=>{updateCurrItemTxt(item, e)}}
+												filled={item.value}
+												items={countries}
+												setItems={setCountries}
+											/>
+											<button
+												className="chevronButton"
+												type="submit"
+												onClick={()=>{RemoveItem(item.id)}}
+												>
+												<i className="material-icons chevron-item">
+													{" "}
+													close{" "}
+												</i>
+											</button>
+										</div>
 										);
-									} else {
-										if (classToTake.length === index + 1) {
-											// - +
-											return (
-												<div
-													key={index}
-													className="classes-boxes"
+									}else{
+										return(
+											<div key={index} className="classes-boxes class-boxes-end">					
+											<MySelectBox
+												txt="Μαθημα"
+												vaar={(e)=>{updateCurrItemTxt(item, e)}}
+												filled={item.value}
+												items={countries}
+												setItems={setCountries}
+											/>
+											<button
+												className="chevronButton"
+												type="submit"
+												onClick={()=>{RemoveItem(item.id)}}
 												>
-													<button
-														className="chevronButton"
-														type="submit"
-														onClick={() => {
-															AppendItem();
-														}}
-														disabled={!item.value}
-													>
-														<i className="material-icons chevron-item add">
-															{" "}
-															add{" "}
-														</i>
-													</button>
-													<MySelectBox
-														txt="Μαθημα"
-														vaar={(e) => {
-															updateCurrItemTxt(
-																item,
-																e
-															);
-														}}
-														filled={item.value}
-														items={countries}
-														setItems={setCountries}
-													/>
-													<button
-														className="chevronButton"
-														type="submit"
-														onClick={() => {
-															RemoveItem(item.id);
-														}}
-													>
-														<i className="material-icons chevron-item">
-															{" "}
-															close{" "}
-														</i>
-													</button>
-												</div>
-											);
-										} else {
-											return (
-												<div
-													key={index}
-													className="classes-boxes class-boxes-end"
-												>
-													<MySelectBox
-														txt="Μαθημα"
-														vaar={(e) => {
-															updateCurrItemTxt(
-																item,
-																e
-															);
-														}}
-														filled={item.value}
-														items={countries}
-														setItems={setCountries}
-													/>
-													<button
-														className="chevronButton"
-														type="submit"
-														onClick={() => {
-															RemoveItem(item.id);
-														}}
-													>
-														<i className="material-icons chevron-item">
-															{" "}
-															close{" "}
-														</i>
-													</button>
-												</div>
-											);
-										}
+												<i className="material-icons chevron-item">
+													{" "}
+													close{" "}
+												</i>
+											</button>
+										</div>
+										);
 									}
-								})}
+								}
+							})}
 							</div>
 
-							<MyTextArea
-								txt={"Γράψε τον λόγο απορριψης:"}
-								filled={reject}
-								setFilled={setReject}
-							/>
+							<MyTextArea txt={"Γράψε τον λόγο απορριψης:"} filled={reject} setFilled={setReject}/>
 						</div>
 						<div className="lower-admin-fourth">
 							<MyButton
-								btn_color="#6EC501"
-								txt_color="#FFFFFF"
-								curr_msg="Αποδοχή"
-								disable={
-									classFinal.length > 0 || reject.length !== 0
-								}
-								funcc={() => {
-									acceptRequest();
-								}}
+							btn_color="#6EC501"
+							txt_color="#FFFFFF"
+							curr_msg="Αποδοχή"
+							disable={(otherUni  === "" || otherDep === "") || classFinal.length > 0 || reject.length !== 0}
+							funcc={()=>{acceptRequest()}}
 							/>
 
 							<MyButton
@@ -481,9 +440,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								txt_color="#FFFFFF"
 								curr_msg="Εκκρεμής"
 								disable={classFinal.length === 0}
-								funcc={() => {
-									declineRequest();
-								}}
+								funcc={()=>{declineRequest()}}
 							/>
 
 							<MyButton
@@ -491,9 +448,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								txt_color="#FFFFFF"
 								curr_msg="Απόρριψη"
 								disable={reject.length === 0}
-								funcc={() => {
-									declineRequest();
-								}}
+								funcc={()=>{declineRequest()}}
 							/>
 						</div>
 					</div>

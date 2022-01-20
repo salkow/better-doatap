@@ -119,49 +119,32 @@ const NewApplicationPage = ({ loggedIn }) => {
 	}, [otherUni]);
 
 	const validate = () => {
-		if (
-			typeOfDiploma === "" ||
+		if (typeOfDiploma === "" ||
 			country === "" ||
 			myUni === "" ||
-			myDep === ""
-		) {
+			myDep === "") {
 			setsecondPageDisabled(true);
 			setthirdPageDisabled(true);
-		} else {
+		}else {
 			setsecondPageDisabled(false);
 			setfirstPage(2);
-			// if(otherUni === "" || otherDep === ""){//TODO switch to this cause these wont ever be null
-			if (
-				otherUni === "" ||
-				otherDep === "" ||
-				otherUni === null ||
-				otherDep === null
-			) {
-				setthirdPageDisabled(true);
-				setsecondPage(1);
+			setsecondPage(2);
+			setthirdPageDisabled(false);
+			if (diploma === "" &&
+				(updatedFile === null || updatedFile === "")) {
+				setfirstPage(2);
+				setthirdPage(1);
+				return true;
 			} else {
 				setfirstPage(2);
 				setsecondPage(2);
-				setthirdPageDisabled(false);
-				if (
-					diploma === "" &&
-					(updatedFile === null || updatedFile === "")
-				) {
-					setfirstPage(2);
-					setthirdPage(1);
-					return true;
-				} else {
-					setfirstPage(2);
-					setsecondPage(2);
-					setthirdPage(2);
-				}
+				setthirdPage(2);
 			}
 		}
 		return false;
 	};
 
 	useEffect(() => {
-		// save_on_local_storage();
 		validate();
 	}, [
 		typeOfDiploma,
@@ -183,18 +166,10 @@ const NewApplicationPage = ({ loggedIn }) => {
 		) {
 		} else {
 			if (
-				otherUni === "" ||
-				otherDep === "" ||
-				otherUni === null ||
-				otherDep === null
+				diploma === "" &&
+				(updatedFile === null || updatedFile === "")
 			) {
-			} else {
-				if (
-					diploma === "" &&
-					(updatedFile === null || updatedFile === "")
-				) {
-					return true;
-				}
+				return true;
 			}
 		}
 		return false;
