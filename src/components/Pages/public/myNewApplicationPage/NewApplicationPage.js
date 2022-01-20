@@ -64,7 +64,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 		fd.append("destination_department_1", otherDep);
 		fd.append("type_of_diploma", typeOfDiploma);
 
-		axiosInstanceFD.post('applications/', fd)
+		axiosInstanceFD.post('applications/x/', fd)
 	}
 
 	const FullSubmit =  () =>{
@@ -80,7 +80,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 		fd.append("destination_department_1", otherDep);
 		fd.append("type_of_diploma", typeOfDiploma);
 
-		axiosInstanceFD.post('applications/', fd)
+		axiosInstanceFD.post('applications/x/', fd)
 	}
 
 	const getName = () =>{
