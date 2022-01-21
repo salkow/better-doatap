@@ -228,22 +228,16 @@ const NewApplicationPage = ({ loggedIn }) => {
 			myDep === ""
 		) {
 		} else {
-			if (uploaded === null){
+			if (uploaded === null && diplomaFile === ""){
 				return true;
+			}else{
+				
 			}
 		}
 		return false;
 	};
 
-	function blobToFile(theBlob, fileName){
-		//A Blob() is almost a File() - it's just missing the two properties below which we will add
-		theBlob.lastModifiedDate = new Date();
-		theBlob.name = fileName;
-		return theBlob;
-	}
-
 	const save_on_local_storage = () => {
-		console.log("I saved the data.");
 		localStorage.setItem("was_in_new_app", true);
 		localStorage.setItem("typeOfDiploma", typeOfDiploma);
 		localStorage.setItem("country", country);
@@ -254,7 +248,6 @@ const NewApplicationPage = ({ loggedIn }) => {
 		if(uploaded !== null){
 			// /* */
 			localStorage.setItem("uploaded", URL.createObjectURL(uploaded));
-			console.log(uploaded.name)
 			localStorage.setItem("uploadedName", uploaded.name);
 			// /* */
 		}else{
@@ -262,7 +255,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 		}
 	};
 
-	useEffect(async() => {
+	const initFunc = async () =>{
 		axiosInstance
 			.get(`countries/`)
 			.then((res) => {
@@ -297,6 +290,13 @@ const NewApplicationPage = ({ loggedIn }) => {
 				
 				setDiplomaFile(res.data.diploma);
 				setDiplomaName(res.data.diploma.substring(res.data.diploma.lastIndexOf('/') + 1))
+
+				if(res.data.is_submitted){
+					setfirstPage(3);
+					setCurrPage(1);
+					setsecondPage(3);
+					setthirdPage(3);
+				}
 			});
 		} else {
 			settypeOfDiploma(localStorage.getItem("typeOfDiploma") ?? "");
@@ -310,32 +310,62 @@ const NewApplicationPage = ({ loggedIn }) => {
 				/* */
 				var url = localStorage.getItem("uploaded");
 				var myblob = await fetch(url).then(r => r.blob())
-				console.log(localStorage.getItem("uploadedName"))
 				var file = new File([myblob], localStorage.getItem("uploadedName"), {type: myblob.type});
 				setUploaded(file);
 				/* */
 
 				setDiplomaFile(window.URL.createObjectURL(file));
 				setDiplomaName(file.name);
-				localStorage.removeItem("uploaded");
-				localStorage.removeItem("uploadedName");
 			}else if(localStorage.getItem("diploma")){
 				setDiplomaFile(localStorage.getItem("diploma") ?? "");
 				setDiplomaName(localStorage.getItem("diploma").substring(localStorage.getItem("diploma").lastIndexOf('/') + 1))
-				localStorage.removeItem("diploma");
 			}else{
 				setDiplomaName("");
 				setDiplomaFile("");
 			}
-
+			
+			if (!localStorage["typeOfDiploma"] ||
+				!localStorage["country"] ||
+				!localStorage["myUni"] ||
+				!localStorage["myDep"]) {
+				setsecondPageDisabled(true);
+				setthirdPageDisabled(true);
+			}else {
+				setsecondPageDisabled(false);
+				setfirstPage(2);
+				setsecondPage(2);
+				setthirdPageDisabled(false);
+				if (!localStorage["uploaded"]) {
+					setfirstPage(2);
+					setthirdPage(1);
+				} else {
+					setfirstPage(2);
+					setsecondPage(2);
+					setthirdPage(2);
+				}
+			}
+			
+			
 			localStorage.removeItem("typeOfDiploma");
 			localStorage.removeItem("country");
 			localStorage.removeItem("myUni");
 			localStorage.removeItem("myDep");
 			localStorage.removeItem("otherUni");
 			localStorage.removeItem("otherDep");
+			localStorage.removeItem("uploaded");
+			localStorage.removeItem("uploadedName");
+			localStorage.removeItem("diploma");
+			
 		}
-	}, []);
+	}
+
+	// useEffect(async() => {
+	// 	initFunc()
+	// }, []);
+	
+	useEffect(async() => {
+		initFunc();
+	}, [params.id]);
 
 	const login = () => {
 		save_on_local_storage();
@@ -377,8 +407,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 								second={secondPage}
 								third={thirdPage}
 								firstdis={false}
-								seconddis={secondPageDisabled}
-								thirddis={thirdPageDisabled}
+								seconddis={secondPageDisabled && !submited}
+								thirddis={thirdPageDisabled && !submited}
 							/>
 							<div className="middle-items">
 								<MyRadioButton
@@ -441,8 +471,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 								second={secondPage}
 								third={thirdPage}
 								firstdis={false}
-								seconddis={secondPageDisabled}
-								thirddis={thirdPageDisabled}
+								seconddis={secondPageDisabled && !submited}
+								thirddis={thirdPageDisabled && !submited}
 							/>
 							<div className="middle-items">
 								<div className="grouped">
@@ -491,8 +521,8 @@ const NewApplicationPage = ({ loggedIn }) => {
 								second={secondPage}
 								third={thirdPage}
 								firstdis={false}
-								seconddis={secondPageDisabled}
-								thirddis={thirdPageDisabled}
+								seconddis={secondPageDisabled && !submited}
+								thirddis={thirdPageDisabled && !submited}
 							/>
 							<div className="middle-items">
 								<MyFileCard

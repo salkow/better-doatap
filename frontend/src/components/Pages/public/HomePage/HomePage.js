@@ -16,11 +16,11 @@ const HomePage = () => {
 	}
 
 	return (
-		<div class="external-home">
-			<div class="internal-home">
-				<img class="bgimg" src={img} alt="home page background image"></img>
-				<div class="on-top">
-					<div class="on-top-first">
+		<div className="external-home">
+			<div className="internal-home">
+				<img className="bgimg" src={img} alt="home page background image"></img>
+				<div className="on-top">
+					<div className="on-top-first">
 						<span>
 							Διεπιστημονικός Οργανισμός Αναγνώρισης Τίτλων
 							Ακαδημαϊκών και πληροφόρισης
@@ -34,7 +34,7 @@ const HomePage = () => {
 							}}
 						/>
 					</div>
-					<div class="on-top-second">
+					<div className="on-top-second">
 						Κάνε αναγνώριση του πτυχίου σου εύκολα, γρήγορα και
 						ηλεκτρονικά!
 					</div>

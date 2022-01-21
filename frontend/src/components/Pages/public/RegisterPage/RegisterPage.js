@@ -9,7 +9,6 @@ import { useState } from "react";
 
 import axiosInstance from "../../../../axios";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
 
 const RegisterPage = () => {
 	const myBread = [
@@ -24,7 +23,6 @@ const RegisterPage = () => {
 	];
 
 	const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-	const [path, setPath] = useState("/");
 
 	const [email, setEmail] = useState("");
 	const [Erroremail, setErrorEmail] = useState("");
@@ -46,10 +44,6 @@ const RegisterPage = () => {
 	const [Errorgender, setErrorGender] = useState("");
 	const [id, setID] = useState("");
 	const [Errorid, setErrorID] = useState("");
-
-	const [msg, setMsg] = useState("");
-
-	const goToPreviousPath = () => {};
 
 	const submit = async () => {
 		var finish = 0;
@@ -112,7 +106,7 @@ const RegisterPage = () => {
 			return;
 		}
 
-		if (password != repeatPassword) {
+		if (password !== repeatPassword) {
 			setErrorRePass("Passwords dont match");
 			return;
 		}
@@ -125,7 +119,7 @@ const RegisterPage = () => {
 			phone: phone,
 			id_num: id,
 			afm: afm,
-			birthday: "2021-12-30",
+			birthday: dob.getFullYear()+"-"+dob.getMonth()+"-"+dob.getDate(),
 			gender: gender,
 		});
 
@@ -174,7 +168,7 @@ const RegisterPage = () => {
 										error={Errorpassword}
 										setError={setErrorPass}
 										validate={(pass, setError) => {
-											if (pass.value != "") {
+											if (pass.value !== "") {
 												setError("");
 												if(pass.value.length < 8 || !(pass.value.match(/(?!^\d+$)^.+$/))){
 													setError("Must be 8 length and have at least 1 char")
@@ -186,7 +180,7 @@ const RegisterPage = () => {
 													"This field is required"
 												);
 											}
-											if (pass.value != repeatPassword) {
+											if (pass.value !== repeatPassword) {
 												setErrorRePass("Passwords dont match");
 											}
 										}}
@@ -198,9 +192,9 @@ const RegisterPage = () => {
 										error={ErrorrepeatPassword}
 										setError={setErrorRePass}
 										validate={(Repass, setError) => {
-											if (Repass.value != "") {
+											if (Repass.value !== "") {
 												setError("");
-												if (password != Repass.value) {
+												if (password !== Repass.value) {
 													setError("Passwords dont match");
 												}
 											} else {
@@ -221,7 +215,7 @@ const RegisterPage = () => {
 										error={ErrorlastName}
 										setError={setErrorLast}
 										validate={(last, setError) => {
-											if (last.value != "") {
+											if (last.value !== "") {
 												setError("");
 											} else {
 												setError(
@@ -237,7 +231,7 @@ const RegisterPage = () => {
 										error={ErrorfirstName}
 										setError={setErrorFirst}
 										validate={(first, setError) => {
-											if (first.value != "") {
+											if (first.value !== "") {
 												setError("");
 											} else {
 												setError(
@@ -279,7 +273,7 @@ const RegisterPage = () => {
 											);
 											return;
 										}
-										if (phone.value != "") {
+										if (phone.value !== "") {
 											setError("");
 										} else {
 											setError("This field is required");
@@ -303,7 +297,7 @@ const RegisterPage = () => {
 										error={Errorid}
 										setError={setErrorID}
 										validate={(id, setError) => {
-											if (id.value != "") {
+											if (id.value !== "") {
 												setError("");
 											} else {
 												setError(
@@ -319,7 +313,7 @@ const RegisterPage = () => {
 										error={Errorafm}
 										setError={setErrorAFM}
 										validate={(afm, setError) => {
-											if (afm.value != "") {
+											if (afm.value !== "") {
 												setError("");
 											} else {
 												setError(

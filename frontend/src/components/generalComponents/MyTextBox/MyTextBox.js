@@ -10,7 +10,7 @@ const MyTextBox = ({txt, filled, type, error, setError, vaar, validate, star, di
                 <div className="txt-top">
                    <span>{!star && (<span id="star">*</span>)}<label htmlFor={id}>{txt}</label></span>
                 </div>
-                <input type={type} id={id} onChange={(e)=>{vaar(e.target.value);if(validate){validate(e.target, setError)}}} value={filled} defaultValue={filled} disabled={disabled}/>
+                <input type={type} id={id} onChange={(e)=>{vaar(e.target.value);if(validate){validate(e.target, setError)}}} value={filled} disabled={disabled}/>
                 <span className={'error_span_txt'+(error ? ' error_msg_txt' : '')}>*{error}</span>
             </div>
         </div>

@@ -40,9 +40,6 @@
     margin: 0;
     padding: 0;
 }
-.middle > .txtboxes-p > div > * {
-    /* margin-bottom: 40px; */
-}
 .myTextboxes {
     margin-bottom: 30px;
 }
@@ -50,10 +47,6 @@
 .middle > .txtboxes-p > div > *:last-child {
     margin-bottom: 15px;
 }
-
-/* .horizontal > *:first-child {
-    margin-right: 40px;
-} */
 .txtboxes-p {
     display: flex;
     justify-content: center;

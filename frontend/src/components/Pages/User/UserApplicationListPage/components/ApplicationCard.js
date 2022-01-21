@@ -47,9 +47,10 @@ const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt, ot
             <OverlayTrigger
                 placement="right"
                 delay={{ show: 50, hide: 400 }}
-                overlay={renderTooltipDec}>
+                overlay={renderTooltipDec}
+                key={{id} + 'bb'}>
 
-                <span key={{id} + 'bb'} className="helpSpan" type="submit">
+                <span className="helpSpan" type="submit">
                     <i className="material-icons help-item"> help_outline </i>
                 </span>            
             </OverlayTrigger>,
@@ -62,9 +63,10 @@ const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt, ot
             <OverlayTrigger
                 placement="right"
                 delay={{ show: 50, hide: 400 }}
-                overlay={renderTooltip}>
+                overlay={renderTooltip}
+                key={{id} + 'bb'}>
 
-                <span key={{id} + 'bb'} className="helpSpan" type="submit">
+                <span className="helpSpan" type="submit">
                     <i className="material-icons help-item"> help_outline </i>
                 </span>            
             </OverlayTrigger>,

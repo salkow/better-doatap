@@ -27,9 +27,7 @@
     width: 100%;
     height: max-content;
 }
-.date-internal input::-webkit-inner-spin-button{
 
-}
 .date-internal input::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }

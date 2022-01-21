@@ -42,13 +42,10 @@ const ProfilePage = ({isAdmin}) => {
 
   const [pass_dis, setpass_dis] = useState(true);
 
-  const [msg, setMsg] = useState("");
-
   useEffect(() => {
     axiosInstance
       .get(`user/profile/`)
       .then((res) => {
-        // history.push('/login');
 
         setEmail(res.data.email)
         setPhoneNum(res.data.phone)
@@ -80,14 +77,6 @@ const ProfilePage = ({isAdmin}) => {
       finish = 1;
       setErrorEmail("This field is required")
     }
-    // if(!password){
-    //   finish=1;
-    //   // setErrorPass("This field is required")
-    // }
-    // if(!repeatPassword){
-    //   finish=1;
-    //   // setErrorRePass("This field is required");
-    // }
     if (!phone) {
       finish = 1;
       setErrorPhoneNum("This field is required")
@@ -125,7 +114,7 @@ const ProfilePage = ({isAdmin}) => {
     }
 
     if (OldPassword && password && repeatPassword) {
-      if (password != repeatPassword) {
+      if (password !== repeatPassword) {
         setErrorPass("Passwords dont match")
         return;
       } else {
@@ -135,7 +124,7 @@ const ProfilePage = ({isAdmin}) => {
             new_password: password,
           })
           .catch((error) => {
-            if (error.response.status == 400) {
+            if (error.response.status === 400) {
               setErrorOldPass("Wrong credentials");
               return -1
             }
@@ -152,12 +141,11 @@ const ProfilePage = ({isAdmin}) => {
               phone: phone,
               id_num: id,
               afm: afm,
-              birthday: "2021-12-30", //TODO
+              birthday: dob.getFullYear()+"-"+dob.getMonth()+"-"+dob.getDate(),
               gender: gender
             })
             .then((res) => {
-              // history.push('/login');
-              // navigate.go(0)
+              
             });
 
           });
@@ -173,12 +161,11 @@ const ProfilePage = ({isAdmin}) => {
               phone: phone,
               id_num: id,
               afm: afm,
-              birthday: "2021-12-30", //TODO
+              birthday: dob.getFullYear()+"-"+dob.getMonth()+"-"+dob.getDate(),
               gender: gender
             })
             .then((res) => {
-              // history.push('/login');
-              // navigate.go(0)
+
             });
 
   }
@@ -207,18 +194,11 @@ const ProfilePage = ({isAdmin}) => {
               </div>
               <div className="first-group">
                 <span><span id="star">*</span>Συμπλήρωσε τον κωδικό σου, μόνο αν θες να τον αλλάξεις</span>
-                <MyTextBox className="myTextboxes" txt="Old Password" type="password" vaar={setOldPass} error={ErrorOldPassword} setError={setErrorOldPass} star={true} validate={(pass, setError) => {
-                  // if(pass.value != ""){
-                  //   setError("");
-                  // }else{
-                  //   setError("This field is required")
-                  // }
-                }
-                } />
+                <MyTextBox className="myTextboxes" txt="Old Password" type="password" vaar={setOldPass} error={ErrorOldPassword} setError={setErrorOldPass} star={true} validate={(pass, setError) => {}} />
                 <div className="first-other horizontal">
                   <MyTextBox className="myTextboxes" txt="New Password" type="password" filled={password} vaar={setPass} error={Errorpassword} disabled={pass_dis} star={true} setError={setErrorPass} validate={(pass, setError) => {
-                    if(OldPassword != ""){
-                      if(pass.value != ""){
+                    if(OldPassword !== ""){
+                      if(pass.value !== ""){
                         setError("");
                         if(pass.value.length < 8 || !(pass.value.match(/(?!^\d+$)^.+$/))){
 													setError("Must be 8 length and have at least 1 char")
@@ -229,23 +209,22 @@ const ProfilePage = ({isAdmin}) => {
                         setError("This field is required")
                       }
 
-                      if (pass.value != "" && pass.value != repeatPassword) {
+                      if (pass.value !== "" && pass.value !== repeatPassword) {
 												setErrorRePass("Passwords dont match");
 											}else{
                         setErrorRePass("")
                       }
                     }else{
-                      console.log("test")
                       setErrorRePass("")
                       setError("")
                     }
                   }
                   } />
                   <MyTextBox txt="Repeat New Password" type="password" filled={repeatPassword} vaar={setRePass} error={ErrorrepeatPassword} disabled={pass_dis} star={true} setError={setErrorRePass} validate={(Repass, setError) => {
-                    if(OldPassword != "" && password != ""){
-                      if(Repass.value != ""){
+                    if(OldPassword !== "" && password !== ""){
+                      if(Repass.value !== ""){
                         setError("");
-                        if (password != "" && password != Repass.value) {
+                        if (password !== "" && password !== Repass.value) {
 													setError("Passwords dont match");
 												}else{
                           setError("")
@@ -263,7 +242,7 @@ const ProfilePage = ({isAdmin}) => {
               <div className="second-group">
                 <div className="second-other horizontal">
                   <MyTextBox txt="Επώνυμο" type="text" vaar={setLast} error={ErrorlastName} filled={lastName} setError={setErrorLast} validate={(last, setError) => {
-                    if (last.value != "") {
+                    if (last.value !== "") {
                       setError("");
                     } else {
                       setError("This field is required")
@@ -271,7 +250,7 @@ const ProfilePage = ({isAdmin}) => {
                   }
                   } />
                   <MyTextBox txt="Όνομα" type="text" vaar={setFirst} error={ErrorfirstName} filled={firstName} setError={setErrorFirst} validate={(first, setError) => {
-                    if (first.value != "") {
+                    if (first.value !== "") {
                       setError("");
                     } else {
                       setError("This field is required")
@@ -291,7 +270,7 @@ const ProfilePage = ({isAdmin}) => {
                     setError("A phone number must contain only digits");
                     return;
                   }
-                  if (phone.value != "") {
+                  if (phone.value !== "") {
                     setError("");
                   } else {
                     setError("This field is required");
@@ -309,7 +288,7 @@ const ProfilePage = ({isAdmin}) => {
               <div className="third-group">
                 <div className="third-other horizontal">
                   <MyTextBox txt="Αριθμός ταυτοτητας ή  Αριθμος διαβατηριου" type="text" vaar={setID} error={Errorid} filled={id} setError={setErrorID} validate={(id, setError) => {
-                    if (id.value != "") {
+                    if (id.value !== "") {
                       setError("");
                     } else {
                       setError("This field is required")
@@ -317,7 +296,7 @@ const ProfilePage = ({isAdmin}) => {
                   }
                   } />
                   <MyTextBox txt="ΑΦΜ" type="text" vaar={setAFM} error={Errorafm} setError={setErrorAFM} filled={afm} validate={(afm, setError) => {
-                    if (afm.value != "") {
+                    if (afm.value !== "") {
                       setError("");
                     } else {
                       setError("This field is required")

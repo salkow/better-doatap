@@ -9,7 +9,7 @@
     justify-content: space-between;
     border: 2px solid rgba(0, 0, 0, 0.30);
     border-radius: 25px;
-    padding: 20px 0px 20px 20px; /*TODO: think about 0px here */
+    padding: 20px 0px 20px 20px;
     gap: 25px;
 }
 
