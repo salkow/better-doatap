@@ -40,3 +40,8 @@ btn-check:active + .btn-primary:focus,
 .parent * {
 	pointer-events: none;
 }
+
+
+.logout-style:hover {
+	cursor: pointer;
+}

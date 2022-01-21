@@ -526,7 +526,7 @@ const NewApplicationPage = ({ loggedIn }) => {
 							) : (
 								<div className="buttons">
 									<MyButton
-										btn_color="#1FAEFF"
+										btn_color="#3069fc"
 										txt_color="white"
 										curr_msg="Προσωρινή Αποθήκευση"
 										disable={submited || !loggedIn}

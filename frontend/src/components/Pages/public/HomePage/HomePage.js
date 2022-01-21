@@ -18,7 +18,7 @@ const HomePage = () => {
 	return (
 		<div class="external-home">
 			<div class="internal-home">
-				<img class="bgimg" src={img}></img>
+				<img class="bgimg" src={img} alt="home page background image"></img>
 				<div class="on-top">
 					<div class="on-top-first">
 						<span>

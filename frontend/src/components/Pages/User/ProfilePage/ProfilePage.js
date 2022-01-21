@@ -327,7 +327,7 @@ const ProfilePage = ({isAdmin}) => {
                 </div>
               </div>
             </div>
-            <MyButton btn_color="#4285f4" txt_color="white" curr_msg="Ενημέρωση" funcc={submit} />
+            <MyButton btn_color="#3069fc" txt_color="white" curr_msg="Ενημέρωση" funcc={submit} />
           </div>
         </div>
       </div>

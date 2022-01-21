@@ -22,11 +22,11 @@ const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt, ot
     const fin = [];
     if(isFinalized){
         fin.push(
-            <AppCardTag key={id} txt="Οριστικά υποβεβλημένο" txt_clr="white" clr="#DD9F00"/>
+            <AppCardTag key={id} txt="Οριστικά υποβεβλημένο" txt_clr="#ffffff" clr="#8F5D00"/>
         );
     }else{
         fin.push(
-            <AppCardTag key={id} txt="Προσωρινά αποθηκευμένο" txt_clr="white" clr="#1FAEFF"/>
+            <AppCardTag key={id} txt="Προσωρινά αποθηκευμένο" txt_clr="white" clr="#3069fc"/>
         );
     }
     
@@ -37,7 +37,7 @@ const ApplicationCard = ({id, name, isFinalized, status, tool_txt, class_txt, ot
         );
     }else if(status === 'A'){
         stat.push(
-            <AppCardTag key={{id} + 'a'} txt="Εγγεγκριμένο" txt_clr="white" clr="#07BE2F" approved={true}/>
+            <AppCardTag key={{id} + 'a'} txt="Εγγεγκριμένο" txt_clr="white" clr="#01891E" approved={true}/>
         );
     }else if(status === 'D'){
         stat.push(

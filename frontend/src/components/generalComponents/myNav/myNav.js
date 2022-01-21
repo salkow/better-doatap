@@ -177,7 +177,7 @@ const TheNav = ({ loggedIn, setLoggedIn, isAdmin, setIsAdmin }) => {
 
 									<Dropdown.Item as="div">
 										<div
-											className="nav-link selected"
+											className="nav-link selected logout-style"
 											onClick={logout}
 											style={{ paddingLeft: "15px" }}
 										>

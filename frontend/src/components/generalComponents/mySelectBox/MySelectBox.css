@@ -8,7 +8,7 @@
     font-size: 12px;
 }
 #star-select {
-    color: red;
+    color: #be0000;
 }
 
 .external-select {
@@ -76,8 +76,8 @@
 
 
 .container-options-select {
-    background: #2f3640;
-    color: #f5f6fa;
+    background: #2b2c2c;
+    color: #ffffff;
     max-height: 0;
     width: 330px;
     opacity: 0;
@@ -120,7 +120,7 @@ border-radius: 0 8px 8px 0;
     display: none;
 }
 .option-select:hover {
-    background: #414b57;
+    background: #7e7e7e;
 }
 
 

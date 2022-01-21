@@ -167,7 +167,7 @@ const CommunicationPage = () => {
 
 					<Row>
 						<MyButton
-							btn_color="#73B6E6"
+							btn_color="#3069fc"
 							txt_color="white"
 							curr_msg="Υποβολή"
 						/>

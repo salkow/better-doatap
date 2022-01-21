@@ -19,6 +19,7 @@ const MySelectBox = ({
 	// 	"Fourth",
 	// 	"Fifth",
 	// ]);
+	const [id] = useState(() => `component-${Math.random().toString(16).slice(2)}`);
 
 	useEffect(() => {}, [items]);
 
@@ -78,7 +79,7 @@ const MySelectBox = ({
 						onClick={setActiveElement}
 					>
 						<div className="top-txt-select">
-							<span>{!star && (<span id="star-select">*</span>)}{txt}</span>
+							<span>{!star && (<span id="star-select">*</span>)}<label htmlFor={id}>{txt}</label></span>
 						</div>
 						<div
 							className={
@@ -92,6 +93,7 @@ const MySelectBox = ({
 								placeholder="Αναζήτηση..."
 								autoComplete="off"
 								// onChange={(e) => vaar(e.target.value)}
+								id={id}
 								onChange={(e) => filter(e.target.value)}
 								value={filled}
 								onBlur={(e) => {
@@ -112,26 +114,28 @@ const MySelectBox = ({
 						</div>
 					</div>
 					<div className="container-options-select">
-						{items.map((item, index) => (
-							<div className="option-select-div" key={index}>
-								<input
-									type="radio"
-									className="radio"
-									id="test1"
-									value={item}
-									name="test"
-								/>
-								<label
-									className="option-select"
-									htmlFor="test1"
-									onClick={(e) => {
-										vaar(e.target.previousSibling.value);
-									}}
-								>
-									{item}
-								</label>
-							</div>
-						))}
+						{!disabled && (
+							items.map((item, index) => (
+								<div className="option-select-div" key={index}>
+									<input
+										type="radio"
+										className="radio"
+										id={id+"test"+index}
+										value={item}
+										name="test"
+									/>
+									<label
+										className="option-select"
+										htmlFor={id+"test"+index}
+										onClick={(e) => {
+											vaar(e.target.previousSibling.value);
+										}}
+									>
+										{item}
+									</label>
+								</div>
+							))
+						)}
 					</div>
 				</div>
 			</div>

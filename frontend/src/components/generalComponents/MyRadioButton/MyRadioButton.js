@@ -16,7 +16,7 @@ const MyRadioButton = ({txt, items, selected, disabled, vaar, error, setError}) 
     return (
 		<div className={"external-radio"+(error ? ' error_internal_txt' : '')}>
             <div className="txt-top-radio">
-                <span><span id="star">*</span>{txt}</span>
+                <span><span id="star-radio">*</span>{txt}</span>
             </div>
             <div className={"internal-radio"+(disabled ? ' disabled-radio' : '')}>
                 <ul>
