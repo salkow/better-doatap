@@ -141,7 +141,7 @@ const ProfilePage = ({isAdmin}) => {
               phone: phone,
               id_num: id,
               afm: afm,
-              birthday: dob.getFullYear()+"-"+dob.getMonth()+"-"+dob.getDate(),
+              birthday: dob.getFullYear()+"-"+(dob.getMonth()+1)+"-"+dob.getDate(),
               gender: gender
             })
             .then((res) => {
@@ -161,7 +161,7 @@ const ProfilePage = ({isAdmin}) => {
               phone: phone,
               id_num: id,
               afm: afm,
-              birthday: dob.getFullYear()+"-"+dob.getMonth()+"-"+dob.getDate(),
+              birthday: dob.getFullYear()+"-"+(dob.getMonth()+1)+"-"+dob.getDate(),
               gender: gender
             })
             .then((res) => {

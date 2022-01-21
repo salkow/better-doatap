@@ -36,7 +36,7 @@ const RegisterPage = () => {
 	const [ErrorfirstName, setErrorFirst] = useState("");
 	const [lastName, setLast] = useState("");
 	const [ErrorlastName, setErrorLast] = useState("");
-	const [dob, setDoB] = useState("");
+	const [dob, setDoB] = useState();
 	const [Errordob, setErrorDoB] = useState("");
 	const [afm, setAFM] = useState("");
 	const [Errorafm, setErrorAFM] = useState("");
@@ -119,7 +119,7 @@ const RegisterPage = () => {
 			phone: phone,
 			id_num: id,
 			afm: afm,
-			birthday: dob.getFullYear()+"-"+dob.getMonth()+"-"+dob.getDate(),
+			birthday: dob.getFullYear()+"-"+(dob.getMonth()+1)+"-"+dob.getDate(),
 			gender: gender,
 		});
 

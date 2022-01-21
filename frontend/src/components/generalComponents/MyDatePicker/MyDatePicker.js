@@ -11,7 +11,7 @@ const MyDatePicker = ({txt, vaar, error, setError, filled}) =>
                 <div className="date-top">
                      <span><span id="star">*</span><label htmlFor={id}>{txt}</label></span>
                 </div>
-                <input type="date" id={id} onChange={(e)=>{vaar(e.target.value);setError("");}} placeholder="DD/MM/YYYY" defaultValue={filled}/>
+                <input type="date" id={id} onChange={(e)=>{vaar(e.target.valueAsDate);setError("");}} placeholder="DD/MM/YYYY" defaultValue={filled}/>
                 <span className={'error_span_txt'+(error ? ' error_msg_txt' : '')}>*{error}</span>
              </div>
         </div>

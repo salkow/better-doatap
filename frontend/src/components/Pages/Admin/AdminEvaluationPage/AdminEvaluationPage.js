@@ -14,6 +14,7 @@ import { useParams, Navigate } from "react-router-dom";
 import axiosInstance from "../../../../axios.js";
 import MyTextArea from "../../../generalComponents/MyTextArea/MyTextArea";
 import AdminEvalBreadcrumbs from "./AdminEvalBreadcrumbs/AdminEvalBreadcrumbs";
+import MyTextBox from "../../../generalComponents/MyTextBox/MyTextBox";
 
 const AdminEvaluationPage = ({ loggedIn }) => {
 	const params = useParams();
@@ -106,7 +107,6 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 			...classToTake,
 			{ id: classMaxID + 1, value: "" },
 		]);
-		setclassFinal(classToTake.filter((i) => i.value !== ""));
 		setclassFinal(classToTake.filter((i) => i.value !== ""));
 		setclassMaxID(classMaxID + 1);
 	};
@@ -325,7 +325,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 									name="Πτυχίο φοίτησης"
 									desc="Αφορά το πτυχίου που παραλάβατε αφού ολοκληρώσατε την φοίτησή σας."
 									link={diploma}
-									setLink={setDiploma}
+									file_name={diploma.substring(diploma.lastIndexOf('/') + 1)}
 									disabled={true}
 								/>
 							</div>
@@ -369,12 +369,10 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 												add{" "}
 											</i>
 										</button>
-										<MySelectBox
+										<MyTextBox
 											txt="Μαθημα"
 											vaar={(e)=>{updateCurrItemTxt(item, e)}}
 											filled={item.value}
-											items={countries}
-											setItems={setCountries}
 										/>
 									</div>
 									);
@@ -393,12 +391,10 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 													add{" "}
 												</i>
 											</button>					
-											<MySelectBox
+											<MyTextBox
 												txt="Μαθημα"
 												vaar={(e)=>{updateCurrItemTxt(item, e)}}
 												filled={item.value}
-												items={countries}
-												setItems={setCountries}
 											/>
 											<button
 												className="chevronButton"
@@ -415,12 +411,10 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 									}else{
 										return(
 											<div key={index} className="classes-boxes class-boxes-end">					
-											<MySelectBox
+											<MyTextBox
 												txt="Μαθημα"
 												vaar={(e)=>{updateCurrItemTxt(item, e)}}
 												filled={item.value}
-												items={countries}
-												setItems={setCountries}
 											/>
 											<button
 												className="chevronButton"
@@ -454,7 +448,7 @@ const AdminEvaluationPage = ({ loggedIn }) => {
 								btn_color="#E37171"
 								txt_color="#FFFFFF"
 								curr_msg="Εκκρεμής"
-								disable={classFinal.length === 0 || (otherUni  === "" || otherDep === "")}
+								disable={(otherUni  === "" || otherDep === "") || classFinal.length === 0}
 								funcc={()=>{holdRequest()}}
 							/>
 
