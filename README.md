@@ -3,6 +3,8 @@
 Χρήστος Καφρίτσας - sdi1800072
 Αντώνης Καλαμάκης - sdi1800056
 
+Παρουσίαση εργασίας: https://www.youtube.com/watch?v=pEDM0Zy1gc8
+
 Στην εργασία έχει γίνει χρήση react για το frontend και django στο backend.
 
 ## Deploy
